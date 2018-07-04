@@ -13,5 +13,7 @@
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <%= link_to "新規登録", new_user_session_path %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, confirm: "本当に移動しますか？" %>
   </body>
 </html>
