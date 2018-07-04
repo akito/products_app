@@ -113,6 +113,16 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="annotate (vbundled(2.7.4)) [path][gem]">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-2.7.4/lib" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-2.7.4/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="archive-zip (vbundled(0.11.0)) [path][gem]">
         <CLASSES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/archive-zip-0.11.0/lib" />

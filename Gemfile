@@ -54,6 +54,7 @@ group :development do
   gem 'better_errors'
   gem 'pry-rails'
   gem 'rubocop-rails'
+  gem 'annotate'
 end
 
 group :test do
