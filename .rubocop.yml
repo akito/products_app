@@ -1,0 +1,35 @@
+inherit_gem:
+  rubocop-rails:
+    - config/rails.yml
+
+inherit_from: rubocop-todo.yml
+
+Rails:
+  Enabled: true
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# シングルクォート, ダブルクォートどちらでも良い
+Style/StringLiterals:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+      - 'db/**/*'
+      - 'bin/**/*'
+      - '**/templates/**/*'
+      - '**/vendor/**/*'

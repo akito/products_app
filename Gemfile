@@ -53,6 +53,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'pry-rails'
+  gem 'rubocop-rails'
 end
 
 group :test do
