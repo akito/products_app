@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+3.times do |idx|
+  User.create!(email: "user0#{idx}@example.com", password: 'password')
+end
+
+
+Product.create!(name: 'Pinterest', url: 'https://www.pinterest.jp/',
+                  desc: 'Pinterestは、ピンボード風の写真共有ウェブサイト',
+                  image: 'Pinterest', thumbnail: 'Pinterest')
+Product.create!(name: 'Uber', url: 'https://www.uber.com',
+                desc: '自動車配車ウェブサイトおよび配車アプリ',
+                image: 'Uber', thumbnail: 'Uber')
+Product.create!(name: 'Lyft', url: 'https://www.lyft.com/',
+                desc: '自動車配車ウェブサイトおよび配車アプリ',
+                image: 'Lyft', thumbnail: 'Lyft')
