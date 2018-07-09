@@ -27,3 +27,12 @@
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+
+<p>###############################</p>
+<% @comments.each do |comment| %>
+<p>
+  <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
+</p>
+<% end %>
+<p>###############################</p>
