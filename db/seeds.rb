@@ -8,7 +8,7 @@
 
 
 3.times do |idx|
-  User.create!(email: "user0#{idx}@example.com", password: 'password')
+  User.create!(name: "user0#{idx + 1}", email: "user0#{idx + 1}@test.com", password: 'password')
 end
 
 
