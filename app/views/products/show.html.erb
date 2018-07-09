@@ -33,8 +33,13 @@
 <% @comments.each do |comment| %>
 <p>
   <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
-</p>
+  <% if current_user == comment.user %>
+    <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
+    <%= link_to '修正', edit_comment_path(comment) %>
+  <% end %>
 <% end %>
+</p>
+
 
 <div>
   <%= form_with model: Comment.new do |f| %>

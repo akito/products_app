@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @comments = @product.comments
+    @comments = @product.comments.includes(:user)
   end
 
   # GET /products/new
