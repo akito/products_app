@@ -19,11 +19,11 @@ bundle install --path vendor/bundle --jobs=4
 
 Database initialization
 ```
-bundle exec rials db:migration
-bundle exec rials db:seed
+bin/rials db:migrate
+bin/rials db:seed
 ```
 
 Start local server.
 ```
-bundle exec rails server
+bin/rails server
 ```
