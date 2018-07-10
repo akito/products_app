@@ -23,9 +23,11 @@
         <td><%= product.image %></td>
         <td><%= product.thumbnail %></td>
         <td><%= link_to 'Show', product %></td>
-        <% if product.user_id == current_user.id %>
-          <td><%= link_to 'Edit', edit_product_path(product) %></td>
-          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <% if product.user_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_product_path(product) %></td>
+            <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
