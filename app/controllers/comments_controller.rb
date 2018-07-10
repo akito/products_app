@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create
-    if current_user.comments.create(comment_params)
+    @comment = current_user.comments.create(comment_params)
+    if @comment.save
       flash[:notice] = "OK"
     else
       flash[:error] = "NG"
