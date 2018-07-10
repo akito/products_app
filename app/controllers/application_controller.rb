@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
-  class Forbidden < ActionController::ActionControllerError; end
+  class Forbidden < StandardError; end
 
   rescue_from Forbidden, with: :rescue403
 
