@@ -82,4 +82,4 @@ production:
   <<: *default
   database: products_app_production
   username: products_app
-  password: <%= ENV['TEST-RAILS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['PRODUCTS_APP_DATABASE_PASSWORD'] %>
