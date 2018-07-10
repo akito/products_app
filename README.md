@@ -1,25 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Environment
+Ruby version: 2.5.1
+RoR version : 5.2.0
 
-Things you may want to cover:
+## How to run the test suite
 
-* Ruby version
+clone this repository.
+```
+git clone https://github.com/akitojp/products_app.git
+```
 
-* System dependencies
+bundle install
+```
+cd products_app
+bundle install --path vendor/bundle --jobs=4
+```
 
-* Configuration
+Database initialization
+```
+bin/rials db:migrate
+bin/rials db:seed
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# products_app
+Start local server.
+```
+bin/rails server
+```
