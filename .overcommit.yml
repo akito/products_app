@@ -18,8 +18,12 @@
 #PreCommit:
 RuboCop:
   enabled: true
-#    on_warn: fail # Treat all warnings as failures
-#
+  command: ['bundle', 'exec', 'rubocop']
+
+Annotate:
+  enabled: true
+  command: ['bundle', 'exec', 'annotate']
+
 #  TrailingWhitespace:
 #    enabled: true
 #    exclude:
