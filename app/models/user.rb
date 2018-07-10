@@ -30,4 +30,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :products
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 end

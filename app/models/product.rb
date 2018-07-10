@@ -17,6 +17,7 @@ class Product < ApplicationRecord
   validates :user_id, presence: true
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def owned_by?(user)
     self.user_id == user.id
