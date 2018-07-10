@@ -22,4 +22,8 @@ class Product < ApplicationRecord
   def owned_by?(user)
     self.user_id == user.id
   end
+
+  def like?(user)
+    self.likes.find_by(user_id: user.id)
+  end
 end

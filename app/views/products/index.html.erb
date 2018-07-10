@@ -22,11 +22,26 @@
         <td><%= product.desc %></td>
         <td><%= product.image %></td>
         <td><%= product.thumbnail %></td>
+        <td>
+          <% if product.like?(current_user) %>
+            <!-- TODO:refactoring-->
+            <%= link_to '良くないね!', product.likes.find_by(user_id: current_user.id), method: :delete, remote: true %>
+          <% else %>
+
+            <%= form_with model: Like.new do |f| %>
+              <%= f.hidden_field :user_id , value: current_user.id %>
+              <%= f.hidden_field :product_id , value: product.id %>
+              <%= f.submit "いいね!" %>
+            <% end %>
+
+          <% end %>
+        </td>
         <td><%= link_to 'Show', product %></td>
         <% if user_signed_in? %>
           <% if product.owned_by?(current_user) %>
             <td><%= link_to 'Edit', edit_product_path(product) %></td>
             <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
           <% end %>
         <% end %>
       </tr>
