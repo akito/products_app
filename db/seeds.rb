@@ -9,15 +9,10 @@
 
 3.times do |idx|
   User.create!(email: "user0#{idx}@example.com", password: 'password')
+  Product.create!(name: "product0#{idx}",
+                  url: "https://www.example0#{idx}.com",
+                  desc: 'ピンボード風の写真共有ウェブサイト',
+                  image: "product0#{idx}",
+                  thumbnail: "product0#{idx}",
+                  user_id: User.find_by(email: "user0#{idx}@example.com"))
 end
-
-
-Product.create!(name: 'Pinterest', url: 'https://www.pinterest.jp/',
-                  desc: 'Pinterestは、ピンボード風の写真共有ウェブサイト',
-                  image: 'Pinterest', thumbnail: 'Pinterest', user_id: '1')
-Product.create!(name: 'Uber', url: 'https://www.uber.com',
-                desc: '自動車配車ウェブサイトおよび配車アプリ',
-                image: 'Uber', thumbnail: 'Uber', user_id: '2')
-Product.create!(name: 'Lyft', url: 'https://www.lyft.com/',
-                desc: '自動車配車ウェブサイトおよび配車アプリ',
-                image: 'Lyft', thumbnail: 'Lyft', user_id: '3')
