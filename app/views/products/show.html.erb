@@ -41,11 +41,13 @@
 </p>
 
 
-<div>
-  <%= form_with model: Comment.new do |f| %>
-    <%= f.text_field :content , placeholder: "Write comments" %>
-    <%= f.hidden_field :product_id , value: @product.id %>
-    <%= f.submit "コメントする" %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <div>
+    <%= form_with model: Comment.new do |f| %>
+      <%= f.text_field :content , placeholder: "Write comments" %>
+      <%= f.hidden_field :product_id , value: @product.id %>
+      <%= f.submit "コメントする" %>
+    <% end %>
+  </div>
+<% end %>
 <p>###############################</p>
