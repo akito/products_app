@@ -1,2 +1,0 @@
-class NoPermissionError < StandardError
-end

@@ -76,8 +76,7 @@ class ProductsController < ApplicationController
     end
 
     def correct_user
-      require 'exception'
-      raise NoPermissionError, '権限がありません'
+      raise Forbidden, '権限がありません'
       # redirect_to products_path, notice: '権限がないユーザです' unless current_user.id == @product.user_id
     end
 end
