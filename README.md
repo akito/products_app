@@ -1,8 +1,8 @@
 # README
 
 ## Environment
-Ruby version: 2.5.1
-RoR version : 5.2.0
+- Ruby version: 2.5.1
+- RoR version : 5.2.0
 
 ## How to run the test suite
 
