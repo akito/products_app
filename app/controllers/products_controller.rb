@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :collect_user, only: [:edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -72,5 +73,9 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :url, :desc, :image, :thumbnail)
+    end
+
+    def collect_user
+      redirect_to products_path, notice: '権限がないユーザです' unless current_user.id == @product.user_id
     end
 end
