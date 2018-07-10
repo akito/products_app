@@ -1,8 +1,8 @@
 # README
 
 ## Environment
-Ruby version: 2.5.1
-RoR version : 5.2.0
+- Ruby version: 2.5.1
+- RoR version : 5.2.0
 
 ## How to run the test suite
 
@@ -19,11 +19,11 @@ bundle install --path vendor/bundle --jobs=4
 
 Database initialization
 ```
-bundle exec rials db:migration
-bundle exec rials db:seed
+bin/rials db:migrate
+bin/rials db:seed
 ```
 
 Start local server.
 ```
-bundle exec rails server
+bin/rails server
 ```
