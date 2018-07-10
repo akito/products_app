@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :collect_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -75,7 +75,8 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :url, :desc, :image, :thumbnail)
     end
 
-    def collect_user
-      redirect_to products_path, notice: '権限がないユーザです' unless current_user.id == @product.user_id
+    def correct_user
+      raise Forbidden, '権限がありません'
+      # redirect_to products_path, notice: '権限がないユーザです' unless current_user.id == @product.user_id
     end
 end

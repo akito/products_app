@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create
-    if current_user.comments.create(comment_params)
+    @comment = current_user.comments.create(comment_params)
+    if @comment.save
       flash[:notice] = "OK"
     else
       flash[:error] = "NG"
@@ -32,13 +33,11 @@ class CommentsController < ApplicationController
     redirect_to product_path(@comment.product_id)
   end
 
-  protected
-
+  private
     def comment_params
       params.require(:comment).permit(:content, :product_id)
     end
 
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
