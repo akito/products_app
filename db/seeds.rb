@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-3.times do |idx|
-  User.create!(email: "user0#{idx}@example.com", password: 'password')
+3.times do |id|
+  idx = id + 1
+  User.create!(name: "user0#{idx}", email: "user0#{idx}@example.com", password: 'password')
   Product.create!(name: "product0#{idx}",
                   url: "https://www.example0#{idx}.com",
                   desc: 'ピンボード風の写真共有ウェブサイト',
