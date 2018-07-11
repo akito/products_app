@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   before_action :set_like, only: :destroy
-  before_action :correct_user, only: [:create, :destroy]
+  before_action :correct_user, only: :destroy
 
   def create
     @like = Like.new(like_params)
