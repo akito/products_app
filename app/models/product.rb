@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id          :bigint(8)        not null, primary key
-#  name        :string
-#  url         :string
-#  desc        :text
+#  name        :string           not null
+#  url         :string           not null
+#  desc        :text             not null
 #  image       :string
 #  thumbnail   :string
 #  created_at  :datetime         not null
