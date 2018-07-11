@@ -12,4 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+
+.heart-gray {
+    color: gray;
+}
+.heart-red {
+    color: red;
+}

@@ -23,7 +23,7 @@ class Product < ApplicationRecord
     self.user_id == user.id
   end
 
-  def like?(user)
+  def liked?(user)
     self.likes.find_by(user_id: user.id)
   end
 end
