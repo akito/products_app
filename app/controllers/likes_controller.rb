@@ -6,7 +6,7 @@ class LikesController < ApplicationController
     else
       flash[:error] = "いいねできませんでした"
     end
-    redirect_to root_path
+    redirect_to request.referrer
   end
 
   def destroy
@@ -16,7 +16,7 @@ class LikesController < ApplicationController
     else
       flash[:error] = "良くないねできませんでした"
     end
-    redirect_to root_path
+    redirect_to request.referrer
   end
 
   protected
