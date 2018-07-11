@@ -76,7 +76,6 @@ class ProductsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません'
-      # redirect_to products_path, notice: '権限がないユーザです' unless current_user.id == @product.user_id
+      raise Forbidden, '権限がありません' unless @product.owned_by?(current_user)
     end
 end
