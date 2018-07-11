@@ -39,8 +39,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Flexible authentication solution for Rails.
 gem 'devise'
 
-# fontawesome
+# the font-awesome font bundled as an asset for the rails asset pipeline
 gem 'font-awesome-rails'
+
+# Turbo-charged counter caches
+gem 'counter_culture'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

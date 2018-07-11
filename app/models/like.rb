@@ -14,4 +14,5 @@ class Like < ApplicationRecord
   validates :product_id, presence: true
   belongs_to :user
   belongs_to :product
+  counter_culture :product
 end
