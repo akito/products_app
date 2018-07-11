@@ -23,11 +23,15 @@
         <td><%= product.image %></td>
         <td><%= product.thumbnail %></td>
         <td>
-          <% if product.liked?(current_user) %>
-            <!-- TODO:refactoring-->
-            <%= link_to (fa_icon 'heart',class: 'heart-red'), like_path(product.likes.find_by(user_id: current_user.id)), method: :delete, remote: true %>
+          <% if user_signed_in? %>
+            <% if product.liked?(current_user) %>
+              <!-- TODO:refactoring-->
+              <%= link_to (fa_icon 'heart',class: 'heart-red'), like_path(product.likes.find_by(user_id: current_user.id)), method: :delete, remote: true %>
+            <% else %>
+              <%= link_to (fa_icon 'heart',class: 'heart-gray'), likes_path(like: {user_id: current_user.id, product_id: product.id}), method: :post, remote: true %>
+            <% end %>
           <% else %>
-            <%= link_to (fa_icon 'heart',class: 'heart-gray'), likes_path(like: {user_id: current_user.id, product_id: product.id}), method: :post, remote: true %>
+            <%= link_to (fa_icon 'heart',class: 'heart-gray'), user_session_path %>
           <% end %>
         </td>
         <td><%= product.likes_count %></td>
