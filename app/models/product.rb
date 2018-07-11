@@ -15,7 +15,9 @@
 #
 
 class Product < ApplicationRecord
-  validates :user_id, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :url, presence: true, uniqueness: { case_sensitive: false }
+  validates :desc, presence: true
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
