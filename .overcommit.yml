@@ -18,12 +18,14 @@
 PreCommit:
   RuboCop:
     enabled: true
-    command: ['bundle', 'exec', 'rubocop']
+#    command: ['bundle', 'exec', 'rubocop']
 
   Annotate:
     enabled: true
-    command: ['bundle', 'exec', 'annotate']
-  
+#    command: ['bundle', 'exec', 'annotate']
+  RSpec:
+    enabled: true
+
   AuthorName:
     enabled: false
 
