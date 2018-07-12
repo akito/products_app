@@ -6,6 +6,7 @@ Product.seed(:id) do |s|
   s.image = "product01"
   s.thumbnail = "product01"
   s.user_id = 1
+  s.status = "published"
 end
 
 Product.seed(:id) do |s|
@@ -16,6 +17,7 @@ Product.seed(:id) do |s|
   s.image = "product02"
   s.thumbnail = "product02"
   s.user_id = 2
+  s.status = "published"
 end
 
 Product.seed(:id) do |s|
@@ -26,4 +28,27 @@ Product.seed(:id) do |s|
   s.image = "product03"
   s.thumbnail = "product03"
   s.user_id = 3
+  s.status = "published"
+end
+
+Product.seed(:id) do |s|
+  s.id = 4
+  s.name = "product04"
+  s.url = "https://product04.com"
+  s.desc = "this is a product"
+  s.image = "product04"
+  s.thumbnail = "product04"
+  s.user_id = 3
+  s.status = "draft"
+end
+
+Product.seed(:id) do |s|
+  s.id = 5
+  s.name = "product05"
+  s.url = "https://product05.com"
+  s.desc = "this is a product"
+  s.image = "product05"
+  s.thumbnail = "product05"
+  s.user_id = 3
+  s.status = "archived"
 end
