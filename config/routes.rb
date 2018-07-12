@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   ActiveAdmin.routes(self)
   devise_for :users
   resources :products
