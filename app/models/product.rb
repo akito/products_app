@@ -21,6 +21,7 @@ class Product < ApplicationRecord
   validates :desc, presence: true
 
   belongs_to :user, optional: true
+  belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
