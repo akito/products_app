@@ -12,6 +12,7 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
+#  status      :integer          default("draft"), not null
 #
 
 require 'rails_helper'
