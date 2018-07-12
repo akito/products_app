@@ -15,12 +15,19 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                   :string
 #
 
 class User < ApplicationRecord
+  validates :name,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: /\A[a-zA-Z0-9]+\z/, message: "アルファベットと数字が利用できます" }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :products
+  has_many :comments, dependent: :destroy
 end

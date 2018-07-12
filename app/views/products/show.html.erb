@@ -27,3 +27,27 @@
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+
+<p>###############################</p>
+<% @comments.each do |comment| %>
+<p>
+  <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
+  <% if current_user == comment.user %>
+    <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
+    <%= link_to '修正', edit_comment_path(comment) %>
+  <% end %>
+<% end %>
+</p>
+
+
+<% if user_signed_in? %>
+  <div>
+    <%= form_with model: Comment.new do |f| %>
+      <%= f.text_field :content , placeholder: "Write comments" %>
+      <%= f.hidden_field :product_id , value: @product.id %>
+      <%= f.submit "コメントする" %>
+    <% end %>
+  </div>
+<% end %>
+<p>###############################</p>
