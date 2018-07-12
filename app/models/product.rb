@@ -13,6 +13,7 @@
 #  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
 #  status      :integer          default("draft"), not null
+#  category_id :bigint(8)
 #
 
 class Product < ApplicationRecord
