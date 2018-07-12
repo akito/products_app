@@ -45,6 +45,9 @@ gem 'font-awesome-rails'
 # Turbo-charged counter caches
 gem 'counter_culture'
 
+# The administration framework
+gem 'activeadmin'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
