@@ -16,8 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
-#  role                   :integer          default("user"), not null
-#
+#  role                   :integer          default(0), not null
+
 
 class User < ApplicationRecord
   validates :name,
@@ -32,6 +32,6 @@ class User < ApplicationRecord
   has_many :products
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
+  include Ownable
   enum role: { user: 0, admin: 1 }
 end

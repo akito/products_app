@@ -13,7 +13,9 @@
 #  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
 #  status      :integer          default("draft"), not null
-#
+#  status      :integer          default(0), not null
+#  category_id :bigint(8)
+
 
 class Product < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
@@ -23,14 +25,14 @@ class Product < ApplicationRecord
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
+  include Ownable
   enum status: { draft: 0, published: 1, archived: 2 }
 
-  def owned_by?(user)
-    self.user_id == user.id
+  def liked?(user)
+    !!likes.find_by(user_id: user.id)
   end
 
-  def liked?(user)
-    self.likes.find_by(user_id: user.id)
+  def like(user)
+    likes.find_by(user_id: user.id)
   end
 end

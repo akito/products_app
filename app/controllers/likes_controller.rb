@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     else
       flash[:error] = "いいねできませんでした"
     end
-    redirect_to request.referrer
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
     else
       flash[:error] = "良くないねできませんでした"
     end
-    redirect_to request.referrer
+    redirect_back(fallback_location: root_path)
   end
 
   protected
@@ -32,6 +32,6 @@ class LikesController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @like.user_id == current_user.id
+      raise Forbidden, '権限がありません' unless @like.owned_by?(current_user)
     end
 end

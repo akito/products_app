@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
-    @comment = current_user.comments.create(comment_params)
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:notice] = "OK"
     else
@@ -45,6 +45,6 @@ class CommentsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @comment.user.id == current_user.id
+      raise Forbidden, '権限がありません' unless @comment.owned_by?(current_user)
     end
 end

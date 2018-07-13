@@ -48,7 +48,7 @@
 <% @comments.each do |comment| %>
 <p>
   <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
-  <% if current_user == comment.user %>
+  <% if comment.owned_by?(current_user) %>
     <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
     <%= link_to '修正', edit_comment_path(comment) %>
   <% end %>

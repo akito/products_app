@@ -12,22 +12,14 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
+  let!(:product) { create(:product, id: 1) }
+  let!(:user) { create(:user, id: 1) }
+
   it 'is valid with a user_id, product_id' do
-    product = Product.create(
-      id: 1,
-      name: 'product_name',
-      url: 'https://example.org',
-      desc: 'this is cool service.'
-    )
-    user = User.create(
-      id: 1,
-      name: 'user1',
-      email: 'user@test.org',
-      password: 'usrpassword'
-    )
-    like = Like.new(user_id: 1, product_id: 1)
+    like = Like.new(user_id: user.id, product_id: product.id)
     expect(like.valid?).to be_truthy
   end
+
   it 'is invalid without a user_id' do
     like = Like.new(user_id: nil)
     like.valid?
