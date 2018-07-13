@@ -10,15 +10,9 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
     context 'when @product is defined' do
       it 'return the title with @product.name' do
-
-        @product = Product.new(
-          name: 'product_name',
-          url: 'https://example.com',
-          desc: 'this is cool service.'
-        )
-
+        @product = create(:product)
         stub_const('ApplicationHelper::APP_NAME', 'Products APP')
-        expect(helper.page_title).to eq("Products APP | product_name")
+        expect(helper.page_title).to eq("Products APP | #{@product.name}")
       end
     end
   end
