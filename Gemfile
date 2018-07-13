@@ -64,6 +64,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'annotate'
   gem 'overcommit'
+  gem 'bullet'
 end
 
 group :test do

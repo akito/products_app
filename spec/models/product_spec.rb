@@ -12,6 +12,8 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
+#  status      :integer          default(0), not null
+#  category_id :bigint(8)
 #
 
 require 'rails_helper'
@@ -76,80 +78,108 @@ RSpec.describe Product, type: :model do
     expect(product.errors[:url]).to include("has already been taken")
   end
 
-  describe '#owned_by?' do
-    it 'Trueになること' do
-      product = Product.new(
-        name: 'product_name',
-        url: 'https://example.com',
-        desc: 'this is cool service.',
-        user_id: 1
-      )
-      user = user = User.new(
-        name: 'user',
-        email: 'user@test.com',
-        password: 'usrpassword',
-        id: 1)
-
-      expect(product.owned_by?(user)).to be_truthy
-    end
-
-    it 'Falseになること' do
-      product = Product.new(
-        name: 'product_name',
-        url: 'https://example.com',
-        desc: 'this is cool service.',
-        user_id: 1
-      )
-      user = user = User.new(
-        name: 'user',
-        email: 'user@test.com',
-        password: 'usrpassword',
-        id: 2)
-      expect(product.owned_by?(user)).to be_falsey
-    end
-
-  end
-
   describe '#liked?' do
-
-    it 'Trueになること' do
-    product = Product.create(
-      id: 1,
-        name: 'product_name',
-        url: 'https://example.com',
-        desc: 'this is cool service.'
-    )
-    user = User.create(
-      id: 1,
-      name: 'user',
-      email: 'user@test.com',
-      password: 'usrpassword'
-    )
-    Like.create(
-      product_id: 1,
-      user_id: 1
-    )
-    expect(product.liked?(user)).to_not be nil
-  end
-
-    it 'Falseになること' do
-      product = Product.create(
-        id: 2,
-        name: 'product_name2',
-        url: 'https://example.org',
-        desc: 'this is cool service.'
-      )
-      user = User.create(
-        id: 2,
-        name: 'user2',
-        email: 'user@test.org',
-        password: 'usrpassword'
-      )
-      Like.create(
-        product_id: 3,
-        user_id: 3
-      )
-      expect(product.liked?(user)).to be nil
+    context 'when user like a product' do
+      it 'should be true' do
+        product = Product.create(
+          id: 1,
+          name: 'product_name',
+          url: 'https://example.com',
+          desc: 'this is cool service.'
+        )
+        user = User.create(
+          id: 1,
+          name: 'user',
+          email: 'user@test.com',
+          password: 'usrpassword'
+        )
+        Like.create(
+          product_id: 1,
+          user_id: 1
+        )
+        expect(product.liked?(user)).to be_truthy
+      end
+    end
+    context 'when user do NOT like a product' do
+      it 'should be false' do
+        product = Product.create(
+          id: 2,
+          name: 'product_name2',
+          url: 'https://example.org',
+          desc: 'this is cool service.'
+        )
+        user = User.create(
+          id: 2,
+          name: 'user2',
+          email: 'user@test.org',
+          password: 'usrpassword'
+        )
+        Like.create(
+          product_id: 3,
+          user_id: 3
+        )
+        expect(product.liked?(user)).to be_falsey
+      end
     end
   end
+
+  describe '#like' do
+    context 'when user like a product' do
+      it 'should NOT be nil' do
+        product = Product.create(
+          id: 1,
+          name: 'product_name',
+          url: 'https://example.com',
+          desc: 'this is cool service.'
+        )
+        user = User.create(
+          id: 1,
+          name: 'user',
+          email: 'user@test.com',
+          password: 'usrpassword'
+        )
+        Like.create(
+          product_id: 1,
+          user_id: 1
+        )
+        expect(product.like(user)).to_not be nil
+      end
+    end
+    context 'when user do NOT like a product' do
+      it 'should be nil' do
+        product = Product.create(
+          id: 2,
+          name: 'product_name2',
+          url: 'https://example.org',
+          desc: 'this is cool service.'
+        )
+        user = User.create(
+          id: 2,
+          name: 'user2',
+          email: 'user@test.org',
+          password: 'usrpassword'
+        )
+        Like.create(
+          product_id: 3,
+          user_id: 3
+        )
+        expect(product.like(user)).to be nil
+      end
+    end
+  end
+
+
+
+
+
+
+
+  def like(user)
+    likes.find_by(user_id: user.id)
+  end
+
+
+
+
+
 end

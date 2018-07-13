@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
+#  role                   :integer          default(0), not null
 #
 
 class User < ApplicationRecord

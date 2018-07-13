@@ -45,6 +45,6 @@ class CommentsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @comment.user.id == current_user.id
+      raise Forbidden, '権限がありません' unless @comment.owned_by?(current_user)
     end
 end
