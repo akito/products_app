@@ -16,8 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
-#  role                   :integer          default(0), not null
-
+#  role                   :integer          default("user"), not null
+#
 
 class User < ApplicationRecord
   validates :name,
