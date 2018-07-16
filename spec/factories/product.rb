@@ -9,3 +9,5 @@ FactoryBot.define do
     thumbnail Faker::App.name
   end
 end
+
+# TODO: User_id関連付け
