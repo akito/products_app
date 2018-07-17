@@ -24,7 +24,7 @@
         <td><%= product.thumbnail %></td>
         <td>
           <% if user_signed_in? %>
-            <% if product.liked?(current_user) %>
+            <% if liked?(current_user,product) %>
               <%= link_to (fa_icon 'heart',class: 'heart-red'),
                           like_path(product.like(current_user)),
                           method: :delete, remote: true %>

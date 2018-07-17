@@ -11,4 +11,8 @@ module ApplicationHelper
     content_tag(:div, class: "klass") do
     end
   end
+
+  def liked?(user, product)
+    Like.exists?(user_id: user.id, product_id: product.id)
+  end
 end

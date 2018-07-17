@@ -25,10 +25,6 @@ class Product < ApplicationRecord
   has_many :likes, dependent: :destroy
   include Ownable
 
-  def liked?(user)
-    !!likes.find_by(user_id: user.id)
-  end
-
   def like(user)
     likes.find_by(user_id: user.id)
   end
