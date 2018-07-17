@@ -12,5 +12,16 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "FactoryGirl be valid" do
+    it { expect(build(:category)).to be_valid }
+  end
+
+  #
+  # describe 'Relation' do
+  #   it 'has many customers' do
+  #     expect(category.products).to match_array products
+  #   end
+  # end
+
+
 end

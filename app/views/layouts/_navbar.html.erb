@@ -29,9 +29,9 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
           <div class="navbar-dropdown is-boxed">
-            <% @categories.each do |category| %>
-              <%= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
-            <% end %>
+            <%# categories.each do |category| %>
+              <%#= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
+            <%# end %>
             <hr class="navbar-divider">
             <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
               Elements

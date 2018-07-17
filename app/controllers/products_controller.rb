@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_category
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /products
@@ -78,9 +77,5 @@ class ProductsController < ApplicationController
 
     def correct_user
       raise Forbidden, '権限がありません' unless @product.owned_by?(current_user)
-    end
-
-    def set_category
-      @categories = Category.all
     end
 end

@@ -13,5 +13,3 @@ FactoryBot.define do
     end
   end
 end
-
-# TODO: User_id関連付け
