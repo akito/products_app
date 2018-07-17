@@ -25,14 +25,11 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  include Ownable
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
-  def owned_by?(user)
-    self.user_id == user.id
-  end
-
-  def liked?(user)
-    self.likes.find_by(user_id: user.id)
+  def like(user)
+    likes.find_by(user_id: user.id)
   end
 end

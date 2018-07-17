@@ -32,6 +32,6 @@ class User < ApplicationRecord
   has_many :products
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
   enum role: { user: 0, admin: 1 }
+  include Ownable
 end
