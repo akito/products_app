@@ -27,34 +27,11 @@
 
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link is-size-7" href="./category.html">
-            カテゴリー
-          </a>
+          <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
           <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="/documentation/overview/start/">
-              買い物
-            </a>
-            <a class="navbar-item is-size-7" href="https://bulma.io/documentation/modifiers/syntax/">
-              旅行
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-              食べ物
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              SNS
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              仕事
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              勉強
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              お金
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              住宅
-            </a>
+            <% @categories.each do |category| %>
+              <%= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
+            <% end %>
             <hr class="navbar-divider">
             <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
               Elements

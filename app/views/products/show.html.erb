@@ -25,6 +25,10 @@
   <%= @product.thumbnail %>
 </p>
 <p>
+  <strong>Category:</strong>
+  <%= @product.category.name %>
+</p>
+<p>
   <% if user_signed_in? %>
     <% if liked?(current_user, @product) %>
       <!-- TODO:refactoring-->
