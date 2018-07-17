@@ -42,7 +42,7 @@
 
 
 <% if user_signed_in? %>
-  <% if comment.owned_by?(current_user) %>
+  <% if @product.owned_by?(current_user) %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
   <%= link_to 'Back', products_path %>
   <% end %>
@@ -59,8 +59,8 @@
       <%= link_to '修正', edit_comment_path(comment) %>
     <% end %>
   <% end %>
-<% end %>
 </p>
+<% end %>
 
 
 <% if user_signed_in? %>
