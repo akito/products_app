@@ -4,23 +4,26 @@
     <title><%= page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <%= render 'layouts/navbar' %>
     <%= flash_message(flash[:success], :success) if flash[:success] %>
     <%= flash_message(flash[:error], :danger) if flash[:error] %>
     <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
     <%= flash_message(flash[:notice], :info) if flash[:notice] %>
-    <%= yield %>
+    <main class="Site-content">
+      <section class="section has-background-white">
+        <div class="container">
+          <%= yield %>
+        </div>
+      </section>
+    </main>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if current_user %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "sign up", new_user_registration_path %>
-      <%= link_to "login", new_user_session_path %>
-    <% end %>
   </body>
 </html>

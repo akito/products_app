@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.where(status: 'published').order(:id)
+    @products = Product.published.order(:id)
   end
 
   # GET /products/1

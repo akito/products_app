@@ -17,7 +17,6 @@
 #  updated_at             :datetime         not null
 #  name                   :string
 #  role                   :integer          default("user"), not null
-#
 
 require 'rails_helper'
 

@@ -1,5 +1,5 @@
 module ApplicationHelper
-  APP_NAME = "Products APP"
+  APP_NAME = "Product Square"
 
   def page_title
     base_title = APP_NAME
