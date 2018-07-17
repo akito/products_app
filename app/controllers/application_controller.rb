@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_admin_user!
-      raise Forbidden unless current_user.try(:admin?)
+      raise Forbidden unless current_user&.admin?
     end
 end
