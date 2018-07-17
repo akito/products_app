@@ -12,11 +12,9 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let!(:product) { create(:product, id: 1) }
-  let!(:user) { create(:user, id: 1) }
 
   it 'is valid with a user_id, product_id' do
-    like = Like.new(user_id: user.id, product_id: product.id)
+    like = create(:like)
     expect(like.valid?).to be_truthy
   end
 

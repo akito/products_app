@@ -8,13 +8,13 @@ RSpec.describe Ownable do
     context 'when product is owned by user' do
       it 'should be true' do
         product.user_id = user.id
-        expect(product.owned_by?(user)).to be_truthy
+        expect(product.owned_by?(user)).to be true
       end
     end
     context 'when product is not owned by user' do
       it 'should be true' do
         product.user_id != user.id
-        expect(product.owned_by?(user)).to be_falsey
+        expect(product.owned_by?(user)).to be false
       end
     end
   end

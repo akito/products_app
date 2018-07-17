@@ -27,10 +27,6 @@ class Product < ApplicationRecord
   include Ownable
   enum status: { draft: 0, published: 1, archived: 2 }
 
-  def liked?(user)
-    !!likes.find_by(user_id: user.id)
-  end
-
   def like(user)
     likes.find_by(user_id: user.id)
   end
