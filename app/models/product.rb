@@ -17,15 +17,19 @@
 #
 
 class Product < ApplicationRecord
+  include Ownable
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :url, presence: true, uniqueness: { case_sensitive: false }
   validates :desc, presence: true
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  include Ownable
 
   def like(user)
     likes.find_by(user_id: user.id)
+  end
+
+  def liked?(user)
+    likes.exists?(user_id: user.id)
   end
 end

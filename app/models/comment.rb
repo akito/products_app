@@ -11,6 +11,8 @@
 #
 
 class Comment < ApplicationRecord
+  include Ownable
+
   validates :user_id, presence: true
   validates :product_id, presence: true
   validates :content, presence: true

@@ -7,9 +7,8 @@ FactoryBot.define do
     desc Faker::Lorem.sentence
     image Faker::App.name
     thumbnail Faker::App.name
-
     trait :with_user do
-      association :user
+      user
     end
   end
 end

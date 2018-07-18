@@ -32,5 +32,4 @@ class User < ApplicationRecord
   has_many :products
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  include Ownable
 end

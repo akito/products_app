@@ -16,20 +16,4 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
-
-  describe '#liked?' do
-    let!(:product) { create(:product, id: 1) }
-    let!(:user) { create(:user, id: 1) }
-    context 'when user like a product' do
-      it 'should be true' do
-        Like.create(user_id: user.id, product_id: product.id)
-        expect(liked?(user, product)).to be_truthy
-      end
-    end
-    context 'when user do NOT like a product' do
-      it 'should be false' do
-        expect(liked?(user, product)).to be_falsey
-      end
-    end
-  end
 end

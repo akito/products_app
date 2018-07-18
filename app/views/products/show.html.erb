@@ -26,11 +26,14 @@
 </p>
 <p>
   <% if user_signed_in? %>
-    <% if liked?(current_user, @product) %>
-      <!-- TODO:refactoring-->
-      <%= link_to (fa_icon 'heart',class: 'heart-red'), like_path(@product.likes.find_by(user_id: current_user.id)), method: :delete, remote: true %>
+    <% if @product.liked?(current_user) %>
+      <%= link_to (fa_icon 'heart',class: 'heart-red'),
+                  like_path(@product.likes.find_by(user_id: current_user.id)),
+                  method: :delete, remote: true %>
     <% else %>
-      <%= link_to (fa_icon 'heart',class: 'heart-gray'), likes_path(like: {user_id: current_user.id, product_id: @product.id}), method: :post, remote: true %>
+      <%= link_to (fa_icon 'heart',class: 'heart-gray'),
+                  likes_path(like: {user_id: current_user.id, product_id: @product.id}),
+                  method: :post, remote: true %>
     <% end %>
   <% else %>
     <%= link_to (fa_icon 'heart',class: 'heart-gray'), user_session_path %>
@@ -48,10 +51,13 @@
 <% @comments.each do |comment| %>
 <p>
   <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
+  <% if user_signed_in? %>
   <% if comment.owned_by?(current_user) %>
     <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
     <%= link_to '修正', edit_comment_path(comment) %>
   <% end %>
+  <% end %>
+
 <% end %>
 </p>
 
