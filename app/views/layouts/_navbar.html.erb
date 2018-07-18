@@ -2,18 +2,17 @@
   <nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
-      <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
-      <div class="has-addons navbar-item is-fullwidth">
-        <div class="control is-expanded">
-          <input class="input is-small is-fullwidth" type="text" placeholder="素敵なサービスが見つけよう" style="width:250px;">
-        </div>
-        <div class="control">
-          <a class="button is-dark is-small">
-            <%= fa_icon "search" %>
-          </a>
-        </div>
-      </div>
 
+      <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
+        <%= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
+        <div class="control is-expanded">
+          <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: "素敵なサービスが見つけよう",style: "width:250px;"%>
+        </div>
+
+        <div class="control">
+            <%= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
+        </div>
+        <% end %>
 
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
