@@ -26,7 +26,9 @@
 </p>
 <p>
   <strong>Category:</strong>
-  <%= @product.category.name %>
+  <% if @product.category %>
+    <%= @product.category.name %>
+  <% end %>
 </p>
 <p>
   <% if user_signed_in? %>
