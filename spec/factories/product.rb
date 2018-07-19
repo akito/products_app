@@ -2,14 +2,13 @@ require 'faker'
 
 FactoryBot.define do
   factory :product, class: Product do
-    name Faker::App.name
+    name 'test_app'
     url Faker::Internet.url
     desc Faker::Lorem.sentence
     image Faker::App.name
     thumbnail Faker::App.name
-
     trait :with_user do
-      association :user
+      user
     end
   end
 end
