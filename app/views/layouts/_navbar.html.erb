@@ -4,6 +4,8 @@
     <div class="navbar-brand">
 
       <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
+
+      <% if @search %>
         <%= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
         <div class="control is-expanded">
           <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: "素敵なサービスが見つけよう",style: "width:250px;"%>
@@ -13,6 +15,7 @@
             <%= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
         </div>
         <% end %>
+      <% end %>
 
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
@@ -25,21 +28,25 @@
       </div>
 
       <div class="navbar-end">
+
+        <% if @categories %>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
-          <div class="navbar-dropdown is-boxed">
-            <%# categories.each do |category| %>
-              <%#= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
-            <%# end %>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
-            </a>
-          </div>
+        <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
+        <div class="navbar-dropdown is-boxed">
+          <% @categories.each do |category| %>
+            <%= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
+          <% end %>
+          <hr class="navbar-divider">
+          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+            Elements
+          </a>
+          <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+            Components
+          </a>
         </div>
+      </div>
+        <% end %>
+
 
         <% if current_user %>
           <%= link_to 'プロダクトを登録', new_product_path, class: 'navbar-item is-size-7'%>

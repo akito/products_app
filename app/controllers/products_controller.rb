@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :set_search, only: [:index, :show, :new, :edit]
+  before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
 
   # GET /products
   # GET /products.json
@@ -82,5 +82,9 @@ class ProductsController < ApplicationController
 
     def set_search
       @search = Product.includes(:category).ransack(params[:q])
+    end
+
+    def set_category
+      @categories = Category.all
     end
 end
