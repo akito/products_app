@@ -2,13 +2,11 @@ require 'faker'
 
 FactoryBot.define do
   factory :product, class: Product do
-    name 'test_app'
-    url Faker::Internet.url
+    sequence(:name) { |n| "product#{n}" }
+    sequence(:url) { |n| "https://product#{n}.com" }
     desc Faker::Lorem.sentence
     image Faker::App.name
     thumbnail Faker::App.name
-    trait :with_user do
-      user
-    end
+    user
   end
 end
