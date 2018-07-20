@@ -19,7 +19,7 @@
 require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Validation' do
-    let!(:product) { create(:product, :with_user) }
+    let!(:product) { create(:product) }
     it 'is valid with a name, url, desc' do
       expect(product.valid?).to be true
     end
@@ -70,7 +70,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe '#liked?' do
-    let!(:product) { create(:product, :with_user) }
+    let!(:product) { create(:product) }
     context 'when product is liked by user' do
       it 'should be true' do
         Like.create(user_id: product.user.id, product_id: product.id)
