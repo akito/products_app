@@ -15,7 +15,7 @@ RSpec.describe Like, type: :model do
 
   it 'is valid with a user_id, product_id' do
     like = create(:like)
-    expect(like.valid?).to be_truthy
+    expect(like.valid?).to be true
   end
 
   it 'is invalid without a user_id' do

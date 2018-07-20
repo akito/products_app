@@ -16,12 +16,14 @@ RSpec.describe Category, type: :model do
     it { expect(build(:category)).to be_valid }
   end
 
-  #
-  # describe 'Relation' do
-  #   it 'has many customers' do
-  #     expect(category.products).to match_array products
-  #   end
-  # end
 
+  describe 'Relation' do
 
+    let(:category) { create(:category) }
+    let(:products) { create_list(:product, 5, category: category) }
+
+    it 'has many products' do
+      expect(category.products).to match_array products
+    end
+  end
 end

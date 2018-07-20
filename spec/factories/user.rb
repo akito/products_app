@@ -1,13 +1,12 @@
-require 'faker'
-
 FactoryBot.define do
   factory :user, class: User do
-    name 'test'
-    email Faker::Internet.email
-    password Faker::Internet.password
+    sequence(:name) { |n| "user#{n}" }
+    sequence(:email) { |n| "user#{n}@test.com" }
+    password 'password'
   end
 
   trait :admin do
     role 'admin'
   end
+
 end

@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
   it 'is valid with a name, email, password' do
-    expect(user.valid?).to be_truthy
+    expect(user.valid?).to be true
   end
 
   it 'is invalid without a name' do
@@ -56,18 +56,18 @@ RSpec.describe User, type: :model do
   it 'is invalid user name with 16 or more characters' do
     user.name = 'a' * 16
     user.valid?
-    expect(user.valid?).to be_falsey
+    expect(user.valid?).to be false
   end
 
   it 'is invalid user name with 2 or less characters' do
     user.name = 'a' * 2
     user.valid?
-    expect(user.valid?).to be_falsey
+    expect(user.valid?).to be false
   end
 
   it 'is invalid user name with symbols that can not be used' do
     user.name = 'a1$!@'
     user.valid?
-    expect(user.valid?).to be_falsey
+    expect(user.valid?).to be false
   end
 end
