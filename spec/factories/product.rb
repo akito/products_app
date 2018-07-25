@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :product, class: Product do
+  factory :product do
     sequence(:name) { |n| "product#{n}" }
     sequence(:url) { |n| "https://product#{n}.com" }
     desc Faker::Lorem.sentence

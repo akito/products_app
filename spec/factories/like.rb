@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :like, class: Like do
+  factory :like do
     user
     product
   end

@@ -25,7 +25,7 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  def like(user)
+  def like_by(user)
     likes.find_by(user_id: user.id)
   end
 
