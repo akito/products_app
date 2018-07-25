@@ -23,6 +23,11 @@
         <td><%= product.image %></td>
         <td><%= product.thumbnail %></td>
         <td>
+          <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
+            <i class="fa fa-twitter"></i>
+          <% end %>
+        </td>
+        <td>
           <% if user_signed_in? %>
             <% if product.liked?(current_user) %>
               <%= link_to (fa_icon 'heart',class: 'heart-red'),

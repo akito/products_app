@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Flexible authentication solution for Rails.
 gem 'devise'
 
-# the font-awesome font bundled as an asset for the rails asset pipeline
+# the font-awesome font bundled as an asset for the rails asset pipeline. https://github.com/bokmann/font-awesome-rails
 gem 'font-awesome-rails'
 
 # Turbo-charged counter caches
