@@ -26,7 +26,7 @@
           <% if user_signed_in? %>
             <% if product.liked?(current_user) %>
               <%= link_to (fa_icon 'heart',class: 'heart-red'),
-                          like_path(product.like(current_user)),
+                          like_path(product.like_by(current_user)),
                           method: :delete, remote: true %>
             <% else %>
               <%= link_to (fa_icon 'heart',class: 'heart-gray'),

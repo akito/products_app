@@ -55,16 +55,16 @@ RSpec.describe Product, type: :model do
   end
 
 
-  describe '#like' do
+  describe '#like_by' do
     let!(:like) { create(:like) }
     context 'when user like a product' do
       it 'should NOT be nil' do
-        expect(like.product.like(like.user)).to_not be nil
+        expect(like.product.like_by(like.user)).to_not be nil
       end
     end
     context 'when user do NOT like a product' do
       it 'should be nil' do
-        expect(like.product.like(User.new)).to be nil
+        expect(like.product.like_by(User.new)).to be nil
       end
     end
   end
@@ -72,8 +72,12 @@ RSpec.describe Product, type: :model do
   describe '#liked?' do
     let!(:product) { create(:product) }
     context 'when product is liked by user' do
-      it 'should be true' do
+
+      before do
         Like.create(user_id: product.user.id, product_id: product.id)
+      end
+
+      it 'should be true' do
         expect(product.liked?(product.user)).to be true
       end
     end
