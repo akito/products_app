@@ -71,14 +71,11 @@ RSpec.describe Product, type: :model do
 
   describe '#liked?' do
     let!(:product) { create(:product) }
+    let(:like) { create(:like) }
+
     context 'when product is liked by user' do
-
-      before do
-        Like.create(user_id: product.user.id, product_id: product.id)
-      end
-
       it 'should be true' do
-        expect(product.liked?(product.user)).to be true
+        expect(like.product.liked?(like.user)).to be true
       end
     end
     context 'when user do NOT like a product' do
