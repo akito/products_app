@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -41,5 +42,9 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def correct_user
+      raise Forbidden, '権限がありません' unless @comment.owned_by?(current_user)
     end
 end

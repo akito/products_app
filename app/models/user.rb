@@ -16,13 +16,14 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
+#  role                   :integer          default(0), not null
 #
 
 class User < ApplicationRecord
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: false },
-            format: { with: /\A[a-zA-Z0-9]+\z/, message: "アルファベットと数字が利用できます" }
+            format: { with: /\A[a-zA-Z0-9_\-.]{3,15}\z/, message: "アルファベット,数字,.,-,_ が利用できます" }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -30,4 +31,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :products
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 end

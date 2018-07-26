@@ -1,21 +1,19 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: likes
 #
 #  id         :bigint(8)        not null, primary key
-#  content    :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint(8)        not null
 #  product_id :bigint(8)        not null
 #
 
-class Comment < ApplicationRecord
+class Like < ApplicationRecord
   include Ownable
-
   validates :user_id, presence: true
   validates :product_id, presence: true
-  validates :content, presence: true
   belongs_to :user
   belongs_to :product
+  counter_culture :product
 end
