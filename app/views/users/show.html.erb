@@ -1,2 +1,6 @@
 <h1>Mypage</h1>
 <p><%= @user.name %></p>
+
+<% @likes.each do |like| %>
+  <p><%= like.product.name%></p>
+<% end %>
