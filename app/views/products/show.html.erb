@@ -43,6 +43,10 @@
   <%= @product.likes_count %>
 </p>
 
+<%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}" do %>
+  <i class="fa fa-twitter"></i>
+<% end %>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 
