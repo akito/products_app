@@ -34,7 +34,7 @@
   <% if user_signed_in? %>
     <% if @product.liked?(current_user) %>
       <%= link_to (fa_icon 'heart',class: 'heart-red'),
-                  like_path(@product.likes.find_by(user_id: current_user.id)),
+                  like_path(@product.like_by(current_user)),
                   method: :delete, remote: true %>
     <% else %>
       <%= link_to (fa_icon 'heart',class: 'heart-gray'),
@@ -49,6 +49,9 @@
   <%= @product.likes_count %>
 </p>
 
+<%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}" do %>
+  <i class="fa fa-twitter"></i>
+<% end %>
 
 <% if user_signed_in? %>
   <% if @product.owned_by?(current_user) %>

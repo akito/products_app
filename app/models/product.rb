@@ -29,7 +29,7 @@ class Product < ApplicationRecord
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
-  def like(user)
+  def like_by(user)
     likes.find_by(user_id: user.id)
   end
 
