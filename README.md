@@ -20,10 +20,17 @@ bundle install --path vendor/bundle --jobs=4
 Database initialization
 ```
 bin/rials db:migrate
-bin/rials db:seed
+bin/rials db:seed_fu
 ```
 
 Start local server.
 ```
 bin/rails server
 ```
+
+Management screen
+
+http://localhost:3000/admin
+
+user: admin@test.com
+password: password

@@ -47,8 +47,12 @@
   <i class="fa fa-twitter"></i>
 <% end %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<% if user_signed_in? %>
+  <% if @product.owned_by?(current_user) %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+  <% end %>
+<% end %>
 
 
 <p>###############################</p>
@@ -56,14 +60,13 @@
 <p>
   <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
   <% if user_signed_in? %>
-  <% if comment.owned_by?(current_user) %>
-    <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
-    <%= link_to '修正', edit_comment_path(comment) %>
+    <% if comment.owned_by?(current_user) %>
+      <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
+      <%= link_to '修正', edit_comment_path(comment) %>
+    <% end %>
   <% end %>
-  <% end %>
-
-<% end %>
 </p>
+<% end %>
 
 
 <% if user_signed_in? %>
