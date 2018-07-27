@@ -20,11 +20,16 @@
     <main class="Site-content">
       <section class="section has-background-white">
         <div class="container">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
           <%= yield %>
         </div>
       </section>
     </main>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <a href="" style="text-decoration:none;">お問い合わせ</a>
+      </div>
+    </footer>
   </body>
 </html>
