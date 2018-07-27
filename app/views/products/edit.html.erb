@@ -1,6 +1,50 @@
-<h1>Editing Product</h1>
-
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="columns is-centered">
+  <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
+    <div class="box">
+      <section class="section">
+        <p class="subtitle has-text-grey is-aligin-center">プロダクト情報を修正</p>
+        <%= form_with(model: @product, local: true) do |form| %>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクト名' %>
+              <%= form.text_field :name, class: 'input', placeholder: 'プロダクト名' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'URL' %>
+              <%= form.text_field :url, class: 'input', placeholder: 'URL' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクトの説明' %>
+              <%= form.text_area :desc, class: 'textarea', placeholder: 'プロダクトの説明' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクトのロゴ' %>
+              <%= form.text_field :image, class: 'input', placeholder: 'プロダクトのロゴ' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクトのサムネイル' %>
+              <%= form.text_field :thumbnail, class: 'input', placeholder: 'プロダクトのサムネイル' %>
+            </div>
+          </div>
+          <div class="actions field" style="padding:30px 0;">
+            <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
+          </div>
+        <% end %>
+      </section>
+      <div style="padding:20px;">
+        <p class="has-text-centered is-size-7 has-text-grey">
+          <%= link_to 'プロダクト詳細', @product %> |
+          <%= link_to '戻る', products_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
