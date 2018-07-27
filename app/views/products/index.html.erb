@@ -1,70 +1,72 @@
 <div class="columns">
   <div class="column is-8">
     <section class="section" style="padding: 0.5rem 1.5rem;">
-      <%= Date.today %>
+      <div style="margin: 0 0 1rem 0;">
+        <time datetime="2016-1-1" class="is-size-7"><%= Date.today %></time>
+      </div>
       <% @products.each do |product| %>
-          <article class="media">
-            <div class="columns">
-              <div class="column is-3">
-                <p class="image">
-                  <%= link_to product do %>
-                    <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                    <%#= image_tag product.thumbnail %>
-                    <%#= image_tag product.image %>
-                  <% end %>
-                </p>
-              </div>
-              <div class="column">
-                <div class="columns is-mobile">
-                  <div class="column ">
-                    <div class="content">
-                      <p>
-                        <strong><%= link_to product.name, product %></strong><span> </span><small><%= link_to (fa_icon 'external-link'), product.url %></small>
-                        <span style="font-size: 0.6em">
+        <article class="media">
+          <div class="columns">
+            <div class="column is-3">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="columns is-mobile">
+                <div class="column ">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to product.name, product %></strong><span> </span>
+                      <small><%= link_to (fa_icon 'external-link'), product.url %></small>
+                      <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
+                        <%= fa_icon 'twitter' %>
+                      <% end %>
+                      <span style="font-size: 0.6em">
                           <% if user_signed_in? %>
                             <% if product.owned_by?(current_user) %>
                               <%= link_to '編集', edit_product_path(product) %>
-                              <span> </span>
-                              <%= link_to '削除', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <span> </span>
+                            <%= link_to '削除', product, method: :delete, data: {confirm: 'Are you sure?'} %>
                             <% end %>
                           <% end %>
                         </span>
-                        <br>
-                        <span class="is-size-7"><%= product.desc %></span>
-                      </p>
-                    </div>
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
-                          <i class="fa fa-twitter"></i>
-                        <% end %>
-                      </div>
-                    </nav>
+                      <br>
+                      <span class="is-size-7"><%= product.desc %></span>
+                    </p>
+                    <span class="tag is-rounded is-size-7">One</span>
+                    <span class="tag is-rounded is-size-7">Two</span>
+                    <span class="tag is-rounded is-size-7">Three</span>
                   </div>
-                  <div class="column is-narrow">
-                    <% if user_signed_in? %>
-                      <% if product.liked?(current_user) %>
-                        <%= link_to like_path(product.like_by(current_user)), method: :delete, remote: true, class: "button is-small" do %>
-                          <span><%= fa_icon 'heart' ,class: 'heart-red', style: "padding-right:0.5em;"%></span>
-                          <span><%= product.likes_count %></span>
-                        <% end %>
-                      <% else %>
-                        <%= link_to likes_path(like: {user_id: current_user.id, product_id: product.id}), method: :post, remote: true, class: "button is-small" do %>
-                          <span><%= fa_icon 'heart' ,class: 'heart-gray', style: "padding-right:0.5em;"%></span>
-                          <span><%= product.likes_count %></span>
-                         <% end %>
+                </div>
+                <div class="column is-narrow">
+                  <% if user_signed_in? %>
+                    <% if product.liked?(current_user) %>
+                      <%= link_to like_path(product.like_by(current_user)), method: :delete, remote: true, class: "button is-small" do %>
+                        <span><%= fa_icon 'heart', class: 'heart-red', style: "padding-right:0.5em;" %></span>
+                        <span><%= product.likes_count %></span>
                       <% end %>
                     <% else %>
-                      <%= link_to user_session_path, class: "button is-small" do %>
-                        <span><%= fa_icon 'heart' ,class: 'heart-gray', style: "padding-right:0.5em;"%></span>
+                      <%= link_to likes_path(like: {user_id: current_user.id, product_id: product.id}), method: :post, remote: true, class: "button is-small" do %>
+                        <span><%= fa_icon 'heart', class: 'heart-gray', style: "padding-right:0.5em;" %></span>
                         <span><%= product.likes_count %></span>
                       <% end %>
                     <% end %>
-                  </div>
+                  <% else %>
+                    <%= link_to user_session_path, class: "button is-small" do %>
+                      <span><%= fa_icon 'heart', class: 'heart-gray', style: "padding-right:0.5em;" %></span>
+                      <span><%= product.likes_count %></span>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
-          </article>
+          </div>
+        </article>
       <% end %>
     </section>
     <section class="section">
@@ -84,31 +86,39 @@
     </section>
   </div>
   <div class="column is-4">
-    <p>RANKING!!!</p>
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">週間ランキング</p>
+    </div>
     <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
-      <% @products.each do |product| %>
-      <article class="media">
-        <div class="columns is-mobile">
-          <div class="column is-4">
-            <p class="image">
-              <%= link_to product do %>
-                <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                <%#= image_tag product.thumbnail %>
-                <%#= image_tag product.image %>
-              <% end %>
-            </p>
-          </div>
-          <div class="column">
-            <div class="content">
-              <p>
-                <strong><%= link_to product.name, product %></strong>
-                <br>
-                <span class="is-size-7"><%= product.desc %></span>
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
               </p>
             </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
       <% end %>
     </section>
   </div>
