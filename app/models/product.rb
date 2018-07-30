@@ -26,6 +26,9 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :product_tags
+  has_many :tags, through: :product_tags
+
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
