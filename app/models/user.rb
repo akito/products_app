@@ -16,10 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
-#  role                   :integer          default(0), not null
-#  provider               :string
-#  uid                    :string
-#  username               :string
+#  role                   :integer          default("user"), not null
 #
 
 class User < ApplicationRecord
@@ -34,9 +31,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i(facebook)
 
-  has_many :products
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  enum role: { user: 0, admin: 1 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

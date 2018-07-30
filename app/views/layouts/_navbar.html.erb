@@ -1,0 +1,84 @@
+<header>
+  <nav class="navbar is-transparent">
+  <div class="container">
+    <div class="navbar-brand">
+      <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
+      <div class="has-addons navbar-item is-fullwidth">
+        <div class="control is-expanded">
+          <input class="input is-small is-fullwidth" type="text" placeholder="素敵なサービスが見つけよう" style="width:250px;">
+        </div>
+        <div class="control">
+          <a class="button is-dark is-small">
+            <%= fa_icon "search" %>
+          </a>
+        </div>
+      </div>
+      <div class="navbar-burger burger" data-target="navbarTransparent">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbarTransparent" class="navbar-menu">
+      <div class="navbar-start">
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="/documentation/overview/start/">
+              買い物
+            </a>
+            <a class="navbar-item is-size-7" href="https://bulma.io/documentation/modifiers/syntax/">
+              旅行
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+              食べ物
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+              住宅
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+              Elements
+            </a>
+            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+              Components
+            </a>
+          </div>
+        </div>
+
+        <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
+        <% if user_signed_in? %>
+          <%= link_to 'お気に入り一覧', mypage_path, class: 'navbar-item is-size-7' %>
+        <% end %>
+
+
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <% if user_signed_in? %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-size-7" href="./category.html">
+                  顔アイコン
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+                  <%= link_to "アカウント情報編集", edit_user_registration_path, class: 'navbar-item' %>
+                </div>
+              </div>
+            <% else %>
+              <p class="control" id="showModal">
+                <%= link_to "ログイン", new_user_session_path, class: 'button is-light is-small' %>
+              </p>
+              <p class="control">
+                <%= link_to "アカウントを作成", new_user_registration_path, class: 'button is-dark is-small' %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</header>

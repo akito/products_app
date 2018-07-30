@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :products
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get :mypage, to: 'users#show', as: :mypage
   root 'products#index'
+  resources :products
+  resources :categories
   resources :comments, only: [:create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
 end

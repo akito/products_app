@@ -1,0 +1,127 @@
+<div class="columns">
+  <div class="column is-8">
+    <section class="section" style="padding: 0.5rem 1.5rem;">
+      <div style="margin: 0 0 1rem 0;">
+        <time datetime="2016-1-1" class="is-size-7">お気に入りプロダクト</time>
+      </div>
+      <% if @likes.present? %>
+        <% @likes.each do |like| %>
+          <article class="media">
+            <div class="columns">
+              <div class="column is-3">
+                <p class="image">
+                  <%= link_to like.product do %>
+                    <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                    <%#= image_tag like.product.thumbnail %>
+                    <%#= image_tag like.product.image %>
+                  <% end %>
+                </p>
+              </div>
+              <div class="column">
+                <div class="columns is-mobile">
+                  <div class="column ">
+                    <div class="content">
+                      <p>
+                        <strong><%= link_to like.product.name, like.product %></strong><span> </span>
+                        <small><%= link_to (fa_icon 'external-link'), like.product.url %></small>
+                        <%= link_to "http://twitter.com/intent/tweet?text=#{like.product.name}&url=#{product_url(like.product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{like.product.name}" do %>
+                          <%= fa_icon 'twitter' %>
+                        <% end %>
+                        <span style="font-size: 0.6em">
+                          <% if user_signed_in? %>
+                            <% if like.product.owned_by?(current_user) %>
+                              <%= link_to '編集', edit_product_path(like.product) %>
+                              <span> </span>
+                              <%= link_to '削除', like.product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                            <% end %>
+                          <% end %>
+                        </span>
+                        <br>
+                        <span class="is-size-7"><%= like.product.desc %></span>
+                      </p>
+                      <span class="tag is-rounded is-size-7">One</span>
+                      <span class="tag is-rounded is-size-7">Two</span>
+                      <span class="tag is-rounded is-size-7">Three</span>
+                    </div>
+                  </div>
+                  <div class="column is-narrow">
+                    <%= link_to '削除',  like_path(like.product.like_by(current_user)), method: :delete, data: {confirm: 'お気に入りから削除しますか?'}, remote: true, class: 'is-size-7', class: 'delete' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      <% else %>
+        <p class="is-size-7">お気に入りしたプロダクトはまだありません</p>
+      <% end %>
+    </section>
+    <section class="section">
+      <nav class="pagination is-centered is-small" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+          <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+          <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+  <div class="column is-4">
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">My Page</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <div>
+        <a href="">
+          <figure class="image is-128x128 has-image-centered">
+            <img src="https://bulma.io/images/placeholders/256x256.png" style="border-radius: 64px;">
+          </figure>
+        </a>
+        <p style="margin:0.5rem 0;" class="has-text-centered"><%= @user.name %></p>
+        <p class="box is-shadowless has-background-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </section>
+
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">最近見たプロダクト</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            </div>
+          </div>
+        </article>
+      <% end %>
+
+    </section>
+
+
+
+  </div>
+</div>

@@ -16,11 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
-#  role                   :integer          default(0), not null
-#  provider               :string
-#  uid                    :string
-#  username               :string
-#
+#  role                   :integer          default("user"), not null
 
 require 'rails_helper'
 

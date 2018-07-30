@@ -5,12 +5,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order(:id)
+    @products = Product.published.includes(:category).order(:id)
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
   end
 
@@ -27,8 +28,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.user_id = current_user.id
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -76,6 +75,6 @@ class ProductsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @product.owned_by?(current_user)
+      raise Forbidden, '権限がありません' unless current_user.admin?
     end
 end

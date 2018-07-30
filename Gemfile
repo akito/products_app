@@ -46,17 +46,27 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-# the font-awesome font bundled as an asset for the rails asset pipeline
+# the font-awesome font bundled as an asset for the rails asset pipeline. https://github.com/bokmann/font-awesome-rails
 gem 'font-awesome-rails'
 
 # Turbo-charged counter caches
 gem 'counter_culture'
+
+# The administration framework
+gem 'activeadmin'
+
+# Integrates Bulma with the rails asset pipeline.
+gem 'bulma-rails'
+
+# Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
+gem 'high_voltage'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'seed-fu'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'pry-rails'
@@ -85,6 +95,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # Brings back `assigns` and `assert_template` to your Rails tests. https://github.com/rails/rails-controller-testing
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
