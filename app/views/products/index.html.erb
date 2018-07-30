@@ -1,7 +1,114 @@
 <div class="columns">
+  <div class="column is-4">
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">カテゴリー</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <aside class="menu">
+        <p class="menu-label">
+          旅行
+        </p>
+        <ul class="menu-list">
+          <li><a class="is-active">移動</a></li>
+          <li><a>宿泊</a></li>
+          <li><a>アクティビティ</a></li>
+        </ul>
+        <p class="menu-label">
+          旅行
+        </p>
+        <ul class="menu-list">
+          <li><a class="is-active">移動</a></li>
+          <li><a>宿泊</a></li>
+          <li><a>アクティビティ</a></li>
+        </ul>
+        <p class="menu-label">
+          旅行
+        </p>
+        <ul class="menu-list">
+          <li><a class="is-active">移動</a></li>
+          <li><a>宿泊</a></li>
+          <li><a>アクティビティ</a></li>
+        </ul>
+      </aside>
+
+    </section>
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">週間ランキング</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">お気に入りランキング</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+  </div>
+
+
   <div class="column is-8">
     <section class="section" style="padding: 0.5rem 1.5rem;">
       <div style="margin: 0 0 1rem 0;">
+        <p class="is-size-7">新着</p>
         <time datetime="2016-1-1" class="is-size-7"><%= Date.today %></time>
       </div>
       <% @products.each do |product| %>
@@ -83,43 +190,6 @@
           <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
         </ul>
       </nav>
-    </section>
-  </div>
-  <div class="column is-4">
-    <div style="margin: 0 0 1rem 0;">
-      <p class="subtitle is-7">週間ランキング</p>
-    </div>
-    <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
-      <% @products.each.with_index(1) do |product, i| %>
-        <article class="media">
-          <div class="columns is-mobile">
-            <div class="column is-4">
-              <p class="image">
-                <%= link_to product do %>
-                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                  <%#= image_tag product.thumbnail %>
-                  <%#= image_tag product.image %>
-                <% end %>
-              </p>
-            </div>
-            <div class="column">
-              <div class="content">
-                <p>
-                  <strong><%= link_to product.name, product %></strong>
-                  <br>
-                  <span class="is-size-7"><%= product.desc %></span>
-                </p>
-              </div>
-            </div>
-            <div class="column is-narrow">
-            <span class="is-size-7 fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
-            </span>
-            </div>
-          </div>
-        </article>
-      <% end %>
     </section>
   </div>
 </div>
