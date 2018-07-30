@@ -13,8 +13,6 @@
           </a>
         </div>
       </div>
-
-
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
         <span></span>
@@ -29,9 +27,18 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
           <div class="navbar-dropdown is-boxed">
-            <%# categories.each do |category| %>
-              <%#= link_to category.name, category_path(category), class: 'navbar-item is-size-7'%>
-            <%# end %>
+            <a class="navbar-item" href="/documentation/overview/start/">
+              買い物
+            </a>
+            <a class="navbar-item is-size-7" href="https://bulma.io/documentation/modifiers/syntax/">
+              旅行
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+              食べ物
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+              住宅
+            </a>
             <hr class="navbar-divider">
             <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
               Elements
@@ -52,9 +59,15 @@
         <div class="navbar-item">
           <div class="field is-grouped">
             <% if current_user %>
-              <p class="control">
-                <%= link_to "logout", destroy_user_session_path, method: :delete, class: 'button is-light is-small' %>
-              </p>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-size-7" href="./category.html">
+                  顔アイコン
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+                  <%= link_to "アカウント情報編集", edit_user_registration_path, class: 'navbar-item' %>
+                </div>
+              </div>
             <% else %>
               <p class="control" id="showModal">
                 <%= link_to "ログイン", new_user_session_path, class: 'button is-light is-small' %>
