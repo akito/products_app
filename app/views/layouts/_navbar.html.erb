@@ -51,12 +51,11 @@
           </div>
         </div>
 
+        <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
         <% if user_signed_in? %>
-          <%= link_to 'プロダクトを登録', new_product_path, class: 'navbar-item is-size-7'%>
+          <%= link_to 'お気に入り一覧', mypage_path, class: 'navbar-item is-size-7' %>
         <% end %>
-        <a class="navbar-item is-size-7" href="./post.html">
-          お気に入り一覧
-        </a>
+
 
         <div class="navbar-item">
           <div class="field is-grouped">
