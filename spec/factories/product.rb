@@ -7,6 +7,5 @@ FactoryBot.define do
     desc Faker::Lorem.sentence
     image Faker::App.name
     thumbnail Faker::App.name
-    user
   end
 end
