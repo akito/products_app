@@ -6,6 +6,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Products App"
 
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -193,15 +194,15 @@ ActiveAdmin.setup do |config|
   # and feel.
   #
   # To load a stylesheet:
-  # config.clear_stylesheets!
-  # config.register_stylesheet 'admin/active_admin.css'
+  config.clear_stylesheets!
+  config.register_stylesheet 'admin/active_admin.css'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
   #
   # To load a javascript file:
-  # config.clear_javascripts!
-  # config.register_javascript 'admin/active_admin.js'
+  config.clear_javascripts!
+  config.register_javascript 'admin/active_admin.js'
 
   # == CSV options
   #
