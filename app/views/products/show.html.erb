@@ -1,87 +1,213 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @product.url %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @product.desc %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @product.image %>
-</p>
-
-<p>
-  <strong>Thumbnail:</strong>
-  <%= @product.thumbnail %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <% if @product.category %>
-    <%= @product.category.name %>
-  <% end %>
-</p>
-<p>
-  <% if user_signed_in? %>
-    <% if @product.liked?(current_user) %>
-      <%= link_to (fa_icon 'heart',class: 'heart-red'),
-                  like_path(@product.like_by(current_user)),
-                  method: :delete, remote: true %>
-    <% else %>
-      <%= link_to (fa_icon 'heart',class: 'heart-gray'),
-                  likes_path(like: {user_id: current_user.id, product_id: @product.id}),
-                  method: :post, remote: true %>
-    <% end %>
-  <% else %>
-    <%= link_to (fa_icon 'heart',class: 'heart-gray'), user_session_path %>
-  <% end %>
-</p>
-<p>
-  <%= @product.likes_count %>
-</p>
-
-<%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}" do %>
-  <i class="fa fa-twitter"></i>
-<% end %>
-
-<% if user_signed_in? %>
-  <% if @product.owned_by?(current_user) %>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <%= link_to 'Back', products_path %>
-  <% end %>
-<% end %>
-
-
-<p>###############################</p>
-<% @comments.each do |comment| %>
-<p>
-  <%= comment.user.name %>: <%= comment.content %>: <%= comment.updated_at %>
-  <% if user_signed_in? %>
-    <% if comment.owned_by?(current_user) %>
-      <%= link_to '削除', comment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>,
-      <%= link_to '修正', edit_comment_path(comment) %>
-    <% end %>
-  <% end %>
-</p>
-<% end %>
-
-
-<% if user_signed_in? %>
-  <div>
-    <%= form_with model: Comment.new do |f| %>
-      <%= f.text_field :content , placeholder: "Write comments" %>
-      <%= f.hidden_field :product_id , value: @product.id %>
-      <%= f.submit "コメントする" %>
-    <% end %>
+<div class="columns">
+  <div class="column is-8">
+    <section class="section" style="padding: 0.5rem 1.5rem;">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-3by2">
+            <%= link_to @product.url do %>
+              <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1" alt="#{@product.name}">
+              <%#= image_tag product.thumbnail %>
+            <% end %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="columns is-mobile">
+            <div class="column is-3-mobile is-3-tablet is-2-desktop">
+              <figure class="image">
+                <%= link_to @product.url do %>
+                  <img src="https://221616.com/kaigai/usa/blog/wp-content/uploads/2017/07/9.png" alt="Placeholder image">
+                  <%#= image_tag product.image %>
+                <% end %>
+              </figure>
+              <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}" do %>
+                <%= fa_icon 'twitter' %>
+              <% end %>
+              <%= fa_icon 'facebook' %>
+              <%= fa_icon 'envelope' %>
+            </div>
+            <div class="column">
+              <p class="title is-5"><%= link_to @product.name, @product.url %>
+                <span><i class="fas fa-external-link-alt is-size-6"></i></span>
+                <span style="font-size: 0.4em">
+                <% if user_signed_in? %>
+                  <% if @product.owned_by?(current_user) %>
+                    <%= link_to '編集', edit_product_path(@product) %>
+                      <span> </span>
+                      <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <% end %>
+                <% end %>
+              </span>
+              </p>
+              <p class="subtitle is-6"><%= @product.desc %></p>
+              <div class="content">
+                <span class="tag">One</span>
+                <span class="tag">Two</span>
+                <span class="tag">Three</span>
+              </div>
+            </div>
+            <div class="column is-narrow" style="padding-left: 0;">
+              <% if user_signed_in? %>
+                <% if @product.liked?(current_user) %>
+                  <%= link_to like_path(@product.like_by(current_user)), method: :delete, remote: true do %>
+                    <span><%= fa_icon 'heart', class: 'heart-red' %></span>
+                  <% end %>
+                <% else %>
+                  <%= link_to likes_path(like: {user_id: current_user.id, product_id: @product.id}), method: :post, remote: true do %>
+                    <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to user_session_path do %>
+                  <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="section">
+        <article class="media">
+          <p>Reviews</p>
+        </article>
+        <% @comments.each do |comment| %>
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= comment.user.name %></strong>
+                  <small><%= comment.updated_at %></small>
+                  <br>
+                  <%= comment.content %>
+                </p>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="level-item">
+                    <span class="is-size-7">返信</span>
+                  </a>
+                  <a class="level-item">
+                    <span class="is-size-7">いいね</span>
+                  </a>
+                </div>
+                <div class="level-right">
+                  <%# if user_signed_in? %>
+                  <%# if comment.owned_by?(current_user) %>
+                  <%#= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7' %>
+                  <!--                    <span>・</span>-->
+                  <%#= link_to '修正', edit_comment_path(comment), class: 'is-size-7'%>
+                  <%# end %>
+                  <%# end %>
+                </div>
+              </nav>
+            </div>
+            <div class="media-right">
+              <% if user_signed_in? %>
+                <% if comment.owned_by?(current_user) %>
+                  <%= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7', class: 'delete' %>
+                <% end %>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+        <!--Write a Comment-->
+        <article class="media">
+          <% if user_signed_in? %>
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </figure>
+            <div class="media-content">
+              <%= form_with model: Comment.new do |f| %>
+                <div class="field">
+                  <p class="control">
+                    <%= f.text_area :content, placeholder: "Add a comment...", class: "textarea" %>
+                  </p>
+                </div>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <%= f.hidden_field :product_id, value: @product.id %>
+                      <%= f.submit "コメントする", class: "button is-info" %>
+                    </div>
+                  </div>
+                </nav>
+              <% end %>
+            </div>
+          <% end %>
+        </article>
+      </section>
+    </section>
   </div>
-<% end %>
-<p>###############################</p>
+  <div class="column is-4">
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-6">関連プロダクト</p>
+    </div>
+    <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
+      <% @products.each do |product| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+    <div style="margin: 1rem 0;">
+      <p class="subtitle is-6">週間ランキング</p>
+    </div>
+    <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+  </div>
+</div>

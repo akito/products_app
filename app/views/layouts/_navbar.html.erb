@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <% if current_user %>
+        <% if user_signed_in? %>
           <%= link_to 'プロダクトを登録', new_product_path, class: 'navbar-item is-size-7'%>
         <% end %>
         <a class="navbar-item is-size-7" href="./post.html">
@@ -58,7 +58,7 @@
 
         <div class="navbar-item">
           <div class="field is-grouped">
-            <% if current_user %>
+            <% if user_signed_in? %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link is-size-7" href="./category.html">
                   顔アイコン

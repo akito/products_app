@@ -20,11 +20,12 @@
     <main class="Site-content">
       <section class="section has-background-white">
         <div class="container">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
           <%= yield %>
         </div>
       </section>
     </main>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
