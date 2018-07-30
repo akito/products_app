@@ -145,9 +145,9 @@
                       <br>
                       <span class="is-size-7"><%= product.desc %></span>
                     </p>
-                    <span class="tag is-rounded is-size-7">One</span>
-                    <span class="tag is-rounded is-size-7">Two</span>
-                    <span class="tag is-rounded is-size-7">Three</span>
+                    <% product.tags.each do |tag| %>
+                      <span class="tag is-rounded is-size-7"><%= tag.label %></span>
+                    <% end %>
                   </div>
                 </div>
                 <div class="column is-narrow">

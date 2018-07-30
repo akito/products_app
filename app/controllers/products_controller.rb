@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.published.order(:id)
+    @products = Product.published.includes(:product_tags, :tags).order(:id)
   end
 
   # GET /products/1
