@@ -84,4 +84,22 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  describe '#add_tags' do
+    let(:product) { create(:product) }
+    tags = ['blue', 'red' ]
+
+    it 'adds some tags' do
+      expect(product.add_tags(tags)).to match_array tags
+    end
+  end
+
+  describe '#tags_to_s' do
+    let(:product) { create(:product) }
+    let(:tag) { create(:tag) }
+    it "output tag's label as String" do
+      product.tags << tag
+      expect(product.tags_to_s).to eq tag.label
+    end
+  end
 end

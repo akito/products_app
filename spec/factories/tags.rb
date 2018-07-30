@@ -10,6 +10,6 @@
 
 FactoryBot.define do
   factory :tag do
-    label "MyString"
+    sequence(:label) { |n| "label#{n}" }
   end
 end

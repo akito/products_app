@@ -34,6 +34,12 @@
               <%= form.text_field :thumbnail, class: 'input', placeholder: 'プロダクトのサムネイル' %>
             </div>
           </div>
+          <div class="field">
+            <div class="control">
+              <%= form.label 'タグ' %>
+              <%= form.text_field :tags_to_s, class: 'input', placeholder: 'タグ(スペース区切り)' %>
+            </div>
+          </div>
           <div class="actions field" style="padding:30px 0;">
             <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
           </div>

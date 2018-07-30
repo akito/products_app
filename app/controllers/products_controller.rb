@@ -28,11 +28,10 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.user_id = current_user.id
-
+    @product.add_tags(tags_param[:tags_to_s].split) unless tags_param.empty?
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: 'プロダクトは作成されました' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -44,9 +43,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.add_tags(tags_param[:tags_to_s].split) unless tags_param.empty?
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: 'プロダクト情報は更新されました' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -74,6 +74,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :url, :desc, :image, :thumbnail)
+    end
+
+    def tags_param
+      params.require(:product).permit(:tags_to_s)
     end
 
     def correct_user

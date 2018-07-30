@@ -16,11 +16,16 @@
           </div>
           <div class="field">
             <div class="control">
-              <%= form.text_area :desc, class: 'textarea', placeholder: 'プロダクトの説明' %>
+            <%= form.text_area :desc, class: 'textarea', placeholder: 'プロダクトの説明' %>
+           </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.text_field :tags_to_s, class: 'input', placeholder: 'タグ(スペース区切り)' %>
             </div>
           </div>
           <div class="actions field" style="padding:30px 0;">
-            <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
+            <%= form.submit "申請する", class: "button is-link is-fullwidth is-rounded" %>
           </div>
         <% end %>
       </section>
