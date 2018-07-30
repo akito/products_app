@@ -12,7 +12,7 @@
     <script async src="https://platform.twitter.com/widgets.js"></script>
   </head>
   <body>
-    <%= render 'layouts/navbar' %>
+    <%= render partial: 'layouts/navbar', locals: { categories: @categories  } %>
     <%= flash_message(flash[:success], :success) if flash[:success] %>
     <%= flash_message(flash[:error], :danger) if flash[:error] %>
     <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
