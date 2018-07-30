@@ -49,7 +49,10 @@ gem 'counter_culture'
 gem 'activeadmin'
 
 # Integrates Bulma with the rails asset pipeline.
-gem "bulma-rails"
+gem 'bulma-rails'
+
+# Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
+gem 'high_voltage'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
