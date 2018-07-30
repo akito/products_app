@@ -25,6 +25,12 @@
   <%= @product.thumbnail %>
 </p>
 <p>
+  <strong>Category:</strong>
+  <% if @product.category %>
+    <%= @product.category.name %>
+  <% end %>
+</p>
+<p>
   <% if user_signed_in? %>
     <% if @product.liked?(current_user) %>
       <%= link_to (fa_icon 'heart',class: 'heart-red'),

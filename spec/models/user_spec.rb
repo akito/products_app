@@ -18,7 +18,6 @@
 #  name                   :string
 #  role                   :integer          default("user"), not null
 
-
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
