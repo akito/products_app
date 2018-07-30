@@ -54,6 +54,9 @@ gem 'bulma-rails'
 # Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
 gem 'high_voltage'
 
+# Retrieve the binding of a method's caller. https://github.com/banister/binding_of_caller
+gem 'binding_of_caller'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

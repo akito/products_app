@@ -17,6 +17,10 @@
 #  updated_at             :datetime         not null
 #  name                   :string
 #  role                   :integer          default("user"), not null
+#  provider               :string
+#  uid                    :string
+#  username               :string
+#
 
 require 'rails_helper'
 
