@@ -4,21 +4,11 @@ class LikesController < ApplicationController
 
   def create
     @like = Like.new(like_params)
-    if @like.save
-      flash[:notice] = "いいね!"
-    else
-      flash[:error] = "いいねできませんでした"
-    end
-    redirect_back(fallback_location: root_path)
+    @like.save
   end
 
   def destroy
-    if @like.destroy
-      flash[:notice] = "良くないね！"
-    else
-      flash[:error] = "良くないねできませんでした"
-    end
-    redirect_back(fallback_location: root_path)
+    @like.destroy
   end
 
   protected
