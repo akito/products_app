@@ -36,9 +36,11 @@
         <% end %>
         <p class="subtitle has-text-grey is-aligin-center" style="padding-top:30px 0;">SNSアカウントで登録</p>
         <div class="field">
-          <a class="button is-fullwidth is-rounded has-text-white" style="background:#3b5998;">
-            <span>Facebookで登録</span>
-          </a>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to "#{OmniAuth::Utils.camelize(provider)}で登録", omniauth_authorize_path(resource_name, provider), class:"button is-fullwidth is-rounded has-text-white", style: "background:#3b5998;"%><br/>
+            <% end -%>
+          <% end -%>
         </div>
         <div class="field">
           <a class="button is-fullwidth is-rounded has-text-white" style="background:#00aced;">
