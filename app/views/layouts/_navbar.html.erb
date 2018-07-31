@@ -24,30 +24,7 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to 'カテゴリー', categories_path, class: 'navbar-link is-size-7'%>
-          <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="/documentation/overview/start/">
-              買い物
-            </a>
-            <a class="navbar-item is-size-7" href="https://bulma.io/documentation/modifiers/syntax/">
-              旅行
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-              食べ物
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              住宅
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
-            </a>
-          </div>
-        </div>
+        <%= link_to 'カテゴリー', categories_path, class: 'navbar-item is-size-7'%>
         <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
         <% if user_signed_in? %>
           <%= link_to 'お気に入り一覧', mypage_path, class: 'navbar-item is-size-7' %>

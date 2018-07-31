@@ -13,32 +13,12 @@
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
       <aside class="menu">
-        <p class="menu-label">
-          旅行
-        </p>
         <ul class="menu-list">
-          <li><a class="is-active">移動</a></li>
-          <li><a>宿泊</a></li>
-          <li><a>アクティビティ</a></li>
-        </ul>
-        <p class="menu-label">
-          旅行
-        </p>
-        <ul class="menu-list">
-          <li><a class="is-active">移動</a></li>
-          <li><a>宿泊</a></li>
-          <li><a>アクティビティ</a></li>
-        </ul>
-        <p class="menu-label">
-          旅行
-        </p>
-        <ul class="menu-list">
-          <li><a class="is-active">移動</a></li>
-          <li><a>宿泊</a></li>
-          <li><a>アクティビティ</a></li>
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, category_path(category) %></li>
+          <% end %>
         </ul>
       </aside>
-
     </section>
     <div style="margin: 0 0 1rem 0;">
       <p class="subtitle is-7">週間ランキング</p>
