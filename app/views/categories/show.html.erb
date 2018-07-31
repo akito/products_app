@@ -24,7 +24,7 @@
       <p class="subtitle is-7">週間ランキング</p>
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
-      <% @category.products.each.with_index(1) do |product, i| %>
+      <% @products.each.with_index(1) do |product, i| %>
         <article class="media">
           <div class="columns is-mobile">
             <div class="column is-4">
@@ -59,7 +59,7 @@
       <p class="subtitle is-7">お気に入りランキング</p>
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
-      <% @category.products.each.with_index(1) do |product, i| %>
+      <% @products.each.with_index(1) do |product, i| %>
         <article class="media">
           <div class="columns is-mobile">
             <div class="column is-4">
@@ -104,7 +104,7 @@
           </ul>
         </nav>
       </div>
-      <% @category.products.each do |product| %>
+      <% @products.each do |product| %>
         <article class="media">
           <div class="columns">
             <div class="column is-3">
@@ -168,19 +168,7 @@
       <% end %>
     </section>
     <section class="section">
-      <nav class="pagination is-centered is-small" role="navigation" aria-label="pagination">
-        <a class="pagination-previous">Previous</a>
-        <a class="pagination-next">Next page</a>
-        <ul class="pagination-list">
-          <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-          <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-          <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-        </ul>
-      </nav>
+      <%= paginate @products %>
     </section>
   </div>
 </div>

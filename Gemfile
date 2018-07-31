@@ -61,6 +61,9 @@ gem 'bulma-rails'
 # Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
 gem 'high_voltage'
 
+#  A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps. https://github.com/kaminari/kaminari
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
