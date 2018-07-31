@@ -5,7 +5,6 @@ Product.seed(:id) do |s|
   s.desc = "this is my first product"
   s.image = "product01"
   s.thumbnail = "product01"
-  s.user_id = User.find_by(name: "user01")
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
 end
@@ -17,7 +16,6 @@ Product.seed(:id) do |s|
   s.desc = "this is my second product"
   s.image = "product02"
   s.thumbnail = "product02"
-  s.user_id = User.find_by(name: "user02")
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
 end
@@ -29,7 +27,6 @@ Product.seed(:id) do |s|
   s.desc = "this is my third product"
   s.image = "product03"
   s.thumbnail = "product03"
-  s.user_id = User.find_by(name: "user03")
   s.status = "published"
   s.category_id = Category.find_by(name: "category03").id
 end
@@ -41,7 +38,6 @@ Product.seed(:id) do |s|
   s.desc = "this is a product"
   s.image = "product04"
   s.thumbnail = "product04"
-  s.user_id = User.find_by(name: "user03")
   s.status = "draft"
   s.category_id = Category.find_by(name: "category02").id
 end
@@ -53,7 +49,6 @@ Product.seed(:id) do |s|
   s.desc = "this is a product"
   s.image = "product05"
   s.thumbnail = "product05"
-  s.user_id = User.find_by(name: "user03")
   s.status = "archived"
   s.category_id = Category.find_by(name: "category03").id
 end
@@ -65,7 +60,6 @@ Product.seed(:id) do |s|
   s.desc = "this is my product"
   s.image = "product06"
   s.thumbnail = "product06"
-  s.user_id = User.find_by(name: "user02")
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
 end
@@ -77,7 +71,6 @@ Product.seed(:id) do |s|
   s.desc = "this is my product"
   s.image = "product07"
   s.thumbnail = "product07"
-  s.user_id = User.find_by(name: "user02")
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
 end
@@ -89,7 +82,30 @@ Product.seed(:id) do |s|
   s.desc = "this is my product"
   s.image = "product08"
   s.thumbnail = "product08"
-  s.user_id = User.find_by(name: "user02")
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
+end
+
+Product.seed(:id) do |s|
+  s.id = 9
+  s.name = "product09"
+  s.url = "https://product09.com"
+  s.desc = "this is my product"
+  s.image = "product09"
+  s.thumbnail = "product09"
+  s.status = "published"
+  s.category_id = Category.find_by(name: "category01").id
+end
+
+1000.times do |i |
+  Product.seed(:id) do |s|
+    s.id = i + 10
+    s.name = "product#{i + 10}"
+    s.url = "https://product#{i + 10}.com"
+    s.desc = "this is my product"
+    s.image = "product#{i + 10}"
+    s.thumbnail = "product#{i + 10}"
+    s.status = "published"
+    s.category_id = Category.find_by(name: "category01").id
+  end
 end
