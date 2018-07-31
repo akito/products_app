@@ -39,6 +39,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Flexible authentication solution for Rails.
 gem 'devise'
 
+# OmniAuth is a flexible authentication system utilizing Rack middleware. https://github.com/omniauth/omniauth
+gem 'omniauth'
+
+# Facebook OAuth2 Strategy for OmniAuth. https://github.com/mkdynamic/omniauth-facebook
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 # the font-awesome font bundled as an asset for the rails asset pipeline. https://github.com/bokmann/font-awesome-rails
 gem 'font-awesome-rails'
 
@@ -78,6 +85,8 @@ group :development do
   gem 'annotate'
   gem 'overcommit'
   gem 'bullet'
+  # Retrieve the binding of a method's caller in MRI 1.9.2+. https://github.com/banister/binding_of_caller
+  gem 'binding_of_caller'
 end
 
 group :test do

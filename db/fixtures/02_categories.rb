@@ -28,3 +28,15 @@ Category.seed(:id) do |s|
   s.description = "about category05"
 end
 
+Category.seed(:id) do |s|
+  s.id = 6
+  s.name = "category06"
+  s.description = "about category06"
+end
+
+Category.seed(:id) do |s|
+  s.id = 7
+  s.name = "category07"
+  s.description = "about category07"
+end
+

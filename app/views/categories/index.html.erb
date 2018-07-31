@@ -1,32 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Categories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to category.name, category %></td>
-        <td><%= category.description %></td>
-        <% if user_signed_in? and current_user.admin?%>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<div class="columns">
+  <div class="column is-12">
+    <section class="section" style="padding: 0.5rem 1.5rem;">
+      <div class="columns" style="flex-wrap: wrap;">
+        <% @categories.each do |category| %>
+        <div class="column is-2">
+          <div class="box is-shadowless has-background-white-ter">
+            <p><%= link_to category.name, category %></p>
+            <p class="is-size-7"><%= category.description %></p>
+            <% if user_signed_in? and current_user.admin?%>
+              <td><%= link_to 'Edit', edit_category_path(category), class: 'is-size-7' %></td>
+              <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'is-size-7' %></td>
+            <% end %>
+          </div>
+        </div>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% if user_signed_in? and current_user.admin? %>
+        <div class="column is-2">
+          <div class="box is-shadowless has-background-white-ter">
+              <%= link_to 'カテゴリーを作成する', new_category_path, class: 'is-size-7'%>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>
 
-<br>
-
-<% if user_signed_in? and current_user.admin? %>
-  <%= link_to 'New Category', new_category_path %>
-<% end %>
