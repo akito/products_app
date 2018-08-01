@@ -26,6 +26,8 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  scope :created_after, ->(time) { where("created_at > ?", time) if time.present? }
+
   enum status: { draft: 0, published: 1, archived: 2 }
 
   def like_by(user)

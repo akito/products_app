@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     @products = Product.published.order(:id).page(params[:page])
     @categories = Category.all
     @product_ranking = Product.order(likes_count: :desc).limit(10)
+    @weekly_ranking = Product.created_after(1.week.ago).order(likes_count: :desc).limit(10)
   end
 
   # GET /products/1
