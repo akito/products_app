@@ -54,6 +54,40 @@ RSpec.describe Product, type: :model do
     end
   end
 
+  describe 'scope' do
+    describe 'created_after(arg = 1.weeks.ago )' do
+      let!(:old_product) { create(:product, created_at: 1.weeks.ago) }
+      let!(:new_product) { create(:product, created_at: 1.day.ago) }
+
+      context 'when product created one week ago' do
+        it 'dose NOT include the product' do
+          expect(Product.created_after(1.weeks.ago)).not_to include old_product
+        end
+      end
+      context 'when product created yesterday' do
+        it 'includes the product ' do
+          expect(Product.created_after(1.weeks.ago)).to include new_product
+        end
+      end
+    end
+
+    describe "like_ranking(arg = 3)" do
+      let(:bad_product) { create(:product) }
+      let(:ordinary_product) { create(:product) }
+      let(:popular_product) { create(:product) }
+      let!(:like) { create(:like, product: ordinary_product) }
+      let!(:likes) { create_list(:like, 2,  product: popular_product) }
+
+      it 'includes only liked products only' do
+        expect(Product.like_ranking(3)).not_to include bad_product
+      end
+
+      it 'is in order of likes count' do
+        expect(Product.like_ranking(3)).to match [popular_product, ordinary_product]
+      end
+    end
+
+  end
 
   describe '#like_by' do
     let!(:like) { create(:like) }

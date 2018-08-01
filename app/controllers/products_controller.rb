@@ -1,14 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :product_ranking, only: [:index, :show]
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.published.order(:id).page(params[:page])
     @categories = Category.all
-    @product_ranking = Product.order(likes_count: :desc).limit(10)
-    @weekly_ranking = Product.created_after(1.week.ago).order(likes_count: :desc).limit(10)
+    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
   end
 
   # GET /products/1
@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
   def show
     @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
-    @product_ranking = Product.order(likes_count: :desc).limit(10)
   end
 
   # GET /products/new
@@ -80,5 +79,9 @@ class ProductsController < ApplicationController
 
     def correct_user
       raise Forbidden, '権限がありません' unless current_user.admin?
+    end
+
+    def product_ranking
+      @product_ranking = Product.order(likes_count: :desc).limit(10)
     end
 end

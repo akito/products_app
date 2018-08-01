@@ -26,7 +26,8 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  scope :created_after, ->(time) { where("created_at > ?", time) if time.present? }
+  scope :created_after, ->(time) { where('created_at > ?', time) if time.present? }
+  scope :like_ranking, ->(num) { where('likes_count > 0').order(likes_count: :desc).limit(num) if num.present? }
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
