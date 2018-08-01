@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:index, :shoe]
+  before_action :set_categories, only: [:index, :show]
   before_action :authenticate_admin_user!, only: [:new, :edit, :create, :update, :destroy ]
 
   # GET /categories
@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   def show
     @products = @category.products.page(params[:page])
     @product_ranking = Product.where(category_id: params[:id]).like_ranking(10)
+    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
   end
 
   # GET /categories/new

@@ -119,4 +119,31 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  describe '#related_products(max = 3)' do
+    let(:trip) { create(:category, name: 'Trip') }
+    let(:food) { create(:category, name: 'Food') }
+    let!(:trip_product) { create(:product, category: trip) }
+    let!(:food_products) { create_list(:product, 4, category: food) }
+
+    before do
+      @food_product = food_products.first
+    end
+
+    it 'returns same category products' do
+      expect(@food_product.related_products(5)).to match food_products[1..-1]
+    end
+
+    it 'does not return products of different category' do
+      expect(@food_product.related_products(5)).not_to include trip_product
+    end
+
+    it 'does not return self' do
+      expect(@food_product.related_products(5)).not_to include @food_product
+    end
+
+    it 'returns products less than or equal to the argument' do
+      expect(@food_product.related_products(2).count).to eq  2
+    end
+  end
 end

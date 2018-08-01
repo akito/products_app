@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @products = Product.published.order(:id)
+    @related_products = @product.related_products(10)
     @comments = @product.comments.includes(:user)
   end
 

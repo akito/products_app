@@ -38,4 +38,8 @@ class Product < ApplicationRecord
   def liked?(user)
     likes.exists?(user_id: user.id)
   end
+
+  def related_products(max)
+    Product.where(category_id: self.category_id).where.not(id: self.id).limit(max)
+  end
 end

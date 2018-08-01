@@ -1,0 +1,14 @@
+<section class="section" style="padding: 0.5rem 1.5rem;">
+  <div style="margin: 0 0 1rem 0;">
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to category.name, category_path(category), class: 'is-active'%></li>
+      </ul>
+    </nav>
+  </div>
+  <%= render partial: 'shared/products', collection: products, as: :product %>
+</section>
+<section class="section">
+  <%= paginate products %>
+</section>
