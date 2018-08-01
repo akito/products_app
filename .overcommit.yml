@@ -15,18 +15,18 @@
 #
 # Uncomment the following lines to make the configuration take effect.
 
-PreCommit:
-  RuboCop:
-    enabled: true
-    command: ['bundle', 'exec', 'rubocop']
-  Annotate:
-    enabled: true
-    command: ['bundle', 'exec', 'annotate']
-  RSpec:
-    enabled: true
-    command: ['bundle', 'exec', 'rspec']
-  AuthorName:
-    enabled: false
+#PreCommit:
+#  RuboCop:
+#    enabled: true
+#    command: ['bundle', 'exec', 'rubocop']
+#  Annotate:
+#    enabled: true
+#    command: ['bundle', 'exec', 'annotate']
+#  RSpec:
+#    enabled: true
+#    command: ['bundle', 'exec', 'rspec']
+#  AuthorName:
+#    enabled: false
 
 #  TrailingWhitespace:
 #    enabled: true
