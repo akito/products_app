@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.published.order(:id).page(params[:page])
     @categories = Category.all
+    @product_ranking = Product.order(likes_count: :desc).limit(10)
   end
 
   # GET /products/1
@@ -14,6 +15,7 @@ class ProductsController < ApplicationController
   def show
     @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
+    @product_ranking = Product.order(likes_count: :desc).limit(10)
   end
 
   # GET /products/new

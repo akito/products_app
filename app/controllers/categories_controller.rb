@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   def show
     @categories = Category.all
     @products = @category.products.page(params[:page])
+    @product_ranking = Product.where(category_id: params[:id]).order(likes_count: :desc).limit(10)
   end
 
   # GET /categories/new

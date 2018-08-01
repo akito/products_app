@@ -51,40 +51,9 @@
       <p class="subtitle is-7">お気に入りランキング</p>
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
-      <% @products.each.with_index(1) do |product, i| %>
-        <article class="media">
-          <div class="columns is-mobile">
-            <div class="column is-4">
-              <p class="image">
-                <%= link_to product do %>
-                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                  <%#= image_tag product.thumbnail %>
-                  <%#= image_tag product.image %>
-                <% end %>
-              </p>
-            </div>
-            <div class="column">
-              <div class="content">
-                <p>
-                  <strong><%= link_to product.name, product %></strong>
-                  <br>
-                  <span class="is-size-7"><%= product.desc %></span>
-                </p>
-              </div>
-            </div>
-            <div class="column is-narrow">
-            <span class="is-size-7 fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
-            </span>
-            </div>
-          </div>
-        </article>
-      <% end %>
+      <%= render partial: 'shared/ranking', collection: @product_ranking, as: :product %>
     </section>
   </div>
-
-
   <div class="column is-8">
     <section class="section" style="padding: 0.5rem 1.5rem;">
       <div style="margin: 0 0 1rem 0;">
