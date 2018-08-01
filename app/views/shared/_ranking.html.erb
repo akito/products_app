@@ -1,0 +1,28 @@
+<article class="media">
+  <div class="columns is-mobile">
+    <div class="column is-4">
+      <p class="image">
+        <%= link_to product do %>
+          <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+          <%#= image_tag product.thumbnail %>
+          <%#= image_tag product.image %>
+        <% end %>
+      </p>
+    </div>
+    <div class="column">
+      <div class="content">
+        <p>
+          <strong><%= link_to product.name, product %></strong>
+          <br>
+          <span class="is-size-7"><%= product.desc %></span>
+        </p>
+      </div>
+    </div>
+    <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= product_iteration.index + 1 %></i>
+            </span>
+    </div>
+  </div>
+</article>
