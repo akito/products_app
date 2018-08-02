@@ -13,23 +13,25 @@ RSpec.describe LikesController, type: :controller do
         it "creates a new Like" do
           sign_in guest
           expect {
-            post :create, params: { like: valid_attributes }
+            post :create, params: { like: valid_attributes }, xhr: true
           }.to change(Like, :count).by(1)
+
         end
       end
 
       context "with invalid params" do
         it "returns a failure response" do
           sign_in guest
-          post :create, params: { like: invalid_attributes }
-          expect(response).not_to be_successful
+          expect {
+            post :create, params: { like: invalid_attributes }, xhr: true
+          }.to change(Like, :count).by(0)
         end
       end
     end
 
     context 'When anyone not logged in' do
       it "returns a failure response" do
-        post :create, params: { like: valid_attributes }
+        post :create, params: { like: valid_attributes }, xhr: true
         expect(response).not_to be_successful
       end
     end
@@ -41,14 +43,14 @@ RSpec.describe LikesController, type: :controller do
         like = Like.create! valid_attributes
         sign_in guest
         expect {
-          delete :destroy, params: { id: like.to_param }
+          delete :destroy, params: { id: like.to_param }, xhr: true
         }.to change(Like, :count).by(-1)
       end
     end
     context 'When anyone not logged in' do
       it "returns a failure response" do
         like = Like.create! valid_attributes
-        put :destroy, params: { id: like.to_param }
+        delete :destroy, params: { id: like.to_param }, xhr: true
         expect(response).not_to be_successful
       end
     end

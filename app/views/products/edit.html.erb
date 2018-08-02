@@ -34,6 +34,31 @@
               <%= form.text_field :thumbnail, class: 'input', placeholder: 'プロダクトのサムネイル' %>
             </div>
           </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクトのサムネイル' %>
+              <%= form.file_field :thumbnail, class: 'input'%>
+            </div>
+          </div>
+
+          <div class="file has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="resume">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+              <span class="file-name">
+                Screen Shot 2017-07-29 at 15.54.25.png
+              </span>
+            </label>
+          </div>
+
           <div class="actions field" style="padding:30px 0;">
             <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
           </div>

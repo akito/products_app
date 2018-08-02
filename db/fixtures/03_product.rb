@@ -97,7 +97,7 @@ Product.seed(:id) do |s|
   s.category_id = Category.find_by(name: "category01").id
 end
 
-1000.times do |i |
+100.times do |i |
   Product.seed(:id) do |s|
     s.id = i + 10
     s.name = "product#{i + 10}"

@@ -38,29 +38,14 @@
               </div>
             </div>
             <div class="column is-narrow" style="padding-left: 0;">
-              <% if user_signed_in? %>
-                <% if @product.liked?(current_user) %>
-                  <%= link_to like_path(@product.like_by(current_user)), method: :delete, remote: true do %>
-                    <span><%= fa_icon 'heart', class: 'heart-red' %></span>
-                  <% end %>
-                <% else %>
-                  <%= link_to likes_path(like: {user_id: current_user.id, product_id: @product.id}), method: :post, remote: true do %>
-                    <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <%= link_to user_session_path do %>
-                  <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
-                <% end %>
-              <% end %>
+              <%= render 'likes/like', product: @product %>
             </div>
           </div>
         </div>
         <div class="card-image" style="padding: 0 3rem;">
           <figure class="image is-3by2">
             <%= link_to @product.url do %>
-              <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1" alt="#{@product.name}">
-              <%#= image_tag product.thumbnail %>
+              <%= image_tag @product.thumbnail_url %>
             <% end %>
           </figure>
         </div>
