@@ -399,6 +399,7 @@ DEPENDENCIES
   font-awesome-rails
   high_voltage
   jbuilder (~> 2.5)
+  jquery-rails
   kaminari
   letter_opener
   letter_opener_web

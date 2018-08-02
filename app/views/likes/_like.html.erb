@@ -1,0 +1,20 @@
+<span id="like-<%= product.id %>">
+  <% if user_signed_in? %>
+    <% if product.liked?(current_user) %>
+      <%= button_to like_path(product.like_by(current_user)), method: :delete, remote: true, class: "button is-small heart" do %>
+        <span><%= fa_icon 'heart', class: 'heart-red', style: "padding-right:0.5em;" %></span>
+        <span><%= product.likes.count %></span>
+      <% end %>
+    <% else %>
+      <%= button_to likes_path(like: {user_id: current_user.id, product_id: product.id}), method: :post, remote: true, class: "button is-small heart" do %>
+        <span><%= fa_icon 'heart', class: 'heart-gray', style: "padding-right:0.5em;", id: 'heart' %></span>
+        <span><%= product.likes.count %></span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= button_to user_session_path, class: "button is-small" do %>
+      <span><%= fa_icon 'heart', class: 'heart-gray', style: "padding-right:0.5em;", id: 'heart' %></span>
+      <span><%= product.likes.count %></span>
+    <% end %>
+  <% end %>
+</span>

@@ -5,12 +5,10 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     flash[:error] = "お気に入りに追加できませんでした" unless @like.save
-    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     flash[:error] = "お気に入りを削除できませんでした。" unless @like.destroy
-    redirect_back(fallback_location: root_path)
   end
 
   protected

@@ -38,21 +38,7 @@
               </div>
             </div>
             <div class="column is-narrow" style="padding-left: 0;">
-              <% if user_signed_in? %>
-                <% if @product.liked?(current_user) %>
-                  <%= link_to like_path(@product.like_by(current_user)), method: :delete, remote: true do %>
-                    <span><%= fa_icon 'heart', class: 'heart-red' %></span>
-                  <% end %>
-                <% else %>
-                  <%= link_to likes_path(like: {user_id: current_user.id, product_id: @product.id}), method: :post, remote: true do %>
-                    <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <%= link_to user_session_path do %>
-                  <span><%= fa_icon 'heart', class: 'heart-gray' %></span>
-                <% end %>
-              <% end %>
+              <%= render 'likes/like', product: @product %>
             </div>
           </div>
         </div>
