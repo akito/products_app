@@ -11,15 +11,10 @@
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "確認がありませんでしたか？", new_confirmation_path(resource_name) %><br />
+  <%= link_to "確認メールが届きませんでした", new_confirmation_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "ロック解除の指示を受け取りませんでしたか？", new_unlock_path(resource_name) %><br />
 <% end -%>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "#{OmniAuth::Utils.camelize(provider)}で登録", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-<% end -%>

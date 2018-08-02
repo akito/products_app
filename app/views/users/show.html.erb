@@ -28,12 +28,10 @@
                           <%= fa_icon 'twitter' %>
                         <% end %>
                         <span style="font-size: 0.6em">
-                          <% if user_signed_in? %>
-                            <% if like.product.owned_by?(current_user) %>
-                              <%= link_to '編集', edit_product_path(like.product) %>
-                              <span> </span>
-                              <%= link_to '削除', like.product, method: :delete, data: {confirm: 'Are you sure?'} %>
-                            <% end %>
+                          <% if current_user&.admin? %>
+                            <%= link_to '編集', edit_product_path(like.product) %>
+                            <span> </span>
+                            <%= link_to '削除', like.product, method: :delete, data: {confirm: 'Are you sure?'} %>
                           <% end %>
                         </span>
                         <br>
@@ -57,20 +55,9 @@
       <% end %>
     </section>
     <section class="section">
-      <nav class="pagination is-centered is-small" role="navigation" aria-label="pagination">
-        <a class="pagination-previous">Previous</a>
-        <a class="pagination-next">Next page</a>
-        <ul class="pagination-list">
-          <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-          <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-          <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-        </ul>
-      </nav>
+      <%= paginate @likes %>
     </section>
+
   </div>
   <div class="column is-4">
     <div style="margin: 0 0 1rem 0;">
@@ -89,7 +76,7 @@
     </section>
 
     <div style="margin: 0 0 1rem 0;">
-      <p class="subtitle is-7">最近見たプロダクト</p>
+      <p class="subtitle is-7">あなたにおすすめのプロダクト</p>
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
       <% @products.each.with_index(1) do |product, i| %>

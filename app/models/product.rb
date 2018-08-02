@@ -10,7 +10,6 @@
 #  thumbnail   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
 #  status      :integer          default("draft"), not null
 #  category_id :bigint(8)
@@ -22,7 +21,6 @@ class Product < ApplicationRecord
   validates :url, presence: true, uniqueness: { case_sensitive: false }
   validates :desc, presence: true
 
-  belongs_to :user, optional: true
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy

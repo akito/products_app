@@ -39,6 +39,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Flexible authentication solution for Rails.
 gem 'devise'
 
+# OmniAuth is a flexible authentication system utilizing Rack middleware. https://github.com/omniauth/omniauth
+gem 'omniauth'
+
+# Facebook OAuth2 Strategy for OmniAuth. https://github.com/mkdynamic/omniauth-facebook
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 # the font-awesome font bundled as an asset for the rails asset pipeline. https://github.com/bokmann/font-awesome-rails
 gem 'font-awesome-rails'
 
@@ -54,8 +61,10 @@ gem 'bulma-rails'
 # Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
 gem 'high_voltage'
 
-# Retrieve the binding of a method's caller. https://github.com/banister/binding_of_caller
-gem 'binding_of_caller'
+#  A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps. https://github.com/kaminari/kaminari
+gem 'kaminari'
+
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -81,6 +90,12 @@ group :development do
   gem 'annotate'
   gem 'overcommit'
   gem 'bullet'
+  # Retrieve the binding of a method's caller in MRI 1.9.2+. https://github.com/banister/binding_of_caller
+  gem 'binding_of_caller'
+  # Preview mail in the browser instead of sending. https://github.com/ryanb/letter_opener
+  gem 'letter_opener'
+  # A web interface for browsing Ruby on Rails sent emails:  https://github.com/fgrehm/letter_opener_web
+  gem 'letter_opener_web'
 end
 
 group :test do

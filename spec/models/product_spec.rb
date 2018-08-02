@@ -10,7 +10,6 @@
 #  thumbnail   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint(8)
 #  likes_count :integer          default(0), not null
 #  status      :integer          default("draft"), not null
 #  category_id :bigint(8)
@@ -72,6 +71,7 @@ RSpec.describe Product, type: :model do
   describe '#liked?' do
     let!(:product) { create(:product) }
     let(:like) { create(:like) }
+    let(:user) { create(:user) }
 
     context 'when product is liked by user' do
       it 'should be true' do
@@ -80,7 +80,7 @@ RSpec.describe Product, type: :model do
     end
     context 'when user do NOT like a product' do
       it 'should be false' do
-        expect(product.liked?(product.user)).to be false
+        expect(product.liked?(user)).to be false
       end
     end
   end

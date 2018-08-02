@@ -5,13 +5,14 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.published.includes(:product_tags, :tags).order(:id)
+    @products = Product.published.includes(:product_tags, :tags).order(:id).page(params[:page])
+    @categories = Category.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @products = Product.published.order(:id)
+    @products = Product.published.includes(:product_tags, :tags).order(:id)
     @comments = @product.comments.includes(:user)
   end
 
@@ -31,8 +32,8 @@ class ProductsController < ApplicationController
     @product.add_tags(tags_param[:tags_to_s].split) unless tags_param.empty?
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'プロダクトは作成されました' }
-        format.json { render :show, status: :created, location: @product }
+        format.html { redirect_to @product, notice: 'プロダクトは正しく申請されました' }
+        format.json { render :show, status: :created, location: root_path }
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -60,7 +61,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: 'プロダクトは削除されました' }
       format.json { head :no_content }
     end
   end
@@ -81,6 +82,6 @@ class ProductsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @product.owned_by?(current_user)
+      raise Forbidden, '権限がありません' unless current_user.admin?
     end
 end
