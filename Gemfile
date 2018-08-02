@@ -64,6 +64,8 @@ gem 'high_voltage'
 #  A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps. https://github.com/kaminari/kaminari
 gem 'kaminari'
 
+gem 'jquery-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -90,6 +92,10 @@ group :development do
   gem 'bullet'
   # Retrieve the binding of a method's caller in MRI 1.9.2+. https://github.com/banister/binding_of_caller
   gem 'binding_of_caller'
+  # Preview mail in the browser instead of sending. https://github.com/ryanb/letter_opener
+  gem 'letter_opener'
+  # A web interface for browsing Ruby on Rails sent emails:  https://github.com/fgrehm/letter_opener_web
+  gem 'letter_opener_web'
 end
 
 group :test do
