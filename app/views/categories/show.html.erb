@@ -1,14 +1,171 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
-<%= render partial: 'shared/products', locals: { products: @category.products  } %>
-<% if user_signed_in? and current_user.admin? %>
-  <%= link_to 'Edit', edit_category_path(@category) %> |
+<% content_for :searchbox do  %>
+  <%= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
+    <div class="control is-expanded">
+      <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: '素敵なサービスが見つけよう',style: "width:250px;"%>
+    </div>
+
+    <div class="control">
+      <%= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
+    </div>
+  <% end %>
 <% end %>
-<%= link_to 'Back', categories_path %>
+
+<div class="columns">
+  <div class="column is-4">
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <p class="title is-size-4"><%= @category.name %></p>
+      <p><%= @category.description %></p>
+      <% if user_signed_in? and current_user.admin? %>
+        <%= link_to 'Edit', edit_category_path(@category), class: 'is-size-7'%>
+      <% end %>
+    </section>
+
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">カテゴリー</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <aside class="menu">
+        <ul class="menu-list">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, category_path(category) %></li>
+          <% end %>
+        </ul>
+      </aside>
+    </section>
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">週間ランキング</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">お気に入りランキング</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <article class="media">
+          <div class="columns is-mobile">
+            <div class="column is-4">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="content">
+                <p>
+                  <strong><%= link_to product.name, product %></strong>
+                  <br>
+                  <span class="is-size-7"><%= product.desc %></span>
+                </p>
+              </div>
+            </div>
+            <div class="column is-narrow">
+            <span class="is-size-7 fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
+            </span>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+  </div>
+
+
+  <div class="column is-8">
+    <section class="section" style="padding: 0.5rem 1.5rem;">
+      <div style="margin: 0 0 1rem 0;">
+
+        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+          <ul>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to @category.name, category_path(@category), class: 'is-active'%></li>
+          </ul>
+        </nav>
+      </div>
+      <% @products.each do |product| %>
+        <article class="media">
+          <div class="columns">
+            <div class="column is-3">
+              <p class="image">
+                <%= link_to product do %>
+                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+                  <%#= image_tag product.thumbnail %>
+                  <%#= image_tag product.image %>
+                <% end %>
+              </p>
+            </div>
+            <div class="column">
+              <div class="columns is-mobile">
+                <div class="column ">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to product.name, product %></strong><span> </span>
+                      <small><%= link_to (fa_icon 'external-link'), product.url %></small>
+                      <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
+                        <%= fa_icon 'twitter' %>
+                      <% end %>
+                      <span style="font-size: 0.6em">
+                          <% if current_user&.admin? %>
+                              <%= link_to '編集', edit_product_path(product) %>
+                          <span> </span>
+                          <%= link_to '削除', product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                          <% end %>
+                        </span>
+                      <br>
+                      <span class="is-size-7"><%= product.desc %></span>
+                    </p>
+                    <span class="tag is-rounded is-size-7">One</span>
+                    <span class="tag is-rounded is-size-7">Two</span>
+                    <span class="tag is-rounded is-size-7">Three</span>
+                  </div>
+                </div>
+                <div class="column is-narrow">
+                  <%= render 'likes/like', product: product %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
+    <section class="section">
+      <%= paginate @products %>
+    </section>
+  </div>
+</div>
+
+

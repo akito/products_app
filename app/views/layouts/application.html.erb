@@ -8,22 +8,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'layouts/navbar' %>
-    <%= flash_message(flash[:success], :success) if flash[:success] %>
-    <%= flash_message(flash[:error], :danger) if flash[:error] %>
-    <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
-    <%= flash_message(flash[:notice], :info) if flash[:notice] %>
+    <%= render partial: 'layouts/navbar' %>
     <main class="Site-content">
       <section class="section has-background-white">
         <div class="container">
+          <% if notice %>
+            <article class="message is-success">
+              <div class="message-body">
+                <p><%= notice %></p>
+              </div>
+            </article>
+          <% end %>
+          <% if alert %>
+            <article class="message is-danger">
+              <div class="message-body">
+                <p><%= alert %></p>
+              </div>
+            </article>
+          <% end %>
           <%= yield %>
         </div>
       </section>
     </main>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/footer' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script async src="https://platform.twitter.com/widgets.js"></script>
   </body>
 </html>

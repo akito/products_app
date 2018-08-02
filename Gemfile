@@ -39,7 +39,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Flexible authentication solution for Rails.
 gem 'devise'
 
-# the font-awesome font bundled as an asset for the rails asset pipeline
+# OmniAuth is a flexible authentication system utilizing Rack middleware. https://github.com/omniauth/omniauth
+gem 'omniauth'
+
+# Facebook OAuth2 Strategy for OmniAuth. https://github.com/mkdynamic/omniauth-facebook
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
+# the font-awesome font bundled as an asset for the rails asset pipeline. https://github.com/bokmann/font-awesome-rails
 gem 'font-awesome-rails'
 
 # Turbo-charged counter caches
@@ -49,7 +56,15 @@ gem 'counter_culture'
 gem 'activeadmin'
 
 # Integrates Bulma with the rails asset pipeline.
-gem "bulma-rails"
+gem 'bulma-rails'
+
+# Easily include static pages in your Rails app. http://thoughtbot.github.io/high_voltage
+gem 'high_voltage'
+
+#  A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps. https://github.com/kaminari/kaminari
+gem 'kaminari'
+
+gem 'jquery-rails'
 
 # Object-based searching.
 gem 'ransack'
@@ -79,6 +94,12 @@ group :development do
   gem 'annotate'
   gem 'overcommit'
   gem 'bullet'
+  # Retrieve the binding of a method's caller in MRI 1.9.2+. https://github.com/banister/binding_of_caller
+  gem 'binding_of_caller'
+  # Preview mail in the browser instead of sending. https://github.com/ryanb/letter_opener
+  gem 'letter_opener'
+  # A web interface for browsing Ruby on Rails sent emails:  https://github.com/fgrehm/letter_opener_web
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -87,6 +108,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # Brings back `assigns` and `assert_template` to your Rails tests. https://github.com/rails/rails-controller-testing
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

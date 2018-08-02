@@ -1,0 +1,28 @@
+
+.heart-gray {
+    color: gray;
+}
+.heart-red {
+    color: red;
+}
+
+.image img {
+    border-radius: 2px;
+}
+
+.has-image-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+.has-text-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar-item img {
+    max-height: 2rem;
+}
+
+.is-nabver-flex {
+    width: 2rem;
+}

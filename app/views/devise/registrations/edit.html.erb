@@ -1,48 +1,58 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="columns is-centered">
+  <div class="column is-narrow is-half is-12-mobile is-4-desktop is-centered">
+    <div class="box">
+      <section class="section">
+        <p class="subtitle has-text-grey is-aligin-center">アカウント情報を編集</p>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="field">
+            <div class="control has-icons-left">
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input', placeholder: "ユーザーID" %>
+              <span class="icon is-small is-left"><%= fa_icon "user" %></span>
+            </div>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "メールアドレス" %>
+              <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
+            </p>
+          </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<!--          <div class="field">-->
+<!--            <p class="control has-icons-left">-->
+              <%#= f.password_field :password, autocomplete: "off", class: "input", placeholder: "パスワード(6文字以上)" %>
+<!--              <span class="icon is-small is-left"><%#= fa_icon "lock" %></i></span>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="field">-->
+<!--            <p class="control has-icons-left">-->
+              <%#= f.password_field :password_confirmation, autocomplete: "off", class: "input", placeholder: "パスワード再入力" %>
+<!--              <span class="icon is-small is-left"><%#= fa_icon "lock" %></span>-->
+<!--            </p>-->
+<!--          </div>-->
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.password_field :current_password, autocomplete: "off", class: "input", placeholder: "現在のパスワード" %>
+              <span class="icon is-small is-left"><%= fa_icon "lock" %></span>
+            </p>
+          </div>
+
+          <div class="field is-grouped has-text-centerd" style="padding:20px 0;" >
+            <div class="actions field control is-fullwidth">
+              <%= f.submit "登録", class: "button is-link" %>
+            </div>
+            <div class="control">
+              <%= button_to "キャンセル", registration_path(resource_name), class: "button is-text", data: { confirm: "本当によろしいですか?" }, method: :delete %>
+            </div>
+          </div>
+        <% end %>
+        <div style="padding:20px;">
+          <p class="has-text-centered is-size-7 has-text-grey"><%= link_to "戻る", :back %></p>
+        </div>
+      </section>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
