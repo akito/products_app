@@ -17,6 +17,16 @@
 #  updated_at             :datetime         not null
 #  name                   :string
 #  role                   :integer          default("user"), not null
+#  uid                    :string
+#  provider               :string
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
+#  migration              :string
 #
 
 class User < ApplicationRecord
@@ -28,7 +38,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: %i(facebook)
 
   has_many :comments, dependent: :destroy

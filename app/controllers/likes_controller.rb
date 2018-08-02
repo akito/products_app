@@ -4,11 +4,11 @@ class LikesController < ApplicationController
 
   def create
     @like = Like.new(like_params)
-    @like.save
+    flash[:error] = "お気に入りに追加できませんでした" unless @like.save
   end
 
   def destroy
-    @like.destroy
+    flash[:error] = "お気に入りを削除できませんでした。" unless @like.destroy
   end
 
   protected

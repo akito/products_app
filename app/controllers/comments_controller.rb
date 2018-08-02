@@ -4,11 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if @comment.save
-      flash[:notice] = "OK"
-    else
-      flash[:error] = "NG"
-    end
+    flash[:error] = "NG" unless @comment.save
     redirect_to product_path(comment_params[:product_id])
   end
 

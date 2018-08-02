@@ -1,7 +1,27 @@
-<p>Hello <%= @resource.email %>!</p>
+<div>
+  <p>いつもご利用していただき、ありがとうございます。</p>
+</div>
+<div>
+  <p>数多くログインに失敗したため、アカウントがロックされました。</p>
+  <p>下記のリンクをクリックしてアカウントのロックを解除してください。</p>
+  <p><%= link_to 'ロックを解除する', unlock_url(@resource, unlock_token: @token) %></p>
+</div>
+<div>
+  <p>※このURLは送信日時から24時間有効となっています。</p>
+  <p>※URLをクリックしても画面が正しく表示されないときは、このURLをコピーしブラウザのアドレス入力欄に貼り付けてください。</p>
+</div>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<hr>
 
-<p>Click the link below to unlock your account:</p>
+<div>
+  <p>Product Square Inc.</p>
+  <p>京都府京都市伏見区淀水垂町509-16</p>
+  <p>https://theproductsq.com</p>
+</div>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<div>
+  <p>このメールは弊社にメールアドレスを連絡いただいた方にお送りしております。</p>
+  <p>万が一お心当たりのない場合は、他の方が誤って貴方のメールアドレスを通知したものと思われます。</p>
+  <p>今後の配信を停止させていただきますので誠に恐縮ですが、<br>件名の文頭に「心当たりのないメール」と挿入していただき、info@theproductsq.com 宛にご転送ください。</p>
+  <p>ご迷惑をおかけし、申し訳ございませんでした。</p>
+</div>

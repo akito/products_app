@@ -33,7 +33,7 @@
                 <p>
                   <strong><%= link_to product.name, product %></strong>
                   <br>
-                  <span class="is-size-7"><%= product.desc %></span>
+                  <span class="is-size-7"><%= product.desc.truncate(35) %></span>
                 </p>
               </div>
             </div>
@@ -68,7 +68,7 @@
                 <p>
                   <strong><%= link_to product.name, product %></strong>
                   <br>
-                  <span class="is-size-7"><%= product.desc %></span>
+                  <span class="is-size-7"><%= product.desc.truncate(100) %></span>
                 </p>
               </div>
             </div>
@@ -121,7 +121,7 @@
                           <% end %>
                         </span>
                       <br>
-                      <span class="is-size-7"><%= product.desc %></span>
+                      <span class="is-size-7"><%= product.desc.truncate(80) %></span>
                     </p>
                     <span class="tag is-rounded is-size-7">One</span>
                     <span class="tag is-rounded is-size-7">Two</span>
