@@ -109,3 +109,5 @@ end
     s.category_id = Category.find_by(name: "category01").id
   end
 end
+
+
