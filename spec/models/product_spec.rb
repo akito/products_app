@@ -96,10 +96,10 @@ RSpec.describe Product, type: :model do
 
   describe '#tags_to_s' do
     let(:product) { create(:product) }
-    let(:tag) { create(:tag) }
-    it "output tag's label as String" do
-      product.tags << tag
-      expect(product.tags_to_s).to eq tag.label
+    let(:tags) { create_list(:tag, 2) }
+    it 'returns a label delimited by a space' do
+      product.tags << tags
+      expect(product.tags_to_s).to eq "#{tags[0].label} #{tags[1].label}"
     end
   end
 end
