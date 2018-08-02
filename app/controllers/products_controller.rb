@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @products = Product.published.includes(:product_tags, :tags).order(:id)
+    @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
   end
 
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.add_tags(tags_param[:tags_to_s].split) unless tags_param.empty?
+    @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'プロダクトは正しく申請されました' }
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    @product.add_tags(tags_param[:tags_to_s].split) unless tags_param.empty?
+    @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'プロダクト情報は更新されました' }
@@ -77,8 +77,8 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :url, :desc, :image, :thumbnail)
     end
 
-    def tags_param
-      params.require(:product).permit(:tags_to_s)
+    def product_tags_param
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :tags_to_s)
     end
 
     def correct_user
