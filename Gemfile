@@ -90,6 +90,10 @@ group :development do
   gem 'bullet'
   # Retrieve the binding of a method's caller in MRI 1.9.2+. https://github.com/banister/binding_of_caller
   gem 'binding_of_caller'
+  # Preview mail in the browser instead of sending. https://github.com/ryanb/letter_opener
+  gem 'letter_opener'
+  # A web interface for browsing Ruby on Rails sent emails:  https://github.com/fgrehm/letter_opener_web
+  gem 'letter_opener_web'
 end
 
 group :test do
