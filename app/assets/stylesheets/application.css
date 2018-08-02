@@ -13,11 +13,5 @@
  *= require_self
  *= require bulma
  *= require font-awesome
+ *= require custom
  */
-
-.heart-gray {
-    color: gray;
-}
-.heart-red {
-    color: red;
-}

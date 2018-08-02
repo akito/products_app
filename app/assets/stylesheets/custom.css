@@ -1,3 +1,11 @@
+
+.heart-gray {
+    color: gray;
+}
+.heart-red {
+    color: red;
+}
+
 .image img {
     border-radius: 2px;
 }
