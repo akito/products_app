@@ -2,6 +2,7 @@
 .heart-gray {
     color: gray;
 }
+
 .heart-red {
     color: red;
 }
@@ -14,6 +15,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 .has-text-centered {
     margin-left: auto;
     margin-right: auto;

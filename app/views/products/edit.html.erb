@@ -28,10 +28,12 @@
               <%= form.text_field :image, class: 'input', placeholder: 'プロダクトのロゴ' %>
             </div>
           </div>
-          <div class="field">
+
+          <div class="file has-name">
+          <div class="file-label">
             <div class="control">
               <%= form.label 'プロダクトのサムネイル' %>
-              <%= form.text_field :thumbnail, class: 'input', placeholder: 'プロダクトのサムネイル' %>
+              <%= form.file_field :thumbnail, class: 'input' %>
             </div>
           </div>
           <div class="field">

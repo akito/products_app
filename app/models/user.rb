@@ -27,13 +27,17 @@
 #  unlock_token           :string
 #  locked_at              :datetime
 #  migration              :string
+#  avatar                 :string
 #
 
 class User < ApplicationRecord
+  attr_accessor :login
   validates :name,
             presence: true,
-            uniqueness: { case_sensitive: false },
-            format: { with: /\A[a-zA-Z0-9_\-. ]{3,15}\z/, message: "アルファベット,数字,.,-,_ が利用できます" }
+            uniqueness: { case_sensitive: false }
+
+  validates_format_of :name, with: /\A[a-zA-Z0-9_\-. ]{3,15}\z/, message: "アルファベット,数字,.,-,_ が利用できます", multiline: true
+  validate :validate_name
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -46,13 +50,38 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
+  mount_uploader :avatar, AvatarUploader
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
       user.provider = auth.provider
-      # user.image = auth.info.image
+      user.avatar = auth.info.image
     end
+  end
+
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.name || self.email
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    conditions[:email].downcase! if conditions[:email]
+    login = conditions.delete(:login)
+
+    where(conditions.to_hash).where(
+      ["lower(name) = :value OR lower(email) = :value",
+       { value: login.downcase }]
+    ).first
+  end
+
+  def validate_name
+    errors.add(:name, :invalid) if User.where(email: name).exists?
   end
 end
