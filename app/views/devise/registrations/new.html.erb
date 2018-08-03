@@ -29,6 +29,12 @@
               <span class="icon is-small is-left"><%= fa_icon "lock" %></span>
             </p>
           </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.file_field :avatar, autocomplete: "off", class: "input", placeholder: "画像" %>
+              <span class="icon is-small is-left"><%= fa_icon "camera" %></span>
+            </p>
+          </div>
           <p class="is-size-7 has-text-grey">登録すると、利用規約およびプライバシーポリシーに同意したことになります。</p>
           <div class="actions field" style="padding:30px 0;">
             <%= f.submit "アカウント登録", class: "button is-link is-fullwidth is-rounded" %>
