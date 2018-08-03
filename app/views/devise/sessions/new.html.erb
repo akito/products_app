@@ -2,11 +2,11 @@
   <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
     <div class="box">
       <section class="section">
-        <p class="subtitle has-text-grey is-aligin-center">メールアドレスでログイン</p>
+        <p class="subtitle has-text-grey is-aligin-center">ログイン</p>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "メールアドレス" %>
+              <%= f.text_field :login, autofocus: true, autocomplete: "email", class: "input", placeholder: "ユーザー名またはメールアドレス" %>
               <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
             </p>
           </div>
