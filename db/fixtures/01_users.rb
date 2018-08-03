@@ -4,6 +4,7 @@ User.seed(:id) do |s|
   s.email = "admin@test.com"
   s.password = "password"
   s.role = "admin"
+  s.confirmed_at = Time.now - 100
 end
 
 User.seed(:id) do |s|
@@ -11,6 +12,7 @@ User.seed(:id) do |s|
   s.name = "user01"
   s.email = "user01@test.com"
   s.password = "password"
+  s.confirmed_at = Time.now - 100
 end
 
 User.seed(:id) do |s|
@@ -18,6 +20,7 @@ User.seed(:id) do |s|
   s.name = "user02"
   s.email = "user02@test.com"
   s.password = "password"
+  s.confirmed_at = Time.now - 100
 end
 
 User.seed(:id) do |s|
@@ -25,4 +28,5 @@ User.seed(:id) do |s|
   s.name = "user03"
   s.email = "user03@test.com"
   s.password = "password"
+  s.confirmed_at = Time.now - 100
 end
