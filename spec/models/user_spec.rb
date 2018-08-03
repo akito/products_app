@@ -27,6 +27,7 @@
 #  unlock_token           :string
 #  locked_at              :datetime
 #  migration              :string
+#  avatar                 :string
 #
 
 require 'rails_helper'
