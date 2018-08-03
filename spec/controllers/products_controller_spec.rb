@@ -94,7 +94,7 @@ RSpec.describe ProductsController, type: :controller do
       it "redirects to the created category" do
         sign_in admin
         post :create, params: { product: valid_attributes }
-        expect(response).to redirect_to(Product.last)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -109,7 +109,7 @@ RSpec.describe ProductsController, type: :controller do
       it "redirects to the created category" do
         sign_in guest
         post :create, params: { product: valid_attributes }
-        expect(response).to redirect_to(Product.last)
+        expect(response).to redirect_to(root_path)
       end
     end
     context 'when anyone logged in' do
