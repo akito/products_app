@@ -11,9 +11,7 @@
               <div class="column is-3">
                 <p class="image">
                   <%= link_to like.product do %>
-                    <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                    <%#= image_tag like.product.thumbnail %>
-                    <%#= image_tag like.product.image %>
+                    <%= image_tag like.product.thumbnail.to_s %>
                   <% end %>
                 </p>
               </div>
@@ -85,7 +83,7 @@
             <div class="column is-4">
               <p class="image">
                 <%= link_to product do %>
-                  <%= image_tag product.thumbnail %>
+                  <%= image_tag product.thumbnail_url %>
                 <% end %>
               </p>
             </div>

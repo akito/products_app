@@ -22,7 +22,7 @@
             <div class="column is-4">
               <p class="image">
                 <%= link_to product do %>
-                  <%= image_tag product.thumbnail.to_s %>
+                  <%= image_tag product.thumbnail_url(:thumb) %>
                 <% end %>
               </p>
             </div>
@@ -55,7 +55,7 @@
             <div class="column is-4">
               <p class="image">
                 <%= link_to product do %>
-                  <%= image_tag product.thumbnail.to_s %>
+                  <%= image_tag product.thumbnail_url(:thumb) %>
                 <% end %>
               </p>
             </div>
@@ -93,7 +93,7 @@
             <div class="column is-3">
               <p class="image">
                 <%= link_to product do %>
-                  <%= image_tag product.thumbnail.to_s %>
+                  <%= image_tag product.thumbnail_url(:thumb) %>
                 <% end %>
               </p>
             </div>
