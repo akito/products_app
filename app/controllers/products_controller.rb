@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    correct_product
     @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
   end
@@ -77,5 +78,11 @@ class ProductsController < ApplicationController
 
     def correct_user
       raise Forbidden, '権限がありません' unless current_user.admin?
+    end
+
+    def correct_product
+      unless set_product.published?
+        raise Forbidden, '権限がありません' unless current_user&.admin?
+      end
     end
 end

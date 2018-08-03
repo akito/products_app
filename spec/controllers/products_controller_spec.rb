@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
-  let!(:product) { create(:product) }
+  let!(:product) { create(:product, status: 'published') }
+  let!(:draft_product) { create(:product, status: "draft") }
   let(:guest) { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:valid_attributes) {
@@ -17,9 +18,32 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "returns a success response" do
-      get :show, params: { id: product.to_param }
-      expect(response).to be_successful
+    context 'when published product' do
+      it "returns a success response" do
+        get :show, params: { id: product.to_param }
+        expect(response).to be_successful
+      end
+    end
+    context 'when unpublished product' do
+      it "returns a failure response" do
+        get :show, params: { id: draft_product.to_param }
+        expect(response).not_to be_successful
+      end
+    end
+
+    context 'when draft product and admin user logs in' do
+      it "returns a success response" do
+        sign_in admin
+        get :show, params: { id: draft_product.to_param }
+        expect(response).to be_successful
+      end
+    end
+    context 'when draft product and guest user logs in' do
+      it "returns a failure response" do
+        sign_in guest
+        get :show, params: { id: draft_product.to_param }
+        expect(response).not_to be_successful
+      end
     end
   end
 
@@ -57,7 +81,6 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
-
 
   describe "POST #create" do
     context 'when admin logs in' do
@@ -160,4 +183,5 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
+
 end
