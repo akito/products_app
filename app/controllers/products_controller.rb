@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin_user!, only: [:edit, :update, :destroy]
+  before_action :correct_product, only: [:show]
 
   # GET /products
   # GET /products.json
@@ -12,7 +13,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    correct_product
     @products = Product.published.order(:id)
     @comments = @product.comments.includes(:user)
   end

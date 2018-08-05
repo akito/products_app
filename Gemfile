@@ -68,7 +68,7 @@ gem 'jquery-rails'
 
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'
-gem 'rmagick', require: 'RMagick'
+gem 'rmagick', require: 'rmagick'
 
 
 group :development, :test do
