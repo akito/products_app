@@ -8,11 +8,40 @@ RSpec.describe ProductsController, type: :controller do
     { name: 'test', desc: 'this is sample', url: 'https://test.com'  }
   }
 
-
   describe "GET #index" do
     it "returns a success response" do
-      get :index, params: {}
+      get :index, params: { q: 'product' }
       expect(response).to be_successful
+    end
+
+    describe 'assigns @products' do
+      it 'includes published product' do
+        published = create(:product, status: 'published')
+        get :index
+        expect(assigns(:products)).to include published
+      end
+
+      it 'do not include draft product' do
+        draft = create(:product, status: 'draft')
+        get :index
+        expect(assigns(:products)).not_to include draft
+      end
+
+      it 'do not include archived product' do
+        archived = create(:product, status: 'archived')
+        get :index
+        expect(assigns(:products)).not_to include archived
+      end
+      it 'includes searched product' do
+        product = create(:product, name: 'product')
+        get :index
+        expect(assigns(:products)).not_to include product
+      end
+      it 'do not include not searched product' do
+        item = create(:product, name: 'item')
+        get :index
+        expect(assigns(:products)).not_to include item
+      end
     end
   end
 
@@ -40,7 +69,6 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
-
   describe 'GET #edit' do
     context 'when admin logs in' do
       it 'returns a success response' do
@@ -57,7 +85,6 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
-
 
   describe "POST #create" do
     context 'when admin logs in' do
@@ -83,7 +110,7 @@ RSpec.describe ProductsController, type: :controller do
         }.to change(Product, :count).by(1)
       end
 
-      it "redirects to the created category" do
+      it "redirects to the created product" do
         sign_in guest
         post :create, params: { product: valid_attributes }
         expect(response).to redirect_to(Product.last)

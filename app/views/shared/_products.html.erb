@@ -19,7 +19,9 @@
       <td><%= product.desc %></td>
       <td><%= product.image %></td>
       <td><%= product.thumbnail %></td>
-      <td><%= product.category.name %></td>
+      <% if product.category %>
+        <td><%= product.category.name %></td>
+      <% end %>
       <td>
         <% if user_signed_in? %>
           <% if product.liked?(current_user) %>
