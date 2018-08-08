@@ -30,23 +30,29 @@
           </div>
 
           <div class="file has-name">
-          <div class="file-label">
-            <div class="control">
-              <%= form.label 'プロダクトのサムネイル' %>
-              <%= form.file_field :thumbnail, class: 'input' %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <div><%= form.label '公開状態' %></div>
-              <div class="select">
-                <%= form.select :status, [ 'published', 'draft', 'archived'] %>
+            <div class="file-label">
+              <div class="control">
+                <%= form.label 'プロダクトのサムネイル' %>
+                <%= form.file_field :thumbnail, class: 'input' %>
               </div>
             </div>
-          </div>
-          <div class="actions field" style="padding:30px 0;">
-            <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
-          </div>
+            <div class="field">
+              <div class="control">
+                <%= form.label 'タグ' %>
+                <%= form.text_field :tags_to_s, class: 'input', placeholder: 'タグ(スペース区切り)' %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div><%= form.label '公開状態' %></div>
+                <div class="select">
+                  <%= form.select :status, ['published', 'draft', 'archived'] %>
+                </div>
+              </div>
+            </div>
+            <div class="actions field" style="padding:30px 0;">
+              <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
+            </div>
         <% end %>
       </section>
       <div style="padding:20px;">

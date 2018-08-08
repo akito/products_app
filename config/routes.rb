@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :comments, only: [:create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
+  resources :registrations, only: %i[new create]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :manage do

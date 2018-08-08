@@ -78,14 +78,3 @@ Product.seed(:id) do |s|
   s.status = "published"
   s.category_id = Category.find_by(name: "category01").id
 end
-#
-# 100.times do |i |
-#   Product.seed(:id) do |s|
-#     s.id = i + 10
-#     s.name = "product#{i + 10}"
-#     s.url = "https://product#{i + 10}.com"
-#     s.desc = "this is my product"
-#     s.image = "product#{i + 10}"
-#     s.category_id = Category.find_by(name: "category01").id
-#   end
-# end

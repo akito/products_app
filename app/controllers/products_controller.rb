@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = @search.result.published.order(:id).page(params[:page])
+    @products = @search.result.published.includes(:product_tags, :tags).order(:id).page(params[:page])
     @categories = Category.all
   end
 
@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
     respond_to do |format|
       if @product.save
         format.html { redirect_to root_path, notice: 'プロダクトは正しく申請されました' }
@@ -45,9 +46,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'プロダクトは修正されました' }
+        format.html { redirect_to @product, notice: 'プロダクト情報は更新されました' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -75,6 +77,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :status)
+    end
+
+    def product_tags_param
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :tags_to_s)
     end
 
     def correct_product

@@ -24,6 +24,9 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :product_tags
+  has_many :tags, through: :product_tags
+
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
@@ -35,5 +38,20 @@ class Product < ApplicationRecord
 
   def liked?(user)
     likes.exists?(user_id: user.id)
+  end
+
+  def add_tags(labels)
+    self.tags = []
+    labels.each do | label |
+      if Tag.find_by(label: label)
+        self.tags << Tag.find_by(label: label)
+      else
+        self.tags << Tag.create(label: label)
+      end
+    end
+  end
+
+  def tags_to_s
+    tags.pluck(:label).join(' ')
   end
 end
