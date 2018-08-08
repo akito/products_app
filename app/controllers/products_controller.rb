@@ -2,11 +2,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin_user!, only: [:edit, :update, :destroy]
   before_action :correct_product, only: [:show]
+  before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.published.order(updated_at: :desc).page(params[:page])
+    @products = @search.result.published.order(:id).page(params[:page])
     @categories = Category.all
   end
 
@@ -80,5 +81,13 @@ class ProductsController < ApplicationController
       unless set_product.published?
         raise Forbidden, '権限がありません' unless current_user&.admin?
       end
+    end
+
+    def set_search
+      @search = Product.ransack(params[:q])
+    end
+
+    def set_category
+      @categories = Category.all
     end
 end

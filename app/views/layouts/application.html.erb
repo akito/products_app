@@ -8,11 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script async src="https://platform.twitter.com/widgets.js"></script>
   </head>
   <body>
-    <%= render partial: 'layouts/navbar', locals: { categories: @categories  } %>
+    <%= render partial: 'layouts/navbar' %>
     <main class="Site-content">
       <section class="section has-background-white">
         <div class="container">
@@ -35,5 +33,7 @@
       </section>
     </main>
     <%= render 'layouts/footer' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script async src="https://platform.twitter.com/widgets.js"></script>
   </body>
 </html>
