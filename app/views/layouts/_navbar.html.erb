@@ -17,6 +17,7 @@
       </div>
 
       <div class="navbar-end">
+        <%= link_to '管理画面', manage_products_path, class: 'navbar-item is-size-7' if current_user&.admin? %>
         <%= link_to 'カテゴリー', categories_path, class: 'navbar-item is-size-7'%>
         <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
         <% if user_signed_in? %>

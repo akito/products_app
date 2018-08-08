@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin_user!, only: [:edit, :update, :destroy]
+  before_action :correct_product, only: [:show]
   before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
 
   # GET /products
@@ -32,7 +33,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'プロダクトは正しく申請されました' }
+        format.html { redirect_to root_path, notice: 'プロダクトは正しく申請されました' }
         format.json { render :show, status: :created, location: root_path }
       else
         format.html { render :new }
@@ -73,11 +74,13 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail)
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :status)
     end
 
-    def correct_user
-      raise Forbidden, '権限がありません' unless current_user.admin?
+    def correct_product
+      unless set_product.published?
+        raise Forbidden, '権限がありません' unless current_user&.admin?
+      end
     end
 
     def set_search
