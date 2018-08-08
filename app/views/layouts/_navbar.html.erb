@@ -3,16 +3,9 @@
   <div class="container">
     <div class="navbar-brand">
       <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
-      <div class="has-addons navbar-item is-fullwidth">
-        <div class="control is-expanded">
-          <input class="input is-small is-fullwidth" type="text" placeholder="素敵なサービスが見つけよう" style="width:250px;">
-        </div>
-        <div class="control">
-          <a class="button is-dark is-small">
-            <%= fa_icon "search" %>
-          </a>
-        </div>
-      </div>
+
+      <%= yield :searchbox %>
+
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
         <span></span>
@@ -24,6 +17,7 @@
       </div>
 
       <div class="navbar-end">
+        <%= link_to '管理画面', manage_products_path, class: 'navbar-item is-size-7' if current_user&.admin? %>
         <%= link_to 'カテゴリー', categories_path, class: 'navbar-item is-size-7'%>
         <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
         <% if user_signed_in? %>
