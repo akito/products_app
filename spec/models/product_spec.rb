@@ -53,6 +53,40 @@ RSpec.describe Product, type: :model do
     end
   end
 
+  describe 'scope' do
+    describe 'created_after(arg = 1.weeks.ago )' do
+      let!(:old_product) { create(:product, created_at: 1.weeks.ago) }
+      let!(:new_product) { create(:product, created_at: 1.day.ago) }
+
+      context 'when product created one week ago' do
+        it 'dose NOT include the product' do
+          expect(Product.created_after(1.weeks.ago)).not_to include old_product
+        end
+      end
+      context 'when product created yesterday' do
+        it 'includes the product ' do
+          expect(Product.created_after(1.weeks.ago)).to include new_product
+        end
+      end
+    end
+
+    describe "like_ranking(arg = 3)" do
+      let(:bad_product) { create(:product) }
+      let(:ordinary_product) { create(:product) }
+      let(:popular_product) { create(:product) }
+      let!(:like) { create(:like, product: ordinary_product) }
+      let!(:likes) { create_list(:like, 2,  product: popular_product) }
+
+      it 'includes only liked products only' do
+        expect(Product.like_ranking(3)).not_to include bad_product
+      end
+
+      it 'is in order of likes count' do
+        expect(Product.like_ranking(3)).to match [popular_product, ordinary_product]
+      end
+    end
+
+  end
 
   describe '#like_by' do
     let!(:like) { create(:like) }
@@ -100,6 +134,34 @@ RSpec.describe Product, type: :model do
     it 'returns a label delimited by a space' do
       product.tags << tags
       expect(product.tags_to_s).to eq "#{tags[0].label} #{tags[1].label}"
+    end
+  end
+
+
+  describe '#related_products(max = 3)' do
+    let(:trip) { create(:category, name: 'Trip') }
+    let(:food) { create(:category, name: 'Food') }
+    let!(:trip_product) { create(:product, category: trip) }
+    let!(:food_products) { create_list(:product, 4, category: food) }
+
+    before do
+      @food_product = food_products.first
+    end
+
+    it 'returns same category products' do
+      expect(@food_product.related_products(5)).to match food_products[1..-1]
+    end
+
+    it 'does not return products of different category' do
+      expect(@food_product.related_products(5)).not_to include trip_product
+    end
+
+    it 'does not return self' do
+      expect(@food_product.related_products(5)).not_to include @food_product
+    end
+
+    it 'returns products less than or equal to the argument' do
+      expect(@food_product.related_products(2).count).to eq  2
     end
   end
 end

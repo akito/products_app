@@ -1,0 +1,43 @@
+ <article class="media">
+    <div class="columns">
+      <div class="column is-3">
+        <p class="image">
+          <%= link_to product do %>
+            <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
+            <%#= image_tag product.thumbnail %>
+            <%#= image_tag product.image %>
+          <% end %>
+        </p>
+      </div>
+      <div class="column">
+        <div class="columns is-mobile">
+          <div class="column ">
+            <div class="content">
+              <p>
+                <strong><%= link_to product.name, product %></strong><span> </span>
+                <small><%= link_to (fa_icon 'external-link'), product.url %></small>
+                <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
+                  <%= fa_icon 'twitter' %>
+                <% end %>
+                <span style="font-size: 0.6em">
+                  <% if current_user&.admin? %>
+                    <%= link_to '編集', edit_product_path(product) %>
+                    <span> </span>
+                    <%= link_to '削除', product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <% end %>
+                </span>
+                <br>
+                <span class="is-size-7"><%= product.desc %></span>
+              </p>
+              <span class="tag is-rounded is-size-7">One</span>
+              <span class="tag is-rounded is-size-7">Two</span>
+              <span class="tag is-rounded is-size-7">Three</span>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <%= render 'likes/like', product: product %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>

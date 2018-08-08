@@ -26,12 +26,12 @@
               <p class="title is-5"><%= link_to @product.name, @product.url %>
                 <span><i class="fas fa-external-link-alt is-size-6"></i></span>
                 <span style="font-size: 0.4em">
-                <% if current_user&.admin? %>
+                  <% if current_user&.admin? %>
                     <%= link_to '編集', edit_product_path(@product) %>
-                      <span> </span>
-                      <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
-                <% end %>
-              </span>
+                    <span> </span>
+                    <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <% end %>
+                </span>
               </p>
               <p class="subtitle is-6"><%= @product.desc %></p>
               <div class="content">
@@ -58,53 +58,7 @@
         <article class="media">
           <p>Reviews</p>
         </article>
-
-        <% @comments.each do |comment| %>
-          <article class="media">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
-              </p>
-            </figure>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong><%= comment.user.name %></strong>
-                  <small><%= comment.updated_at %></small>
-                  <br>
-                  <%= comment.content %>
-                </p>
-              </div>
-              <nav class="level is-mobile">
-                <div class="level-left">
-                  <a class="level-item">
-                    <span class="is-size-7">返信</span>
-                  </a>
-                  <a class="level-item">
-                    <span class="is-size-7">いいね</span>
-                  </a>
-                </div>
-                <div class="level-right">
-                  <%# if user_signed_in? %>
-                  <%# if comment.owned_by?(current_user) %>
-                  <%#= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7' %>
-                  <!--                    <span>・</span>-->
-                  <%#= link_to '修正', edit_comment_path(comment), class: 'is-size-7'%>
-                  <%# end %>
-                  <%# end %>
-                </div>
-              </nav>
-            </div>
-            <div class="media-right">
-              <% if user_signed_in? %>
-                <% if comment.owned_by?(current_user) %>
-                  <%= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7', class: 'delete' %>
-                <% end %>
-              <% end %>
-            </div>
-          </article>
-        <% end %>
-        <!--Write a Comment-->
+        <%= render partial: 'comment', collection: @comments %>
         <% if user_signed_in? %>
           <article class="media">
             <figure class="media-left">
@@ -136,78 +90,10 @@
           </article>
         <% end %>
       </section>
-
-
-
     </section>
   </div>
-
-
-
   <div class="column is-4">
-    <div style="margin: 0 0 1rem 0;">
-      <p class="subtitle is-6">関連プロダクト</p>
-    </div>
-    <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
-      <% @products.each do |product| %>
-        <article class="media">
-          <div class="columns is-mobile">
-            <div class="column is-4">
-              <p class="image">
-                <%= link_to product do %>
-                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                  <%#= image_tag product.thumbnail %>
-                  <%#= image_tag product.image %>
-                <% end %>
-              </p>
-            </div>
-            <div class="column">
-              <div class="content">
-                <p>
-                  <strong><%= link_to product.name, product %></strong>
-                  <br>
-                  <span class="is-size-7"><%= product.desc %></span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-      <% end %>
-    </section>
-    <div style="margin: 1rem 0;">
-      <p class="subtitle is-6">週間ランキング</p>
-    </div>
-    <section class="section has-background-light" style="padding: 0.5rem 1.5rem;">
-      <% @products.each.with_index(1) do |product, i| %>
-        <article class="media">
-          <div class="columns is-mobile">
-            <div class="column is-4">
-              <p class="image">
-                <%= link_to product do %>
-                  <img src="https://i2.wp.com/1q86inc.com/wp-content/uploads/2018/04/3f6984b66f4a79d6.jpg?resize=800%2C534&ssl=1">
-                  <%#= image_tag product.thumbnail %>
-                  <%#= image_tag product.image %>
-                <% end %>
-              </p>
-            </div>
-            <div class="column">
-              <div class="content">
-                <p>
-                  <strong><%= link_to product.name, product %></strong>
-                  <br>
-                  <span class="is-size-7"><%= product.desc %></span>
-                </p>
-              </div>
-            </div>
-            <div class="column is-narrow">
-            <span class="is-size-7 fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= i %></i>
-            </span>
-            </div>
-          </div>
-        </article>
-      <% end %>
-    </section>
+    <%= render partial: 'shared/related_products', locals: { products: @related_products, title: '関連プロダクト'} unless @related_products.empty? %>
+    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'お気に入りランキング'} unless @product_ranking.empty? %>
   </div>
 </div>

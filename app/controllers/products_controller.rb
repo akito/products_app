@@ -3,18 +3,21 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin_user!, only: [:edit, :update, :destroy]
   before_action :correct_product, only: [:show]
   before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
+  before_action :product_ranking, only: [:index, :show]
 
   # GET /products
   # GET /products.json
   def index
-    @products = @search.result.published.includes(:product_tags, :tags).order(:id).page(params[:page])
+    @products = @search.result.published.order(:id).page(params[:page])
     @categories = Category.all
+    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
     @products = Product.published.order(:id)
+    @related_products = @product.related_products(10)
     @comments = @product.comments.includes(:user)
   end
 
@@ -95,5 +98,9 @@ class ProductsController < ApplicationController
 
     def set_category
       @categories = Category.all
+    end
+
+    def product_ranking
+      @product_ranking = Product.order(likes_count: :desc).limit(10)
     end
 end

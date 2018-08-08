@@ -28,6 +28,9 @@ class Product < ApplicationRecord
   has_many :tags, through: :product_tags
 
 
+  scope :created_after, ->(time) { where('created_at > ?', time) if time.present? }
+  scope :like_ranking, ->(num) { where('likes_count > 0').order(likes_count: :desc).limit(num) if num.present? }
+
   enum status: { draft: 0, published: 1, archived: 2 }
 
   mount_uploader :thumbnail, ThumbnailUploader
@@ -53,5 +56,9 @@ class Product < ApplicationRecord
 
   def tags_to_s
     tags.pluck(:label).join(' ')
+  end
+
+  def related_products(max)
+    Product.where(category_id: self.category_id).where.not(id: self.id).limit(max)
   end
 end
