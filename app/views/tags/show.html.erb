@@ -1,0 +1,24 @@
+<% content_for :searchbox do  %>
+  <%= render 'shared/searchbox' %>
+<% end %>
+<div class="columns">
+  <div class="column is-4">
+    <section class="section box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <p class="title is-size-4"><%= @tag.label %>
+        <span>
+        <% if user_signed_in? and current_user.admin? %>
+          <%= link_to 'Edit', edit_tag_path(@tag), class: 'is-size-7'%>
+        <% end %>
+      </span>
+      </p>
+
+    </section>
+    <%= render partial: 'shared/ranking', locals: {products: @weekly_ranking, title: '週間お気に入りランキング'} unless @weekly_ranking.empty? %>
+    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'タグが同じプロダクトのお気に入りランキング'} unless @product_ranking.empty? %>
+  </div>
+  <div class="column is-8">
+    <%= render partial: 'tags/products', locals: {products: @products, tag: @tag } unless @products.empty? %>
+  </div>
+</div>
+
+

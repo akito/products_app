@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :categories
+  resources :tags
   resources :comments, only: [:create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :registrations, only: %i[new create]

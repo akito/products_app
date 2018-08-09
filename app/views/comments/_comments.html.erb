@@ -1,0 +1,36 @@
+<section class="section">
+  <article class="media">
+    <p>Reviews</p>
+  </article>
+  <% if user_signed_in? %>
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-48x48">
+          <%= image_tag current_user.avatar_url(:thumb) %>
+        </p>
+      </figure>
+      <div class="media-content">
+        <%= form_with model: Comment.new do |f| %>
+          <div class="field">
+            <p class="control">
+              <%= f.text_area :content, placeholder: "Add a comment...", class: "textarea" %>
+            </p>
+          </div>
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <%= f.hidden_field :product_id, value: product.id %>
+                <%= f.submit "コメントする", class: "button is-info" %>
+              </div>
+            </div>
+          </nav>
+        <% end %>
+      </div>
+    </article>
+  <% else %>
+    <article class="media">
+      <%= link_to '会員登録してレビューを書く', new_user_registration_path, class: 'button is-rounded is-size-7'%>
+    </article>
+  <% end %>
+  <%= render partial: 'comments/comment', collection: comments %>
+</section>

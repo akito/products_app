@@ -16,6 +16,14 @@
               <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
             </p>
           </div>
+
+          <div class="field">
+            <p class="control has-icons-left">
+                <%= f.label 'icon' %>
+                <%= f.file_field :avatar, class: 'input' %>
+            </p>
+          </div>
+
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
@@ -44,11 +52,11 @@
             <div class="actions field control is-fullwidth">
               <%= f.submit "登録", class: "button is-link" %>
             </div>
+        <% end %>
             <div class="control">
               <%= button_to "キャンセル", registration_path(resource_name), class: "button is-text", data: { confirm: "本当によろしいですか?" }, method: :delete %>
             </div>
           </div>
-        <% end %>
         <div style="padding:20px;">
           <p class="has-text-centered is-size-7 has-text-grey"><%= link_to "戻る", :back %></p>
         </div>

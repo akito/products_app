@@ -2,10 +2,7 @@
   <nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
-      <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
-
-      <%= yield :searchbox %>
-
+        <%= link_to image_tag('product_square_color.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo', size: "200x28" %>
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
         <span></span>
@@ -15,29 +12,30 @@
     <div id="navbarTransparent" class="navbar-menu">
       <div class="navbar-start">
       </div>
-
       <div class="navbar-end">
+        <%= yield :searchbox %>
         <%= link_to '管理画面', manage_products_path, class: 'navbar-item is-size-7' if current_user&.admin? %>
         <%= link_to 'カテゴリー', categories_path, class: 'navbar-item is-size-7'%>
         <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
         <% if user_signed_in? %>
           <%= link_to 'お気に入り一覧', mypage_path, class: 'navbar-item is-size-7' %>
         <% end %>
-
-
         <div class="navbar-item">
-          <div class="field is-grouped" style="height:48px; align-items: center;">
+          <div class="field is-grouped">
             <% if user_signed_in? %>
               <div class="navbar-item has-dropdown is-hoverable">
+
+
                 <%= link_to mypage_path, class: 'is-size-7 navbar-item' do %>
                   <figure class="image is-48x48">
                        <%= image_tag current_user.avatar_url(:thumb), style: "max-height:48px; border-radius: 28px" %>
                   </figure>
                 <% end %>
+
+
                 <div class="navbar-dropdown is-boxed is-right">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-item' %>
                   <%= link_to "アカウント情報編集", edit_user_registration_path, class: 'navbar-item' %>
-                  <%= link_to "パスワード変更", edit_user_registration_path, class: 'navbar-item' %>
                 </div>
               </div>
             <% else %>

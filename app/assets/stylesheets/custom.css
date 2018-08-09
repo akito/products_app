@@ -27,3 +27,7 @@
 .is-nabver-flex {
     width: 2rem;
 }
+
+.reverse-row-order {
+    flex-direction: row-reverse;
+}
