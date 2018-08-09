@@ -7,7 +7,8 @@
       <p class="title is-size-4"><%= @tag.label %>
         <span>
         <% if user_signed_in? and current_user.admin? %>
-          <%= link_to 'Edit', edit_tag_path(@tag), class: 'is-size-7'%>
+          <%= link_to '編集', edit_tag_path(@tag), class: 'is-size-7'%>
+            <%= link_to '削除', @tag, method: :delete, class: 'is-size-7', data: {confirm: '本当に削除しますか?'} %>
         <% end %>
       </span>
       </p>
