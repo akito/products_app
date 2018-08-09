@@ -7,6 +7,7 @@
   </div>
   <div class="column is-4">
     <%= render partial: 'shared/categories', locals: {categories: @categories, title: 'カテゴリー'} unless @categories.empty? %>
+    <%= render partial: 'shared/tags', locals: {tags: @tags, title: 'タグ'} unless @tags.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @weekly_ranking, title: '週間ランキング'} unless @weekly_ranking.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'お気に入りランキング'} unless @product_ranking.empty? %>
   </div>

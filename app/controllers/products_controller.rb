@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
     @products = @search.result.published.order(:id).page(params[:page])
     @categories = Category.all
     @weekly_ranking = Product.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
+    @tags = Tag.all
   end
 
   # GET /products/1
@@ -97,7 +98,7 @@ class ProductsController < ApplicationController
     end
 
     def set_search
-      @search = Product.ransack(params[:q])
+      @search = Product.includes(:tags).ransack(params[:q])
     end
 
     def set_category

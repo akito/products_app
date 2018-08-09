@@ -1,0 +1,18 @@
+<div style="margin:1rem 0;">
+  <p class="subtitle is-7"><%= title %></p>
+</div>
+<section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+  <aside class="menu">
+    <ul class="menu-list is-size-6">
+      <% tags.each do |tag| %>
+        <% if tag.products.size > 0 %>
+          <span class="tag is-rounded is-size-7 has-background-white" style="margin-top: 0.5rem">
+              <%= link_to tag.label, tag_path(tag)%>
+          </span>
+        <% end %>
+      <% end %>
+    </ul>
+  </aside>
+</section>
+
+

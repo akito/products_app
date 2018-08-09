@@ -25,7 +25,7 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :product_tags
-  has_many :tags, through: :product_tags
+  has_many :tags, through: :product_tags, dependent: :destroy
 
 
   scope :created_after, ->(time) { where('created_at > ?', time) if time.present? }
