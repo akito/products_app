@@ -9,6 +9,7 @@ class LikesController < ApplicationController
 
   def destroy
     flash[:error] = "お気に入りを削除できませんでした。" unless @like.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   protected
