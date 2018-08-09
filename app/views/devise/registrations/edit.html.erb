@@ -22,26 +22,27 @@
               <span class="icon is-small is-left"><%= fa_icon "pencil-alt" %></span>
             </p>
           </div>
-          <div class="field">
-            <p class="control has-icons-left">
-                <%= f.label 'アイコン画像' %>
-                <%= f.file_field :avatar, class: 'input' %>
-            </p>
+          <div class="file">
+            <label class="file-label">
+              <%= f.file_field :avatar, class: 'input file-label', style: "display:none;", accept: 'image/jpg,image/jpeg,image/png,image/gif' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <%= fa_icon "upload" %>
+                </span>
+                <span class="file-label">
+                  アイコン画像をアップロード
+                </span>
+              </span>
+            </label>
           </div>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-          <div class="field is-grouped has-text-centerd" style="padding:20px 0;" >
-            <div class="actions field control is-fullwidth">
-              <%= f.submit "登録", class: "button is-link" %>
-            </div>
+
+          <div class="actions field" style="padding:30px 0;">
+            <%= f.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
+          </div>
         <% end %>
-            <div class="control">
-              <%= button_to "キャンセル", registration_path(resource_name), class: "button is-text", data: { confirm: "本当によろしいですか?" }, method: :delete %>
-            </div>
-          </div>
-        <div style="padding:20px;">
-          <p class="has-text-centered is-size-7 has-text-grey"><%= link_to "戻る", :back %></p>
+        <div class="has-text-centered ">
+          <p class="is-size-7 has-text-grey"><%= link_to "戻る", :back %></p>
+          <p><%= link_to "退会する", registration_path(resource_name), class: "is-size-7 is-text", data: { confirm: "本当退会しますか?" }, method: :delete %></p>
         </div>
       </section>
     </div>

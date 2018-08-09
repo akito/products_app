@@ -20,12 +20,10 @@ RSpec.describe Like, type: :model do
 
   it 'is invalid without a user_id' do
     like = Like.new(user_id: nil)
-    like.valid?
-    expect(like.errors[:user_id]).to include("can't be blank")
+    expect(like.valid?).to be false
   end
   it 'is invalid without a product_id' do
     like = Like.new(product_id: nil)
-    like.valid?
-    expect(like.errors[:product_id]).to include("can't be blank")
+    expect(like.valid?).to be false
   end
 end
