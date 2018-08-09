@@ -3,6 +3,12 @@ class TagsController < ApplicationController
   before_action :set_tags, only: [:index, :show]
   before_action :authenticate_admin_user!, only: [:new, :edit, :create, :update, :destroy ]
   before_action :set_search, only: [:index, :show, :new, :edit]
+
+  MAX_WEEKLY_RANKING = 5
+  MAX_LIKES_RANKING = 5
+
+
+
   #
   # # GET /categories
   # # GET /categories.json
@@ -13,8 +19,8 @@ class TagsController < ApplicationController
   # # GET /categories/1.json
   def show
     @products = @tag.products.includes(:tags).page(params[:page])
-    @product_ranking = Product.joins(:tags).where(tags: { id: 1 }).like_ranking(10)
-    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
+    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
+    @product_ranking = Product.joins(:tags).where(tags: { id: params[:page] }).like_ranking(MAX_LIKES_RANKING)
   end
   #
   # # GET /categories/new

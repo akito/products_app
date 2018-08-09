@@ -141,27 +141,31 @@ RSpec.describe Product, type: :model do
   describe '#related_products(max = 3)' do
     let(:trip) { create(:category, name: 'Trip') }
     let(:food) { create(:category, name: 'Food') }
-    let!(:trip_product) { create(:product, category: trip) }
-    let!(:food_products) { create_list(:product, 4, category: food) }
+    let!(:trip_product) { create(:product, category: trip, status: 'published') }
+    let!(:food_products) { create_list(:product, 4, category: food,  status: 'published') }
 
     before do
       @food_product = food_products.first
     end
 
-    it 'returns same category products' do
-      expect(@food_product.related_products(5)).to match food_products[1..-1]
+    it '同じカテゴリーのプロダクトを返す(順不同)' do
+      expect(@food_product.related_products(5)).to match_array food_products[1..-1]
     end
 
-    it 'does not return products of different category' do
+    it '異なるカテゴリーのプロダクトを返さない' do
       expect(@food_product.related_products(5)).not_to include trip_product
     end
 
-    it 'does not return self' do
+    it '自分自身を返さない' do
       expect(@food_product.related_products(5)).not_to include @food_product
     end
 
-    it 'returns products less than or equal to the argument' do
-      expect(@food_product.related_products(2).count).to eq  2
+    it '引数以下の数のプロダクトを返す' do
+      expect(@food_product.related_products(2).count).to eq 2
+    end
+    it 'draftのプロダクトを返さない' do
+      draft = food_products.last.status = 'draft'
+      expect(@food_product.related_products(5)).not_to include draft
     end
   end
 end

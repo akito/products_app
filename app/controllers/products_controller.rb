@@ -106,6 +106,6 @@ class ProductsController < ApplicationController
     end
 
     def product_ranking
-      @product_ranking = Product.order(likes_count: :desc).limit(MAX_LIKES_RANKING)
+      @product_ranking = Product.published.order(likes_count: :desc).limit(MAX_LIKES_RANKING)
     end
 end

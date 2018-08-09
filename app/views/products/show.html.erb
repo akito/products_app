@@ -35,7 +35,9 @@
               <p class="subtitle is-6"><%= @product.desc %></p>
               <div class="content">
                 <% @product.tags.each do |tag| %>
-                  <span class="tag is-rounded is-size-7"><%= tag.label %></span>
+                  <span class="tag is-rounded is-size-7" >
+                    <%= link_to tag.label, tag_path(tag)%>
+                  </span>
                 <% end %>
               </div>
             </div>
