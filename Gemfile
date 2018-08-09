@@ -66,6 +66,9 @@ gem 'kaminari'
 
 gem 'jquery-rails'
 
+# ReCaptcha helpers for ruby apps http://github.com/ambethia/recaptcha
+gem "recaptcha"
+
 
 # Object-based searching.
 gem 'ransack'

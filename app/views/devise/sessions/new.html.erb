@@ -20,6 +20,9 @@
                 <%= f.check_box :remember_me %> パスワードを保存しますか
               </label>
             <% end -%>
+
+            <%= recaptcha_tags %>
+
             <div class="actions field" style="padding:30px 0;">
               <%= f.submit "ログイン", class: "button is-link is-fullwidth is-rounded" %>
             </div>

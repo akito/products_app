@@ -33,7 +33,7 @@
                           <% end %>
                         </span>
                         <br>
-                        <span class="is-size-7"><%= like.product.desc %></span>
+                        <span class="is-size-7"><%= like.product.desc.truncate(80) %></span>
                       </p>
                       <% like.product.tags.each do |tag| %>
                       <span class="tag is-rounded is-size-7" >
@@ -43,7 +43,7 @@
                     </div>
                   </div>
                   <div class="column is-narrow">
-                    <%= link_to '削除',  like_path(like.product.like_by(current_user)), method: :delete, data: {confirm: 'お気に入りから削除しますか?'}, remote: true, class: 'is-size-7', class: 'delete' %>
+                    <%= link_to '削除', like_path(like.product.like_by(current_user)), method: :delete, data: {confirm: 'お気に入りから削除しますか?'}, class: 'is-size-7', class: 'delete' %>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <p>
                   <strong><%= link_to product.name, product %></strong>
                   <br>
-                  <span class="is-size-7"><%= product.desc %></span>
+                  <span class="is-size-7"><%= product.desc.truncate(30) %></span>
                 </p>
               </div>
             </div>

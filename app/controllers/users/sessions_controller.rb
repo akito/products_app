@@ -17,6 +17,14 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  #
+
+  @user = User.new(params[:user].permit(:name))
+  if verify_recaptcha(model: @user) && @user.save
+    redirect_to @user
+  else
+    render 'new'
+  end
 
   # protected
 
@@ -24,4 +32,5 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  #
 end
