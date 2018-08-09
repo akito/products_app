@@ -8,7 +8,7 @@
     <div class="content">
       <p>
         <strong><%= comment.user.name %></strong>
-        <small><%= comment.updated_at %></small>
+        <small><%= comment.updated_at.to_s(:published_on) %></small>
         <br>
         <%= comment.content %>
       </p>
@@ -23,20 +23,13 @@
         </a>
       </div>
       <div class="level-right">
-        <%# if user_signed_in? %>
-        <%# if comment.owned_by?(current_user) %>
-        <%#= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7' %>
-        <!--                    <span>・</span>-->
-        <%#= link_to '修正', edit_comment_path(comment), class: 'is-size-7'%>
-        <%# end %>
-        <%# end %>
       </div>
     </nav>
   </div>
   <div class="media-right">
     <% if user_signed_in? %>
       <% if comment.owned_by?(current_user) %>
-        <%= link_to '削除', comment, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'is-size-7', class: 'delete' %>
+        <%= link_to '削除', comment, method: :delete, data: {confirm: '本当に削除しますか?'}, remote: true, class: 'is-size-7', class: 'delete' %>
       <% end %>
     <% end %>
   </div>
