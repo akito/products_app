@@ -25,7 +25,7 @@
                   <% end %>
                 </span>
                 <br>
-                <span class="is-size-7"><%= product.desc %></span>
+                <span class="is-size-7"><%= product.desc.truncate(80) %></span>
               </p>
               <div class="content">
                 <% product.tags.each do |tag| %>

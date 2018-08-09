@@ -12,7 +12,7 @@
         <p>
           <strong><%= link_to product.name, product %></strong>
           <br>
-          <span class="is-size-7"><%= product.desc %></span>
+          <span class="is-size-7"><%= product.desc.truncate(30) %></span>
         </p>
       </div>
     </div>

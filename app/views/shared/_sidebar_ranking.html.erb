@@ -12,15 +12,15 @@
         <p>
           <strong><%= link_to product.name, product %></strong>
           <br>
-          <span class="is-size-7"><%= product.desc %></span>
+          <span class="is-size-7"><%= product.desc.truncate(30) %></span>
         </p>
       </div>
     </div>
     <div class="column is-narrow">
-            <span class="is-size-7 fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= product_iteration.index + 1 %></i>
-            </span>
+      <span class="is-size-7 fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= product_iteration.index + 1 %></i>
+      </span>
     </div>
   </div>
 </article>
