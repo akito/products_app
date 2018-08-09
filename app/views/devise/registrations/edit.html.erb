@@ -16,47 +16,21 @@
               <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
             </p>
           </div>
-
           <div class="field">
             <p class="control has-icons-left">
               <%= f.text_area :bio, autofocus: true, class: "textarea", placeholder: "プロフィール" %>
               <span class="icon is-small is-left"><%= fa_icon "pencil-alt" %></span>
             </p>
           </div>
-
-
-
           <div class="field">
             <p class="control has-icons-left">
-                <%= f.label 'icon' %>
+                <%= f.label 'アイコン画像' %>
                 <%= f.file_field :avatar, class: 'input' %>
             </p>
           </div>
-
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
-
-<!--          <div class="field">-->
-<!--            <p class="control has-icons-left">-->
-              <%#= f.password_field :password, autocomplete: "off", class: "input", placeholder: "パスワード(6文字以上)" %>
-<!--              <span class="icon is-small is-left"><%#= fa_icon "lock" %></i></span>-->
-<!--            </p>-->
-<!--          </div>-->
-<!--          <div class="field">-->
-<!--            <p class="control has-icons-left">-->
-              <%#= f.password_field :password_confirmation, autocomplete: "off", class: "input", placeholder: "パスワード再入力" %>
-<!--              <span class="icon is-small is-left"><%#= fa_icon "lock" %></span>-->
-<!--            </p>-->
-<!--          </div>-->
-
-          <div class="field">
-            <p class="control has-icons-left">
-              <%= f.password_field :current_password, autocomplete: "off", class: "input", placeholder: "現在のパスワード" %>
-              <span class="icon is-small is-left"><%= fa_icon "lock" %></span>
-            </p>
-          </div>
-
           <div class="field is-grouped has-text-centerd" style="padding:20px 0;" >
             <div class="actions field control is-fullwidth">
               <%= f.submit "登録", class: "button is-link" %>
