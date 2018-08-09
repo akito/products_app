@@ -28,6 +28,7 @@
 #  locked_at              :datetime
 #  migration              :string
 #  avatar                 :string
+#  bio                    :string
 #
 
 require 'rails_helper'

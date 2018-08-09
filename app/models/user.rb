@@ -28,6 +28,7 @@
 #  locked_at              :datetime
 #  migration              :string
 #  avatar                 :string
+#  bio                    :string
 #
 
 class User < ApplicationRecord

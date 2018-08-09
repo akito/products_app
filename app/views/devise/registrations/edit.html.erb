@@ -19,6 +19,15 @@
 
           <div class="field">
             <p class="control has-icons-left">
+              <%= f.text_area :bio, autofocus: true, class: "textarea", placeholder: "プロフィール" %>
+              <span class="icon is-small is-left"><%= fa_icon "pencil-alt" %></span>
+            </p>
+          </div>
+
+
+
+          <div class="field">
+            <p class="control has-icons-left">
                 <%= f.label 'icon' %>
                 <%= f.file_field :avatar, class: 'input' %>
             </p>

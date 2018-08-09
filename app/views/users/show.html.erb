@@ -72,7 +72,10 @@
           </figure>
         </a>
         <p style="margin:0.5rem 0;" class="has-text-centered"><%= @user.name %></p>
-        <p class="box is-shadowless has-background-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="box is-shadowless has-background-light">
+          <%= @user.bio %>
+        </p>
+        <p class="is-size-7"><%= link_to "アカウント情報修正", edit_user_registration_path, class: 'navbar-item' %></p>
       </div>
     </section>
 
