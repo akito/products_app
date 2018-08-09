@@ -28,14 +28,18 @@
               <%= form.text_field :image, class: 'input', placeholder: 'プロダクトのロゴ' %>
             </div>
           </div>
-
-          <div class="file has-name">
-            <div class="file-label">
-              <div class="control">
-                <%= form.label 'プロダクトのサムネイル' %>
-                <%= form.file_field :thumbnail, class: 'input' %>
-              </div>
-            </div>
+          <div class="file">
+            <label class="file-label">
+              <%= form.file_field :thumbnail, class: 'input file-label', style: "display:none;", accept: 'image/jpg,image/jpeg,image/png,image/gif' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <%= fa_icon "upload" %>
+                </span>
+                <span class="file-label">
+                  サムネイル画像をアップロード
+                </span>
+              </span>
+            </label>
           </div>
 
           <div class="field">
