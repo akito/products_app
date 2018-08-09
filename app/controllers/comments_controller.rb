@@ -4,8 +4,9 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    flash[:error] = "NG" unless @comment.save
-    redirect_to product_path(comment_params[:product_id])
+    flash[:error] = "コメントを投稿できませんでした" unless @comment.save
+    @comments = @comment.product.comments.includes(:user).order(updated_at: :asc)
+    @product = @comment.product
   end
 
   def edit
@@ -27,7 +28,8 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "削除できませんでした"
     end
-    redirect_to product_path(@comment.product_id)
+    @comments = @comment.product.comments.includes(:user).order(updated_at: :asc)
+    @product = @comment.product
   end
 
   private

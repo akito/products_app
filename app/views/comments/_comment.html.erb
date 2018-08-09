@@ -8,20 +8,20 @@
     <div class="content">
       <p>
         <strong><%= comment.user.name %></strong>
-        <small><%= comment.updated_at.to_s(:published_on) %></small>
+        <small><%= comment.updated_at.to_s(:updated_at) %></small>
         <br>
         <%= comment.content %>
       </p>
     </div>
     <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <span class="is-size-7">返信</span>
-        </a>
-        <a class="level-item">
-          <span class="is-size-7">いいね</span>
-        </a>
-      </div>
+<!--      <div class="level-left">-->
+<!--        <a class="level-item">-->
+<!--          <span class="is-size-7">返信</span>-->
+<!--        </a>-->
+<!--        <a class="level-item">-->
+<!--          <span class="is-size-7">いいね</span>-->
+<!--        </a>-->
+<!--      </div>-->
       <div class="level-right">
       </div>
     </nav>
@@ -29,7 +29,7 @@
   <div class="media-right">
     <% if user_signed_in? %>
       <% if comment.owned_by?(current_user) %>
-        <%= link_to '削除', comment, method: :delete, data: {confirm: '本当に削除しますか?'}, remote: true, class: 'is-size-7', class: 'delete' %>
+        <%= link_to '削除', comment, method: :delete, data: {confirm: '本当に削除しますか?'}, remote: true, class: 'delete' %>
       <% end %>
     <% end %>
   </div>

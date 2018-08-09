@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   def show
     @products = Product.published.order(:id)
     @related_products = @product.related_products(MAX_RELATED_PRODUCTS)
-    @comments = @product.comments.includes(:user)
+    @comments = @product.comments.includes(:user).order(updated_at: :asc)
   end
 
   # GET /products/new
