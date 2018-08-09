@@ -10,7 +10,9 @@
         <strong><%= comment.user.name %></strong>
         <small><%= comment.updated_at.to_s(:updated_at) %></small>
         <br>
-        <%= comment.content %>
+        <span class="is-size-7">
+          <%= comment.content %>
+        </span>
       </p>
     </div>
     <nav class="level is-mobile">

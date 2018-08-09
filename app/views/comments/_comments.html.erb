@@ -2,7 +2,6 @@
   <article class="media">
     <p>Reviews</p>
   </article>
-    <%= render partial: 'comments/comment', collection: comments %>
   <% if user_signed_in? %>
     <article class="media">
       <figure class="media-left">
@@ -33,4 +32,5 @@
       <%= link_to '会員登録してレビューを書く', new_user_registration_path, class: 'button is-rounded is-size-7'%>
     </article>
   <% end %>
+  <%= render partial: 'comments/comment', collection: comments %>
 </section>

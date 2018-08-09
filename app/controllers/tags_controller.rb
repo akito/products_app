@@ -1,20 +1,12 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
-  before_action :set_tags, only: [:index, :show]
+  before_action :set_tags, only: [:show]
   before_action :authenticate_admin_user!, only: [:new, :edit, :create, :update, :destroy ]
-  before_action :set_search, only: [:index, :show, :new, :edit]
+  before_action :set_search, only: [:show, :new, :edit]
 
   MAX_WEEKLY_RANKING = 5
   MAX_LIKES_RANKING = 5
 
-
-
-  #
-  # # GET /categories
-  # # GET /categories.json
-  # def index
-  # end
-  #
   # # GET /categories/1
   # # GET /categories/1.json
   def show
@@ -88,6 +80,6 @@ class TagsController < ApplicationController
   end
 
   def set_search
-    @search = Product.includes(:category).ransack(params[:q])
+    @search = Product.includes(:tags).ransack(params[:q])
   end
 end

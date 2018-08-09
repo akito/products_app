@@ -30,6 +30,7 @@ class Product < ApplicationRecord
 
   scope :created_after, ->(time) { where('created_at > ?', time) if time.present? }
   scope :like_ranking, ->(num) { where('likes_count > 0').order(likes_count: :desc).limit(num) if num.present? }
+  scope :random, -> (num) { where(id: pluck(:id).sample(num)) }
 
   enum status: { draft: 0, published: 1, archived: 2 }
 
@@ -45,7 +46,7 @@ class Product < ApplicationRecord
 
   def add_tags(labels)
     self.tags = []
-    labels.each do | label |
+    labels.uniq.each do | label |
       if Tag.find_by(label: label)
         self.tags << Tag.find_by(label: label)
       else

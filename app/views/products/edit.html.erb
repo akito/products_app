@@ -47,6 +47,15 @@
 
           <div class="field">
             <div class="control">
+              <%= form.label 'カテゴリー' %>
+              <div class="select">
+                <%= form.collection_select :category_id, Category.all, :id, :name %>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
               <div><%= form.label '公開状態' %></div>
               <div class="select">
                 <%= form.select :status, ['published', 'draft', 'archived'] %>
