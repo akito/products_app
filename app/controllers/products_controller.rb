@@ -5,19 +5,23 @@ class ProductsController < ApplicationController
   before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
   before_action :product_ranking, only: [:index, :show]
 
+  MAX_WEEKLY_RANKING = 5
+  MAX_RELATED_PRODUCTS = 5
+  MAX_LIKES_RANKING = 5
+
   # GET /products
   # GET /products.json
   def index
     @products = @search.result.published.order(:id).page(params[:page])
     @categories = Category.all
-    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
+    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
     @products = Product.published.order(:id)
-    @related_products = @product.related_products(10)
+    @related_products = @product.related_products(MAX_RELATED_PRODUCTS)
     @comments = @product.comments.includes(:user)
   end
 
@@ -101,6 +105,6 @@ class ProductsController < ApplicationController
     end
 
     def product_ranking
-      @product_ranking = Product.order(likes_count: :desc).limit(10)
+      @product_ranking = Product.order(likes_count: :desc).limit(MAX_LIKES_RANKING)
     end
 end

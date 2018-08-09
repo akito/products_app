@@ -1,13 +1,13 @@
 <% content_for :searchbox do  %>
   <%= render 'shared/searchbox' %>
 <% end %>
-<div class="columns">
+<div class="columns reverse-row-order">
+  <div class="column is-8">
+    <%= render partial: 'products', locals: {products: @products } unless @products.empty? %>
+  </div>
   <div class="column is-4">
     <%= render partial: 'shared/categories', locals: {categories: @categories, title: 'カテゴリー'} unless @categories.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @weekly_ranking, title: '週間ランキング'} unless @weekly_ranking.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'お気に入りランキング'} unless @product_ranking.empty? %>
-  </div>
-  <div class="column is-8">
-    <%= render partial: 'products', locals: {products: @products } unless @products.empty? %>
   </div>
 </div>

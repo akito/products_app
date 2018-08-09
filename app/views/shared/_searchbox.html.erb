@@ -1,9 +1,12 @@
-<%= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
-  <div class="control is-expanded">
-    <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: '素敵なサービスが見つけよう',style: "width:250px;"%>
+<span class="navbar-item">
+  <%= search_form_for @search , url:products_path, action: 'index', class: 'field has-addons is-fullwidth' do |f| %>
+  <div class="control">
+    <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: '素敵なサービスが見つけよう', style: "width: 250px"%>
   </div>
-
   <div class="control">
     <%= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
   </div>
 <% end %>
+</span>
+
+
