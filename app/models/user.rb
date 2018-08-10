@@ -85,4 +85,8 @@ class User < ApplicationRecord
   def validate_name
     errors.add(:name, :invalid) if User.where(email: name).exists?
   end
+
+  def send_device_notification(notification, *args)
+    device_mailer.send(notification, self, *args).deliver_later
+  end
 end

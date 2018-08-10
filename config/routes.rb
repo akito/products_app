@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users,
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :registrations, only: %i[new create]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount Sidekiq::Web, at: '/sidekiq'
 
   namespace :manage do
     resources :products, only: [:index]
