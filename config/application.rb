@@ -13,6 +13,7 @@ module ProductsApp
     config.time_zone = 'Asia/Tokyo'
     config.i18n.available_locales = [:en, :ja]
     config.i18n.default_locale = :ja
+    config.active_job.queue_adapter = :sidekiq
 
 
     # Settings in config/environments/* take precedence over those specified here.

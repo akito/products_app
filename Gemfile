@@ -23,7 +23,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -67,8 +67,7 @@ gem 'kaminari'
 gem 'jquery-rails'
 
 # ReCaptcha helpers for ruby apps http://github.com/ambethia/recaptcha
-gem "recaptcha"
-
+gem 'recaptcha'
 
 # Object-based searching.
 gem 'ransack'
@@ -76,6 +75,12 @@ gem 'ransack'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'
 gem 'rmagick', require: 'rmagick'
+
+# Simple, efficient background processing for Ruby http://sidekiq.org
+gem 'sidekiq'
+
+# Classy web-development dressed in a DSL (official / canonical repo) http://www.sinatrarb.com/
+gem 'sinatra'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
