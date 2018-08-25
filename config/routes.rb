@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :registrations, only: %i[new create]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  mount Sidekiq::Web, at: '/sidekiq'
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
 
   namespace :manage do
     resources :products, only: [:index]
