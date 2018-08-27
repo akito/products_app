@@ -8,7 +8,11 @@ Rails.application.routes.draw do
                  registrations: 'users/registrations' }
   get :mypage, to: 'users#show', as: :mypage
   root 'products#index'
-  resources :products
+  resources :products do
+    member do
+      post :fetch
+    end
+  end
   resources :categories
   resources :tags
   resources :comments, only: [:create, :edit, :update, :destroy]

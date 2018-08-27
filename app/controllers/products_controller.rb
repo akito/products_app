@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin_user!, only: [:edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :fetch]
   before_action :correct_product, only: [:show]
+  before_action :authenticate_admin_user!, only: [:edit, :update, :destroy, :fetch]
   before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
   before_action :product_ranking, only: [:index, :show]
 
@@ -39,7 +39,16 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
+    # @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
+
+    page = MetaInspector.new(@product.url)
+
+    @product.name = page.title || nil
+    @product.sub_title = page.best_title || nil
+    @product.desc = @product.desc.empty? || page.best_description || page.description
+    @product.ogpimage = page.images.best || page.meta_tags['property']['og:image'] || nil
+    @product.image = page.images.favicon || nil
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to root_path, notice: 'プロダクトは正しく申請されました' }
@@ -76,6 +85,23 @@ class ProductsController < ApplicationController
     end
   end
 
+  def fetch
+    page = MetaInspector.new(@product.url)
+    @product.name = page.title || page.best_title || nil
+    @product.sub_title = page.best_title || nil
+    @product.desc = page.best_description || page.description || ""
+    @product.ogpimage = page.images.best  || page.meta_tags['property']['og:image'] || nil
+    @product.image = page.images.favicon || nil
+    @product.twitter = page.meta_tags['name']['twitter:site']
+
+
+    if @product.validate
+      render :edit, location: @product, notice: 'プロダクト情報は更新されました'
+    else
+      render :edit
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -84,15 +110,15 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :status, :category_id)
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :status, :category_id, :sub_title, :ogpimage, :twitter)
     end
 
     def product_tags_param
-      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :tags_to_s)
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :sub_title, :ogpimage, :twitter, :tags_to_s)
     end
 
     def correct_product
-      unless set_product.published?
+      unless @product.published?
         raise Forbidden, '権限がありません' unless current_user&.admin?
       end
     end

@@ -15,25 +15,38 @@
   <div class="column is-6 is-offset-1">
     <div class="card" style="box-shadow: none;">
       <div class="card-image">
-        <figure class="image is-3by2">
+        <figure class="image is-5by3">
           <%= link_to @product.url, target: "_blank" do %>
-            <%= image_tag @product.thumbnail_url(:thumb) %>
+            <% if @product.ogpimage? %>
+              <%= image_tag @product.ogpimage, style: "width:100%; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag @product.thumbnail_url(:thumb) %>
+            <% end %>
           <% end %>
         </figure>
       </div>
       <div class="card-content" style="padding:1.5rem 0">
         <div class="media">
-          <div class="media-left">
-            <figure class="image" style="height: 50px; width: 50px;">
-              <%= link_to @product.url, target: "_blank" do %>
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-              <% end %>
-            </figure>
-          </div>
+          <% unless @product.image.empty? %>
+            <div class="media-left">
+              <figure class="image" style="height: 50px; width: 50px;">
+                <%= link_to @product.url, target: "_blank" do %>
+                  <%= image_tag @product.image %>
+                <% end %>
+              </figure>
+            </div>
+          <% end %>
+
           <div class="media-content">
             <p class="title is-4" style="margin-bottom: 0.1rem;">
+              <span class="tag is-size-7"  >
+                PR
+              </span>
               <%= @product.name %>
               <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank' %></small>
+              <span class="tag is-size-7"  >
+                <%= @product.status %>
+              </span>
               <span style="font-size: 0.4em">
                 <% if current_user&.admin? %>
                   <%= link_to '編集', edit_product_path(@product) %>
@@ -42,6 +55,7 @@
                 <% end %>
               </span>
             </p>
+            <p class="is-size-7"><%= @product.sub_title %></p>
           </div>
           <div class="media-right">
             <%= render 'likes/like', product: @product %>

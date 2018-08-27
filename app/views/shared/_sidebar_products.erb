@@ -1,20 +1,26 @@
-<article class="media">
-  <div class="columns is-mobile">
-    <div class="column is-4">
-      <p class="image">
-        <%= link_to product do %>
-          <%= image_tag product.thumbnail_url(:thumb) %>
+<div class="columns is-mobile product">
+  <div class="column is-4">
+    <p class="image">
+      <%= link_to product do %>
+        <% if product.ogpimage? %>
+          <figure class="image is-5by3">
+            <%= image_tag product.ogpimage, style: "object-fit: cover;" %>
+          </figure>
+        <% else %>
+          <figure class="image is-5by3">
+            <%= image_tag product.thumbnail_url(:thumb), style: "object-fit: cover;" %>
+          </figure>
         <% end %>
+      <% end %>
+    </p>
+  </div>
+  <div class="column">
+    <div class="content">
+      <p>
+        <strong><%= link_to product.name, product %></strong>
+        <br>
+        <span class="is-size-7"><%= product.desc.truncate(30) %></span>
       </p>
     </div>
-    <div class="column">
-      <div class="content">
-        <p>
-          <strong><%= link_to product.name, product %></strong>
-          <br>
-          <span class="is-size-7"><%= product.desc.truncate(30) %></span>
-        </p>
-      </div>
-    </div>
   </div>
-</article>
+</div>
