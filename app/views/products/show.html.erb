@@ -39,9 +39,13 @@
 
           <div class="media-content">
             <p class="title is-4" style="margin-bottom: 0.1rem;">
-              <span class="tag is-size-7"  >
-                PR
-              </span>
+
+              <% if @product.yes? %>
+                <span class="tag is-size-7"  >
+                  PR
+                </span>
+              <% end %>
+
               <%= @product.name %>
               <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank' %></small>
               <span class="tag is-size-7"  >

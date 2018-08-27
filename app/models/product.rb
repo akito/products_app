@@ -2,19 +2,21 @@
 #
 # Table name: products
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string           not null
-#  url         :string           not null
-#  desc        :text             not null
-#  image       :string
-#  thumbnail   :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  likes_count :integer          default(0), not null
-#  status      :integer          default("draft"), not null
-#  category_id :bigint(8)
-#  ogpimage    :string
-#  sub_title   :string
+#  id            :bigint(8)        not null, primary key
+#  name          :string           not null
+#  url           :string           not null
+#  desc          :text             not null
+#  image         :string
+#  thumbnail     :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  likes_count   :integer          default(0), not null
+#  status        :integer          default("draft"), not null
+#  category_id   :bigint(8)
+#  ogpimage      :string
+#  sub_title     :string
+#  twitter       :string
+#  advertisement :integer          default("no"), not null
 #
 
 class Product < ApplicationRecord
@@ -35,6 +37,7 @@ class Product < ApplicationRecord
   scope :random, -> (num) { where(id: pluck(:id).sample(num)) }
 
   enum status: { draft: 0, published: 1, archived: 2 }
+  enum advertisement: { no: 0, yes: 1 }
 
   mount_uploader :thumbnail, ThumbnailUploader
 

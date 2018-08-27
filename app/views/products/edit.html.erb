@@ -81,6 +81,13 @@
 
           <div class="field">
             <div class="control">
+              <%= form.label '広告' %>
+              <%= form.text_field :advertisement, class: 'input', placeholder: 'yes / no' %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
               <div><%= form.label '公開状態' %></div>
               <div class="select">
                 <%= form.select :status, ['published', 'draft', 'archived'] %>
