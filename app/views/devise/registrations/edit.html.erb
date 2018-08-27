@@ -1,7 +1,6 @@
 <div class="columns is-centered">
   <div class="column is-narrow is-half is-12-mobile is-4-desktop is-centered">
     <div class="box">
-      <section class="section">
         <p class="subtitle has-text-grey is-aligin-center">アカウント情報を編集</p>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <div class="field">
@@ -44,7 +43,6 @@
           <p class="is-size-7 has-text-grey"><%= link_to "戻る", :back %></p>
           <p><%= link_to "退会する", registration_path(resource_name), class: "is-size-7 is-text", data: { confirm: "本当退会しますか?" }, method: :delete %></p>
         </div>
-      </section>
     </div>
   </div>
 </div>

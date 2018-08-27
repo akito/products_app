@@ -1,25 +1,23 @@
 <div class="columns is-centered">
   <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
     <div class="box">
-      <section class="section">
-        <p class="subtitle has-text-grey is-aligin-center">再送する</p>
-        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-          <div class="field">
-            <p class="control has-icons-left">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "input",
-                                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                                placeholder: "メールアドレス" %>
-              <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
-            </p>
-          </div>
-          <div class="actions field" style="padding:30px 0;">
-            <%= f.submit "確認メールを再送する", class: "button is-link is-fullwidth is-rounded" %>
-          </div>
-        <% end %>
-        <div style="padding:20px;">
-          <p class="has-text-centered is-size-7 has-text-grey"><%= render "devise/shared/links" %></p>
+      <p class="subtitle has-text-grey is-aligin-center">再送する</p>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+        <div class="field">
+          <p class="control has-icons-left">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input",
+                              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                              placeholder: "メールアドレス" %>
+            <span class="icon is-small is-left"><%= fa_icon "envelope" %></span>
+          </p>
         </div>
-      </section>
+        <div class="actions field" style="padding:30px 0;">
+          <%= f.submit "確認メールを再送する", class: "button is-link is-fullwidth is-rounded" %>
+        </div>
+      <% end %>
+      <div style="padding:20px;">
+        <p class="has-text-centered is-size-7 has-text-grey"><%= render "devise/shared/links" %></p>
+      </div>
     </div>
   </div>
 </div>
