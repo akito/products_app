@@ -60,10 +60,9 @@
 
       </div>
 
-
       <div>
         <div class="website media">
-          <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}", class: "button  is-medium is-fullwidth is-outlined" do %>
+          <%= link_to  @product.url, target: "_blank", class: "button  is-medium is-fullwidth is-outlined" do %>
           <span class="icon">
             <%= fa_icon 'compass' %>
           </span>

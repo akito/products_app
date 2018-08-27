@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = @search.result.published.order(:id).page(params[:page])
+    @products = @search.result.published.order(created_at: :DESC).page(params[:page])
     @categories = Category.all
     @weekly_ranking = Product.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
     @tags = Tag.all
