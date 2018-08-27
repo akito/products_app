@@ -1,7 +1,6 @@
 <div class="columns is-centered">
   <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
     <div class="box">
-      <section class="section">
         <p class="subtitle has-text-grey is-aligin-center">ログイン</p>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -21,7 +20,10 @@
               </label>
             <% end -%>
 
-            <%= recaptcha_tags %>
+            <div class="field" style="max-width: 100%">
+                <%= recaptcha_tags %>
+            </div>
+
 
             <div class="actions field" style="padding:30px 0;">
               <%= f.submit "ログイン", class: "button is-link is-fullwidth is-rounded" %>
@@ -29,6 +31,7 @@
           </div>
         <% end %>
         <p class="subtitle has-text-grey is-aligin-center" style="padding-top:30px 0;">SNSアカウントでログイン</p>
+
         <div class="field">
           <%- if devise_mapping.omniauthable? %>
             <%- resource_class.omniauth_providers.each do |provider| %>
@@ -45,7 +48,6 @@
         <div style="padding:20px;">
           <p class="has-text-centered is-size-7 has-text-grey"><%= render "devise/shared/links" %></p>
         </div>
-      </section>
     </div>
   </div>
 </div>

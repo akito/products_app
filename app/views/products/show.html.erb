@@ -1,63 +1,207 @@
-<% content_for :searchbox do  %>
+<% content_for :searchbox do %>
   <%= render 'shared/searchbox' %>
 <% end %>
 <div class="columns">
-  <div class="column is-8">
-    <section class="section" style="padding: 0.5rem 1.5rem;">
-      <div class="card" style="box-shadow: none;">
-        <div class="card-content">
-          <div class="columns is-mobile">
-            <div class="column is-3-mobile is-3-tablet is-2-desktop">
-              <figure class="image">
-                <%= link_to @product.url do %>
-                  <img src="https://221616.com/kaigai/usa/blog/wp-content/uploads/2017/07/9.png" alt="Placeholder image">
-                <% end %>
-              </figure>
-              <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}" do %>
-                <%= fa_icon 'twitter' %>
-              <% end %>
-              <%= fa_icon 'facebook' %>
-              <%= fa_icon 'envelope' %>
-            </div>
-            <div class="column">
-              <p class="title is-5"><%= @product.name %>
-                <span><i class="fas fa-external-link-alt is-size-6"></i></span>
-                <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank'%></small>
-                <span style="font-size: 0.4em">
-                  <% if current_user&.admin? %>
-                    <%= link_to '編集', edit_product_path(@product) %>
-                    <span> </span>
-                    <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
-                  <% end %>
-                </span>
-              </p>
-              <p class="subtitle is-6"><%= @product.desc %></p>
-              <div class="content">
-                <% @product.tags.each do |tag| %>
-                  <span class="tag is-rounded is-size-7" >
-                    <%= link_to tag.label, tag_path(tag)%>
-                  </span>
-                <% end %>
-              </div>
-            </div>
-            <div class="column is-narrow" style="padding-left: 0;">
-              <%= render 'likes/like', product: @product %>
-            </div>
-          </div>
-        </div>
+  <div class="column is-6 is-offset-1">
+    <div class="card" style="box-shadow: none;">
+      <div class="card-image">
         <figure class="image is-3by2">
           <%= link_to @product.url, target: "_blank" do %>
             <%= image_tag @product.thumbnail_url(:thumb) %>
           <% end %>
         </figure>
       </div>
-      <div id="test">
+      <div class="card-content" style="padding:1.5rem 0">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image" style="height: 50px; width: 50px;">
+              <%= link_to @product.url, target: "_blank" do %>
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              <% end %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4" style="margin-bottom: 0.1rem;">
+              <%= @product.name %>
+              <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank' %></small>
+              <span style="font-size: 0.4em">
+                <% if current_user&.admin? %>
+                  <%= link_to '編集', edit_product_path(@product) %>
+                  <span> </span>
+                  <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
+                <% end %>
+              </span>
+            </p>
+          </div>
+          <div class="media-right">
+            <%= render 'likes/like', product: @product %>
+          </div>
+        </div>
+        <div class="content">
+          <%= @product.desc %>
+          <p style="margin-top: 1rem;">
+            <% @product.tags.each do |tag| %>
+                  <span class="tag is-rounded is-size-7">
+                    <%= link_to tag.label, tag_path(tag) %>
+                  </span>
+            <% end %>
+          </p>
+        </div>
+
+      </div>
+
+
+      <div>
+        <div class="website media">
+          <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}", class: "button  is-medium is-fullwidth is-outlined" do %>
+          <span class="icon">
+            <%= fa_icon 'compass' %>
+          </span>
+
+            <span>Webサイト</span>
+
+          <% end %>
+        </div>
+        <div class="share">
+          <p class="buttons">
+            <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}", class: "button is-small is-info is-outlined" do %>
+          <span class="icon">
+            <%= fa_icon 'twitter' %>
+          </span>
+
+              <span>シェアする</span>
+
+            <% end %>
+
+            <%= link_to "http://twitter.com/intent/tweet?text=#{@product.name}&url=#{product_url(@product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{@product.name}", class: "button is-small is-link is-outlined" do %>
+          <span class="icon">
+            <%= fa_icon 'facebook' %>
+          </span>
+
+              <span>シェアする</span>
+
+            <% end %>
+          </p>
+        </div>
+
+      </div>
+
+
+      <style>
+        .horizontal_scroll_wrap{
+          background: #f1f1f1;
+          height: 240px;
+          overflow-y: hidden;
+          margin: 0 -10px;
+        }
+        .scroll_lst {
+          overflow-x: auto;
+          overflow-y: hidden;
+          white-space: nowrap;
+          padding-bottom: 50px;
+          margin: 25px 0 0;
+          -webkit-overflow-scrolling: touch;
+        }
+        .scroll_item {
+          margin-right: 10px;
+          display: inline-block;
+          width: 220px;
+          border: 1px solid #ddd;
+          background: #fff;
+        }
+        .scroll_item:first-child {
+          margin-left: 10px;
+        }
+
+        .scroll_item_inr {
+          display: block;
+        }
+        .scroll_item_info {
+          white-space: normal;
+          padding: 8px;
+        }
+        .scroll_item_ttl {
+          font-size: 12px;
+          color: #484848;
+          line-height: 1.4;
+          margin-bottom: 0;
+        }
+
+      </style>
+
+
+
+      <div class="rel-links" style="padding: 1.5rem 0">
+        <article class="media">
+          <p>関連リンク</p>
+        </article>
+
+        <div class="horizontal_scroll_wrap">
+          <ul class="scroll_lst">
+            <li class="scroll_item">
+              <a href="" class="scroll_item_inr">
+                <div class="scroll_item_thum">
+                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                </div>
+                <div class="scroll_item_info">
+                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                </div>
+              </a>
+            </li>
+            <li class="scroll_item">
+              <a href="" class="scroll_item_inr">
+                <div class="scroll_item_thum">
+                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                </div>
+                <div class="scroll_item_info">
+                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                </div>
+              </a>
+            </li>
+            <li class="scroll_item">
+              <a href="" class="scroll_item_inr">
+                <div class="scroll_item_thum">
+                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                </div>
+                <div class="scroll_item_info">
+                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                </div>
+              </a>
+            </li>
+            <li class="scroll_item">
+              <a href="" class="scroll_item_inr">
+                <div class="scroll_item_thum">
+                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                </div>
+                <div class="scroll_item_info">
+                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                </div>
+              </a>
+            </li>
+            <li class="scroll_item">
+              <a href="" class="scroll_item_inr">
+                <div class="scroll_item_thum">
+                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                </div>
+                <div class="scroll_item_info">
+                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <div id="comment">
         <%= render 'comments/comments', comments: @comments, product: @product %>
       </div>
-    </section>
+
+    </div>
   </div>
   <div class="column is-4">
-    <%= render partial: 'shared/related_products', locals: { products: @related_products, title: '関連プロダクト'} unless @related_products.empty? %>
+    <%= render partial: 'shared/related_products', locals: {products: @related_products, title: '関連プロダクト'} unless @related_products.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'お気に入りランキング'} unless @product_ranking.empty? %>
   </div>
 </div>

@@ -6,8 +6,7 @@
       </div>
       <% if @likes.present? %>
         <% @likes.each do |like| %>
-          <article class="media">
-            <div class="columns">
+          <div class="columns product">
               <div class="column is-3">
                 <p class="image">
                   <%= link_to like.product do %>
@@ -48,7 +47,6 @@
                 </div>
               </div>
             </div>
-          </article>
         <% end %>
       <% else %>
         <p class="is-size-7">お気に入りしたプロダクトはまだありません</p>
