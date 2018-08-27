@@ -119,6 +119,14 @@ group :development do
   gem 'letter_opener'
   # A web interface for browsing Ruby on Rails sent emails:  https://github.com/fgrehm/letter_opener_web
   gem 'letter_opener_web'
+  # Remote multi-server automation tool http://www.capistranorb.com
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-nginx'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do
