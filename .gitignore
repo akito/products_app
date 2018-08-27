@@ -34,3 +34,7 @@ vendor/bundle
 
 # Ignore rubymine's project management files
 /.idea/*
+
+
+# Images
+/tmp/uploads/*
