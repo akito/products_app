@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: products_app_production
-  username: products_app
-  password: <%= ENV['PRODUCTS_APP_DATABASE_PASSWORD'] %>
+  host: <%= Rails.application.credentials.database[:host] %>
+  database: <%= Rails.application.credentials.database[:db_name] %>
+  username: <%= Rails.application.credentials.database[:user_name] %>
+  password: <%= Rails.application.credentials.database[:password] %>
