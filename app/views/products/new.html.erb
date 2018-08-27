@@ -1,14 +1,14 @@
-<% content_for :searchbox do  %>
-  <%= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
-    <div class="control is-expanded">
-      <%= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: '素敵なサービスが見つけよう',style: "width:250px;"%>
-    </div>
+<%# content_for :searchbox do  %>
+  <%#= search_form_for @search , url:products_path, action: 'index', class: 'has-addons navbar-item is-fullwidth' do |f| %>
+<!--    <div class="control is-expanded">-->
+      <%#= f.search_field :name_or_desc_has_every_term, class: 'input is-small is-fullwidth', placeholder: '素敵なサービスが見つけよう',style: "width:250px;"%>
+<!--    </div>-->
 
-    <div class="control">
-      <%= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
-    </div>
-  <% end %>
-<% end %>
+<!--    <div class="control">-->
+      <%#= f.button fa_icon("search"), class: 'actions button is-dark is-small is-clearfix' %>
+<!--    </div>-->
+  <%# end %>
+<%# end %>
 
 <div class="columns is-centered">
   <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
@@ -18,17 +18,12 @@
         <%= form_with(model: @product, local: true) do |form| %>
           <div class="field">
             <div class="control">
-              <%= form.text_field :name, class: 'input', placeholder: 'プロダクト名' %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
               <%= form.text_field :url, class: 'input', placeholder: 'URL ex. https://example.com' %>
             </div>
           </div>
           <div class="field">
             <div class="control">
-            <%= form.text_area :desc, class: 'textarea', placeholder: 'プロダクトの説明' %>
+            <%= form.text_area :desc, class: 'textarea', placeholder: '補足事項がありましたら、ご記入ください' %>
            </div>
           </div>
           <div class="actions field" style="padding:30px 0;">

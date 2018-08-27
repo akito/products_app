@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_100515) do
+ActiveRecord::Schema.define(version: 2018_08_27_162527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 2018_08_09_100515) do
     t.integer "likes_count", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.bigint "category_id"
+    t.string "ogpimage"
+    t.string "sub_title"
+    t.string "twitter"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

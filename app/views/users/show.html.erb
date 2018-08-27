@@ -10,7 +10,15 @@
               <div class="column is-3">
                 <p class="image">
                   <%= link_to like.product do %>
-                    <%= image_tag like.product.thumbnail.to_s %>
+                    <% if like.product.ogpimage? %>
+                      <figure class="image is-5by3">
+                        <%= image_tag like.product.ogpimage, style: "object-fit: cover;" %>
+                      </figure>
+                    <% else %>
+                      <figure class="image is-5by3">
+                        <%= image_tag like.product.thumbnail_url(:thumb), style: "object-fit: cover;" %>
+                      </figure>
+                    <% end %>
                   <% end %>
                 </p>
               </div>

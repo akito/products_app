@@ -2,7 +2,15 @@
   <div class="column is-3">
     <p class="image">
       <%= link_to product do %>
-        <%= image_tag product.thumbnail_url(:thumb) %>
+        <% if product.ogpimage? %>
+          <figure class="image is-5by3">
+          <%= image_tag product.ogpimage, style: "object-fit: cover;" %>
+          </figure>
+        <% else %>
+          <figure class="image is-5by3">
+            <%= image_tag product.thumbnail_url(:thumb), style: "object-fit: cover;" %>
+          </figure>
+        <% end %>
       <% end %>
     </p>
   </div>

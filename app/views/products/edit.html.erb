@@ -12,6 +12,12 @@
           </div>
           <div class="field">
             <div class="control">
+              <%= form.label '簡単な説明' %>
+              <%= form.text_field :sub_title, class: 'input', placeholder: '簡単な説明' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
               <%= form.label 'URL' %>
               <%= form.text_field :url, class: 'input', placeholder: 'URL' %>
             </div>
@@ -28,6 +34,14 @@
               <%= form.text_field :image, class: 'input', placeholder: 'プロダクトのロゴ' %>
             </div>
           </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.label 'プロダクトのサムネイル' %>
+              <%= form.text_field :ogpimage, class: 'input', placeholder: 'プロダクトのサムネイル' %>
+            </div>
+          </div>
+
           <div class="file">
             <label class="file-label">
               <%= form.file_field :thumbnail, class: 'input file-label', style: "display:none;", accept: 'image/jpg,image/jpeg,image/png,image/gif' %>
@@ -51,10 +65,17 @@
 
           <div class="field">
             <div class="control">
-              <%= form.label 'カテゴリー' %>
+              <%= form.label 'カテゴリー' %><br>
               <div class="select">
-                <%= form.collection_select :category_id, Category.all, :id, :name %>
+                <%= form.collection_select :category_id, Category.all, :id, :name, class: 'select'%>
               </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.label 'twitterアカウント' %>
+              <%= form.text_field :twitter, class: 'input', placeholder: 'twitterアカウント' %>
             </div>
           </div>
 
@@ -70,7 +91,11 @@
             <%= form.submit "修正する", class: "button is-link is-fullwidth is-rounded" %>
           </div>
         <% end %>
+        <div style="text-align: center;">
+          <%= link_to "最新の状態を取得する", fetch_product_path(@product), method: :post, class: 'is-size-7', data: {confirm: '上書きされますが、宜しいでしょうか?'} %>
+        </div>
       </section>
+
 
       <div style="padding:20px;">
         <p class="has-text-centered is-size-7 has-text-grey">
