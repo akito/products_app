@@ -114,8 +114,8 @@ namespace :deploy do
       sudo :mkdir, '-p', '/etc/nginx/sites-available'
 
       upload!('config/database.yml', "#{shared_path}/config/database.yml")
-      upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
-      upload!('config/secrets.yml.key', "#{shared_path}/config/secrets.yml.key")
+      # upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+      # upload!('config/secrets.yml.key', "#{shared_path}/config/secrets.yml.key")
     end
   end
 
