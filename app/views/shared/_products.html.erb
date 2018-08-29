@@ -20,7 +20,7 @@
         <div class="content">
           <p>
             <strong><%= link_to product.name, product %></strong><span> </span>
-            <small><%= link_to (fa_icon 'external-link'), product.url, target: '_blank'%></small>
+            <small><%= link_to (fa_icon 'external-link'), product.url, target: '_blank' %></small>
             <%= link_to "http://twitter.com/intent/tweet?text=#{product.name}&url=#{product_url(product)}&via=productsquare&related=ProductSquare&hashtags=ProductSquare,#{product.name}" do %>
               <%= fa_icon 'twitter' %>
             <% end %>
