@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :fetch]
+  before_action :set_product, only: %i[show edit update destroy fetch]
   before_action :correct_product, only: [:show]
-  before_action :authenticate_admin_user!, only: [:edit, :update, :destroy, :fetch]
-  before_action :set_search, :set_category, only: [:index, :show, :new, :edit]
-  before_action :product_ranking, only: [:index, :show]
+  before_action :authenticate_admin_user!, only: %i[edit update destroy fetch]
+  before_action :set_search, :set_category, only: %i[index show new edit]
+  before_action :product_ranking, only: %i[index show]
 
   MAX_WEEKLY_RANKING = 5
   MAX_RELATED_PRODUCTS = 5
@@ -32,8 +32,7 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /products
   # POST /products.json
@@ -41,15 +40,13 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     begin
       @product.fetch_info
-    rescue => e
+    rescue StandardError => e
       logger.error e
     end
-    unless product_params["desc"].empty?
-      @product.desc = product_params["desc"]
-    end
+    @product.desc = product_params["desc"] unless product_params["desc"].empty?
     respond_to do |format|
       if @product.save
-        format.html { redirect_to root_path, notice: 'プロダクトは正しく申請されました' }
+        format.html { redirect_to root_path, notice: "プロダクトは正しく申請されました" }
         format.json { render :show, status: :created, location: root_path }
       else
         @product.desc = nil
@@ -65,7 +62,7 @@ class ProductsController < ApplicationController
     @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'プロダクト情報は更新されました' }
+        format.html { redirect_to @product, notice: "プロダクト情報は更新されました" }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -79,7 +76,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'プロダクトは削除されました' }
+      format.html { redirect_to products_url, notice: "プロダクトは削除されました" }
       format.json { head :no_content }
     end
   end
@@ -87,18 +84,19 @@ class ProductsController < ApplicationController
   def fetch
     begin
       @product.fetch_info
-    rescue => e
+    rescue StandardError => e
       logger.error e
     end
 
     if @product.validate
-      render :edit, location: @product, notice: 'プロダクト情報は更新されました'
+      render :edit, location: @product, notice: "プロダクト情報は更新されました"
     else
       render :edit
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
@@ -115,7 +113,7 @@ class ProductsController < ApplicationController
 
     def correct_product
       unless @product.published?
-        raise Forbidden, '権限がありません' unless current_user&.admin?
+        raise Forbidden, "権限がありません" unless current_user&.admin?
       end
     end
 

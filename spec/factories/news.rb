@@ -14,7 +14,7 @@
 #
 
 FactoryBot.define do
-  factory :news, class: 'New' do
+  factory :news, class: "New" do
     title "MyString"
     image "MyString"
     url "MyString"

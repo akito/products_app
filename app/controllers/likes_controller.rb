@@ -23,6 +23,6 @@ class LikesController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @like.owned_by?(current_user)
+      raise Forbidden, "権限がありません" unless @like.owned_by?(current_user)
     end
 end

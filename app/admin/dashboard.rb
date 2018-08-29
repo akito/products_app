@@ -1,5 +1,4 @@
 ActiveAdmin.register_page "Dashboard" do
-
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
@@ -15,7 +14,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "最近のプロダクト" do
           ul do
-            Product.where(status: 'published').order(created_at: :desc).limit(20).map do |product|
+            Product.where(status: "published").order(created_at: :desc).limit(20).map do |product|
               li link_to(product.name, admin_product_path(product))
             end
           end
@@ -25,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "最近申請されたプロダクト" do
           ul do
-            Product.where(status: 'draft').order(created_at: :desc).limit(20).map do |product|
+            Product.where(status: "draft").order(created_at: :desc).limit(20).map do |product|
               li link_to(product.name, admin_product_path(product))
             end
           end
@@ -35,7 +34,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "最近却下したプロダクト" do
           ul do
-            Product.where(status: 'archived').order(created_at: :desc).limit(20).map do |product|
+            Product.where(status: "archived").order(created_at: :desc).limit(20).map do |product|
               li link_to(product.name, admin_product_path(product))
             end
           end

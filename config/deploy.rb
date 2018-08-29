@@ -33,29 +33,26 @@
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-
-
-
-lock '3.11.0'
+lock "3.11.0"
 
 #---------------------------------
 # ご自身の環境に合わせて修正が必要です。
 #---------------------------------
-set :repo_url, 'https://github.com/akitojp/products_app.git'
+set :repo_url, "https://github.com/akitojp/products_app.git"
 
 # base
-set :application, 'Product_Square'
-set :branch, 'master'
-set :user, 'admin'
+set :application, "Product_Square"
+set :branch, "master"
+set :user, "admin"
 set :deploy_to, "/opt/#{fetch(:application)}"
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_ruby, File.read(".ruby-version").strip
 set :pty,             false
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
-                                               'vendor/bundle', 'public/system', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/credentials.yml.enc')
+set :linked_dirs, fetch(:linked_dirs, []).push("log", "tmp/pids", "tmp/cache", "tmp/sockets",
+                                               "vendor/bundle", "public/system", "public/uploads")
+set :linked_files, fetch(:linked_files, []).push("config/database.yml", "config/credentials.yml.enc")
 
 # puma
 set :puma_threads, [4, 16]
@@ -71,7 +68,7 @@ set :puma_preload_app, true
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 
 namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
+  desc "Create Directories for Puma Pids and Socket"
   task :make_dirs do
     on roles(:app) do
       execute "mkdir #{shared_path}/tmp/sockets -p"
@@ -94,35 +91,35 @@ namespace :redis do
 end
 
 namespace :deploy do
-  desc 'Make sure local git is in sync with remote.'
+  desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
       unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts 'WARNING: HEAD is not the same as origin/master'
-        puts 'Run `git push` to sync changes.'
+        puts "WARNING: HEAD is not the same as origin/master"
+        puts "Run `git push` to sync changes."
         exit
       end
     end
   end
 
-  desc 'upload important files'
+  desc "upload important files"
   task :upload do
     on roles(:app) do
-      sudo :mkdir, '-p', "#{shared_path}/config"
+      sudo :mkdir, "-p", "#{shared_path}/config"
       sudo %(chown -R #{fetch(:user)}.#{fetch(:user)} /opt/#{fetch(:application)})
-      sudo :mkdir, '-p', '/etc/nginx/sites-enabled'
-      sudo :mkdir, '-p', '/etc/nginx/sites-available'
+      sudo :mkdir, "-p", "/etc/nginx/sites-enabled"
+      sudo :mkdir, "-p", "/etc/nginx/sites-available"
 
-      upload!('config/database.yml', "#{shared_path}/config/database.yml")
+      upload!("config/database.yml", "#{shared_path}/config/database.yml")
       # upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
       # upload!('config/secrets.yml.key', "#{shared_path}/config/secrets.yml.key")
-      upload!('config/credentials.yml.enc', "#{shared_path}/config/credentials.yml.enc")
+      upload!("config/credentials.yml.enc", "#{shared_path}/config/credentials.yml.enc")
     end
   end
 
   before :starting, :upload
-  before 'check:linked_files', 'puma:nginx_config'
+  before "check:linked_files", "puma:nginx_config"
   before :starting, :check_revision
 end
 
-after 'deploy:published', 'nginx:restart'
+after "deploy:published", "nginx:restart"

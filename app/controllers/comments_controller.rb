@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:edit, :update, :destroy, :notifer]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: %i[edit update destroy notifer]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -9,12 +9,11 @@ class CommentsController < ApplicationController
     @product = @comment.product
   end
 
-  def edit
-  end
+  def edit; end
 
   def notifer
     notifier = Slack::Notifier.new(Rails.application.credentials.slack[:webhook_url])
-    notifier.ping("[コメント違反報告] コメントID: #{@comment.id }" + " コメント内容:#{@comment.content}" + " コメントユーザ:#{User.find(@comment.user.id).email}")
+    notifier.ping("[コメント違反報告] コメントID: #{@comment.id}" + " コメント内容:#{@comment.content}" + " コメントユーザ:#{User.find(@comment.user.id).email}")
     redirect_to product_path(@comment.product_id), notice: "ご報告ありがとうございます。運営チームで調査いたします。"
   end
 
@@ -37,6 +36,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
     def comment_params
       params.require(:comment).permit(:content, :product_id)
     end
@@ -47,6 +47,6 @@ class CommentsController < ApplicationController
     end
 
     def correct_user
-      raise Forbidden, '権限がありません' unless @comment.owned_by?(current_user)
+      raise Forbidden, "権限がありません" unless @comment.owned_by?(current_user)
     end
 end

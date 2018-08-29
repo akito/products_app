@@ -12,7 +12,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <%= button_to user_session_path, class: "button is-small" do %>
+    <%= link_to user_session_path, class: "button is-small" do %>
       <span><%= fa_icon 'heart', class: 'heart-gray', style: "padding-right:0.5em;", id: 'heart' %></span>
       <span><%= product.likes.count %></span>
     <% end %>

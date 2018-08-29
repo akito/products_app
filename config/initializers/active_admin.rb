@@ -6,7 +6,6 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Products App"
 
-
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -296,5 +295,5 @@ ActiveAdmin.setup do |config|
 
   # CommentモデルとActiveAdminのCommentモデルが競合するので、
   # ActiveAdmin側を明示的にAdminCommentに変更する
-  config.comments_registration_name = 'AdminComment'
+  config.comments_registration_name = "AdminComment"
 end

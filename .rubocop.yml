@@ -23,10 +23,6 @@ Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-# シングルクォート, ダブルクォートどちらでも良い
-Style/StringLiterals:
-  Enabled: false
-
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
@@ -34,3 +30,10 @@ AllCops:
       - 'bin/**/*'
       - '**/templates/**/*'
       - '**/vendor/**/*'
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false

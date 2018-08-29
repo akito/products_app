@@ -21,7 +21,7 @@
 
 class Product < ApplicationRecord
   include Ownable
-  validates :url, presence: true, uniqueness: { case_sensitive: false }, format: /\A#{URI.regexp(%w(http https))}\z/
+  validates :url, presence: true, uniqueness: { case_sensitive: false }, format: /\A#{URI.regexp(%w[http https])}\z/
 
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
@@ -30,10 +30,9 @@ class Product < ApplicationRecord
   has_many :tags, through: :product_tags, dependent: :destroy
   has_many :new, dependent: :destroy
 
-
-  scope :created_after, ->(time) { where('created_at > ?', time) if time.present? }
-  scope :like_ranking, ->(num) { where('likes_count > 0').order(likes_count: :desc).limit(num) if num.present? }
-  scope :random, -> (num) { where(id: pluck(:id).sample(num)) }
+  scope :created_after, ->(time) { where("created_at > ?", time) if time.present? }
+  scope :like_ranking, ->(num) { where("likes_count > 0").order(likes_count: :desc).limit(num) if num.present? }
+  scope :random, ->(num) { where(id: pluck(:id).sample(num)) }
 
   enum status: { draft: 0, published: 1, archived: 2 }
   enum advertisement: { no: 0, yes: 1 }
@@ -60,15 +59,15 @@ class Product < ApplicationRecord
   end
 
   def tags_to_s
-    tags.pluck(:label).join(' ')
+    tags.pluck(:label).join(" ")
   end
 
   def related_products(max)
-    Product.published.where(category_id: self.category_id).where.not(id: self.id).limit(max)
+    Product.published.where(category_id: category_id).where.not(id: id).limit(max)
   end
 
   def fetch_info
-    page = MetaInspector.new(self.url, faraday_options: { ssl: { verify: false } })
+    page = MetaInspector.new(url, faraday_options: { ssl: { verify: false } })
     self.name = page.title.empty? ? page.best_title : page.title
     self.sub_title = page.title.empty? ? nil : page.title
     self.ogpimage = page.images.best.empty? ? nil : page.images.best
