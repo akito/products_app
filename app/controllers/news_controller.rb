@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_new, only: [:destroy]
-  before_action :authenticate_admin_user!, only: [:create, :destroy]
+  before_action :authenticate_admin_user!, only: %i[create destroy]
 
   # POST /products
   # POST /products.json
@@ -9,26 +9,25 @@ class NewsController < ApplicationController
     page = MetaInspector.new(@new.url)
     @new.title = page.best_title || page.best_title || nil
     @new.media = nil
-    @new.image = page.images.best || page.meta_tags['property']['og:image'] || nil
+    @new.image = page.images.best || page.meta_tags["property"]["og:image"] || nil
     @new.description = page.best_description || page.description || nil
 
     if @new.save
-      redirect_to product_path(@new.product_id), notice: 'ニュースを追加しました'
+      redirect_to product_path(@new.product_id), notice: "ニュースを追加しました"
     else
-      redirect_to product_path(@new.product_id), notice: 'ニュースを追加できませんでした'
+      redirect_to product_path(@new.product_id), notice: "ニュースを追加できませんでした"
     end
   end
-
 
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
     @new.destroy
-    redirect_to product_path(@product), notice: 'ニュースを削除しました'
+    redirect_to product_path(@product), notice: "ニュースを削除しました"
   end
 
-
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_new
       @new = New.find(params[:id])

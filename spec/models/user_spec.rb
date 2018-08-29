@@ -31,49 +31,47 @@
 #  bio                    :string
 #
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-
   let(:user) { create(:user) }
 
-  it 'is valid with a name, email, password' do
+  it "is valid with a name, email, password" do
     expect(user.valid?).to be true
   end
 
-  it 'is invalid without a name' do
+  it "is invalid without a name" do
     user.name = nil
     expect(user.valid?).to be false
   end
 
-  it 'is invalid without an email address' do
+  it "is invalid without an email address" do
     user.email = nil
     expect(user.valid?).to be false
   end
 
-
-  it 'is invalid with a duplicate name' do
+  it "is invalid with a duplicate name" do
     overlap_name = build(:user, name: user.name)
     expect(overlap_name.valid?).to be false
   end
 
-  it 'is invalid with a duplicate email address' do
+  it "is invalid with a duplicate email address" do
     overlap_email = build(:user, email: user.email)
     expect(overlap_email.valid?).to be false
   end
 
-  it 'is invalid user name with 16 or more characters' do
-    user.name = 'a' * 16
+  it "is invalid user name with 16 or more characters" do
+    user.name = "a" * 16
     expect(user.valid?).to be false
   end
 
-  it 'is invalid user name with 2 or less characters' do
-    user.name = 'a' * 2
+  it "is invalid user name with 2 or less characters" do
+    user.name = "a" * 2
     expect(user.valid?).to be false
   end
 
-  it 'is invalid user name with symbols that can not be used' do
-    user.name = 'a1$!@'
+  it "is invalid user name with symbols that can not be used" do
+    user.name = "a1$!@"
     expect(user.valid?).to be false
   end
 end

@@ -1,5 +1,5 @@
 module ApplicationHelper
-  APP_NAME = "Product Square"
+  APP_NAME = "Product Square".freeze
 
   def page_title
     base_title = APP_NAME
@@ -7,7 +7,7 @@ module ApplicationHelper
     "#{base_title} | #{@product.name}"
   end
 
-  def flash_message(message, klass)
+  def flash_message(_message, _klass)
     content_tag(:div, class: "klass") do
     end
   end

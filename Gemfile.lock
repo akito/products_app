@@ -864,7 +864,7 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.5.0)
       fog-core (>= 1.27, < 3.0)
-    fog-openstack (0.1.27)
+    fog-openstack (0.2.0)
       fog-core (~> 1.45.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -1089,6 +1089,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (5.1.1)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.1)
       actionpack (= 5.2.1)
       activesupport (= 5.2.1)
@@ -1181,6 +1184,7 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.3)
       tilt (~> 2.0)
+    slack-notifier (2.3.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -1277,6 +1281,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.0)
   rails-controller-testing
+  rails-i18n (~> 5.1)
   ransack
   recaptcha
   redis (~> 4.0)
@@ -1288,6 +1293,7 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq
   sinatra
+  slack-notifier
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

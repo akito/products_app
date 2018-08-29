@@ -1,13 +1,12 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:index, :show]
-  before_action :authenticate_admin_user!, only: [:new, :edit, :create, :update, :destroy ]
-  before_action :set_search, only: [:index, :show, :new, :edit]
+  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_categories, only: %i[index show]
+  before_action :authenticate_admin_user!, only: %i[new edit create update destroy]
+  before_action :set_search, only: %i[index show new edit]
 
   # GET /categories
   # GET /categories.json
-  def index
-  end
+  def index; end
 
   # GET /categories/1
   # GET /categories/1.json
@@ -23,8 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories
   # POST /categories.json
@@ -33,7 +31,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to @category, notice: "Category was successfully created." }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -47,7 +45,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to @category, notice: "Category was successfully updated." }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -61,12 +59,13 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])

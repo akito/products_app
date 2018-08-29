@@ -37,14 +37,14 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false }
 
-  validates_format_of :name, with: /\A[a-zA-Z0-9_\-. ]{3,15}\z/, message: "アルファベット,数字,.,-,_ が利用できます", multiline: true
+  validates :name, format: { with: /\A[a-zA-Z0-9_\-. ]{3,15}\z/, message: "アルファベット,数字,.,-,_ が利用できます", multiline: true }
   validate :validate_name
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: %i(facebook)
+         :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -63,17 +63,15 @@ class User < ApplicationRecord
     end
   end
 
-  def login=(login)
-    @login = login
-  end
+  attr_writer :login
 
   def login
-    @login || self.name || self.email
+    @login || name || email
   end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
-    conditions[:email].downcase! if conditions[:email]
+    conditions[:email]&.downcase!
     login = conditions.delete(:login)
 
     where(conditions.to_hash).where(

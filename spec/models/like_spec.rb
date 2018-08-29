@@ -9,20 +9,19 @@
 #  product_id :bigint(8)        not null
 #
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Like, type: :model do
-
-  it 'is valid with a user_id, product_id' do
+  it "is valid with a user_id, product_id" do
     like = create(:like)
     expect(like.valid?).to be true
   end
 
-  it 'is invalid without a user_id' do
+  it "is invalid without a user_id" do
     like = Like.new(user_id: nil)
     expect(like.valid?).to be false
   end
-  it 'is invalid without a product_id' do
+  it "is invalid without a product_id" do
     like = Like.new(product_id: nil)
     expect(like.valid?).to be false
   end

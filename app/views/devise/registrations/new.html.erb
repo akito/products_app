@@ -28,7 +28,11 @@
               <span class="icon is-small is-left"><%= fa_icon "lock" %></span>
             </p>
           </div>
-          <p class="is-size-7 has-text-grey">登録すると、利用規約およびプライバシーポリシーに同意したことになります。</p>
+          <p class="is-size-7 has-text-grey">登録すると、<%= link_to '利用規約', page_path('terms_of_service'), target: '_blank' %>および<%= link_to 'プライバシーポリシー', page_path('privacy_policy'), target: '_blank' %>に同意したことになります。</p>
+
+          <div class="field" style="max-width: 100%">
+            <%= recaptcha_tags %>
+          </div>
           <div class="actions field" style="padding:30px 0;">
             <%= f.submit "アカウント登録", class: "button is-link is-fullwidth is-rounded" %>
           </div>

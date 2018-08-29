@@ -9,20 +9,18 @@
 #  updated_at  :datetime         not null
 #
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Category, type: :model do
   describe "FactoryGirl be valid" do
     it { expect(build(:category)).to be_valid }
   end
 
-
-  describe 'Relation' do
-
+  describe "Relation" do
     let(:category) { create(:category) }
     let(:products) { create_list(:product, 5, category: category) }
 
-    it 'has many products' do
+    it "has many products" do
       expect(category.products).to match_array products
     end
   end
