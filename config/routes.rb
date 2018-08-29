@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   end
   resources :categories
   resources :tags
-  resources :comments, only: [:create, :edit, :update, :destroy]
+  resources :comments, only: [:create, :edit, :update, :destroy] do
+    member do
+      get :notifer
+    end
+  end
+
   resources :likes, only: [:create, :destroy]
   resources :news, only: [:new, :create, :destroy]
   resources :registrations, only: %i[new create]

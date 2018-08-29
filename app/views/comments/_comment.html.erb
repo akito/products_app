@@ -16,14 +16,9 @@
       </p>
     </div>
     <nav class="level is-mobile">
-<!--      <div class="level-left">-->
-<!--        <a class="level-item">-->
-<!--          <span class="is-size-7">返信</span>-->
-<!--        </a>-->
-<!--        <a class="level-item">-->
-<!--          <span class="is-size-7">いいね</span>-->
-<!--        </a>-->
-<!--      </div>-->
+      <div class="level-left">
+        <%= link_to "報告する", notifer_comment_path(comment), data: {confirm: '本当に報告しますか?'}, style: 'font-size:0.6rem;' %>
+      </div>
       <div class="level-right">
       </div>
     </nav>
@@ -35,4 +30,6 @@
       <% end %>
     <% end %>
   </div>
+
+
 </article>
