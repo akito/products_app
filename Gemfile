@@ -86,6 +86,7 @@ gem 'sinatra'
 gem 'aws-sdk'
 
 # The Ruby cloud services library. http://fog.io
+gem 'fog-aws'
 gem 'fog'
 
 # Ruby gem for web scraping purposes. https://github.com/jaimeiniesta/metainspector
