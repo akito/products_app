@@ -1,0 +1,19 @@
+<div class="columns is-centered">
+  <div class="column  is-narrow is-half is-12-mobile is-4-desktop is-centered">
+    <div class="box">
+      <section class="section">
+        <p class="subtitle has-text-grey is-aligin-center">ニュース追加</p>
+        <%= form_with(model: @new, url: news_index_path, local: true) do |form| %>
+          <div class="field">
+            <div class="control">
+              <%= form.text_field :url, class: 'input', placeholder: 'URL ex. https://example.com' %>
+            </div>
+          </div>
+          <div class="actions field" style="padding:30px 0;">
+            <%= form.submit "追加する", class: "button is-link is-fullwidth is-rounded" %>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  </div>
+</div>
