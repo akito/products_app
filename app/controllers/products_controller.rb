@@ -39,21 +39,20 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    page = MetaInspector.new(@product.url)
-    @product.name = page.title.empty? ? Time.now : page.title
-    @product.sub_title = page.best_title || nil
-    @product.ogpimage = page.images.best || page.meta_tags['property']['og:image'] || nil
-    @product.image = page.images.favicon || nil
-
-    if @product.desc.empty?
-      @product.desc = page.best_description || page.description
+    begin
+      @product.fetch_info
+    rescue => e
+      logger.error e
     end
-
+    unless product_params["desc"].empty?
+      @product.desc = product_params["desc"]
+    end
     respond_to do |format|
       if @product.save
         format.html { redirect_to root_path, notice: 'プロダクトは正しく申請されました' }
         format.json { render :show, status: :created, location: root_path }
       else
+        @product.desc = nil
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -86,14 +85,11 @@ class ProductsController < ApplicationController
   end
 
   def fetch
-    page = MetaInspector.new(@product.url)
-    @product.name = page.title || page.best_title || nil
-    @product.sub_title = page.best_title || nil
-    @product.desc = page.best_description || page.description || ""
-    @product.ogpimage = page.images.best  || page.meta_tags['property']['og:image'] || nil
-    @product.image = page.images.favicon || nil
-    @product.twitter = page.meta_tags['name']['twitter:site']
-
+    begin
+      @product.fetch_info
+    rescue => e
+      logger.error e
+    end
 
     if @product.validate
       render :edit, location: @product, notice: 'プロダクト情報は更新されました'

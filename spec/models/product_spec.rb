@@ -27,25 +27,11 @@ RSpec.describe Product, type: :model do
       expect(product.valid?).to be true
     end
 
-    it 'is invalid without a name' do
-      product.name = nil
-      expect(product.valid?).to be false
-    end
-
     it 'is invalid without a url' do
       product.url = nil
       expect(product.valid?).to be false
     end
 
-    it 'is invalid without a description' do
-      product.desc = nil
-      expect(product.valid?).to be false
-    end
-
-    it 'is invalid with a duplicate name' do
-      overlap_name = build(:product, name: product.name)
-      expect(overlap_name.valid?).to be false
-    end
     it 'is invalid with a duplicate url' do
       overlap_url = build(:product, url: product.url)
       expect(overlap_url.valid?).to be false

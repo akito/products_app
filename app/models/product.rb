@@ -21,9 +21,7 @@
 
 class Product < ApplicationRecord
   include Ownable
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :url, presence: true, uniqueness: { case_sensitive: false }
-  validates :desc, presence: true
+  validates :url, presence: true, uniqueness: { case_sensitive: false }, format: /\A#{URI.regexp(%w(http https))}\z/
 
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
@@ -67,5 +65,14 @@ class Product < ApplicationRecord
 
   def related_products(max)
     Product.published.where(category_id: self.category_id).where.not(id: self.id).limit(max)
+  end
+
+  def fetch_info
+    page = MetaInspector.new(self.url, faraday_options: { ssl: { verify: false } })
+    self.name = page.title.empty? ? page.best_title : page.title
+    self.sub_title = page.title.empty? ? nil : page.title
+    self.ogpimage = page.images.best.empty? ? nil : page.images.best
+    self.image = page.images.favicon.empty? ? nil : page.images.favicon
+    self.desc = page.best_description.empty? ? page.description : page.best_description
   end
 end
