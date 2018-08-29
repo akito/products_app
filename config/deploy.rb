@@ -44,7 +44,7 @@ lock '3.11.0'
 set :repo_url, 'https://github.com/akitojp/products_app.git'
 
 # base
-set :application, 'Product Square'
+set :application, 'Product_Square'
 set :branch, 'master'
 set :user, 'admin'
 set :deploy_to, "/opt/#{fetch(:application)}"
