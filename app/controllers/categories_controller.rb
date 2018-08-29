@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @products = @category.products.page(params[:page])
+    @products = @category.products.includes(:tags).page(params[:page])
     @product_ranking = Product.where(category_id: params[:id]).like_ranking(10)
     @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
   end

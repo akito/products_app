@@ -39,25 +39,23 @@
 
           <div class="media-content">
             <p class="title is-4" style="margin-bottom: 0.1rem;">
-
+              <%= @product.name %>
+              <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank' %></small>
               <% if @product.yes? %>
                 <span class="tag is-size-7"  >
                   PR
                 </span>
               <% end %>
-
-              <%= @product.name %>
-              <small><%= link_to (fa_icon 'external-link'), @product.url, target: '_blank' %></small>
-              <span class="tag is-size-7"  >
-                <%= @product.status %>
-              </span>
-              <span style="font-size: 0.4em">
-                <% if current_user&.admin? %>
+              <% if current_user&.admin? %>
+                <span class="tag is-size-7"  >
+                  <%= @product.status %>
+                </span>
+                <span style="font-size: 0.4em">
                   <%= link_to '編集', edit_product_path(@product) %>
                   <span> </span>
                   <%= link_to '削除', @product, method: :delete, data: {confirm: 'Are you sure?'} %>
-                <% end %>
-              </span>
+                </span>
+              <% end %>
             </p>
             <p class="is-size-7"><%= @product.sub_title %></p>
           </div>
@@ -110,12 +108,6 @@
             <% end %>
           </p>
 
-          <p class="fb-share-button" data-href="https://theproductsq.com/aaa" data-layout="button" data-size="small" data-mobile-iframe="true">
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftheproductsq.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-              シェア
-            </a>
-          </p>
-
         </div>
 
       </div>
@@ -164,66 +156,42 @@
       </style>
 
 
-
       <div class="rel-links" style="padding: 1.5rem 0">
         <article class="media">
           <p>関連リンク</p>
         </article>
+        <% unless @product.new.empty? %>
 
         <div class="horizontal_scroll_wrap">
           <ul class="scroll_lst">
+            <% @product.new.each do |entry| %>
             <li class="scroll_item">
-              <a href="" class="scroll_item_inr">
+                <%= link_to entry.url, target: "_blank" do %>
                 <div class="scroll_item_thum">
-                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
+                  <%= image_tag entry.image, style: "width: 220px; height: 120px; object-fit: cover;", class: "alignnone size-medium wp-image-986" %>
                 </div>
                 <div class="scroll_item_info">
-                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
+                  <h4 class="scroll_item_ttl"><%= entry.title %></h4>
                 </div>
-              </a>
+              <% end %>
             </li>
-            <li class="scroll_item">
-              <a href="" class="scroll_item_inr">
-                <div class="scroll_item_thum">
-                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
-                </div>
-                <div class="scroll_item_info">
-                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
-                </div>
-              </a>
-            </li>
-            <li class="scroll_item">
-              <a href="" class="scroll_item_inr">
-                <div class="scroll_item_thum">
-                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
-                </div>
-                <div class="scroll_item_info">
-                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
-                </div>
-              </a>
-            </li>
-            <li class="scroll_item">
-              <a href="" class="scroll_item_inr">
-                <div class="scroll_item_thum">
-                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
-                </div>
-                <div class="scroll_item_info">
-                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
-                </div>
-              </a>
-            </li>
-            <li class="scroll_item">
-              <a href="" class="scroll_item_inr">
-                <div class="scroll_item_thum">
-                  <img src="http://blog.keisuke11.com/wp-content/uploads/2017/04/click-event-after-add-300x158.jpg" alt="" width="300" height="158" class="alignnone size-medium wp-image-986" />
-                </div>
-                <div class="scroll_item_info">
-                  <h4 class="scroll_item_ttl">clickイベントが効かない？appendで後から追加した要素にクリックイベントを追加する方法</h4>
-                </div>
-              </a>
-            </li>
+              <% if current_user&.admin? %>
+                      <span style="font-size: 0.4em">
+                        <%= link_to '削除', news_path(id: entry.id, product_id: @product.id ), method: :delete, data: {confirm: 'Are you sure?'} %>
+                      </span>
+              <% end %>
+            <% end %>
           </ul>
         </div>
+        <% end %>
+
+        <% if current_user&.admin? %>
+          <%= form_for New.new, url: news_index_path do |f| %>
+            <%= f.text_field :url %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.submit "追加", class: "is-link is-size-7" %>
+          <% end %>
+        <% end %>
 
       </div>
 

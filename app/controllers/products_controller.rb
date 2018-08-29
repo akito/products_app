@@ -39,15 +39,15 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    # @product.add_tags(product_tags_param[:tags_to_s].split) unless product_tags_param[:tags_to_s].nil?
-
     page = MetaInspector.new(@product.url)
-
-    @product.name = page.title || nil
+    @product.name = page.title.empty? ? Time.now : page.title
     @product.sub_title = page.best_title || nil
-    @product.desc = @product.desc.empty? || page.best_description || page.description
     @product.ogpimage = page.images.best || page.meta_tags['property']['og:image'] || nil
     @product.image = page.images.favicon || nil
+
+    if @product.desc.empty?
+      @product.desc = page.best_description || page.description
+    end
 
     respond_to do |format|
       if @product.save
@@ -114,7 +114,7 @@ class ProductsController < ApplicationController
     end
 
     def product_tags_param
-      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :sub_title, :ogpimage, :twitter, :tags_to_s)
+      params.require(:product).permit(:name, :url, :desc, :image, :thumbnail, :sub_title, :ogpimage, :twitter, :advertisement, :tags_to_s)
     end
 
     def correct_product
