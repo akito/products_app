@@ -116,6 +116,7 @@ namespace :deploy do
       upload!('config/database.yml', "#{shared_path}/config/database.yml")
       # upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
       # upload!('config/secrets.yml.key', "#{shared_path}/config/secrets.yml.key")
+      upload!('config/credentials.yml.enc', "#{shared_path}/config/credentials.yml.enc")
     end
   end
 
