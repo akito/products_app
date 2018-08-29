@@ -55,7 +55,7 @@ set :stage,           :production
 set :deploy_via,      :remote_cache
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
                                                'vendor/bundle', 'public/system', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/secrets.yml.key')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/credentials.yml.enc')
 
 # puma
 set :puma_threads, [4, 16]
