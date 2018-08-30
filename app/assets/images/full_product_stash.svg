@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="3325px" height="511px" viewBox="0 0 3325 511" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="3291px" height="511px" viewBox="0 0 3291 511" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
     <title>Group 17</title>
     <desc>Created with Sketch.</desc>
@@ -67,12 +67,10 @@
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-17">
-            <g id="Group-15" transform="translate(557.000000, 64.000000)" fill="#282828" font-size="500">
-                <text id="Product" font-family="Futura-Bol, Futura" font-weight="bold" letter-spacing="-7.086196">
+            <g id="Group-15" transform="translate(566.000000, 56.000000)" fill="#282828" font-family="Futura-Bol, Futura" font-size="500" font-weight="bold" letter-spacing="-7.086196">
+                <text id="ProductStash">
                     <tspan x="0" y="367">Product</tspan>
-                </text>
-                <text id="Stash" font-family="Futura-Boo, Futura" font-weight="300" letter-spacing="-7.142865">
-                    <tspan x="1807" y="365">Stash</tspan>
+                    <tspan x="1763.39663" y="367" font-family="Futura-Boo, Futura" font-weight="300">Stash</tspan>
                 </text>
             </g>
             <g id="product_square_logo">
