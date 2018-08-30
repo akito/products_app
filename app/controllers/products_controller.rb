@@ -88,9 +88,9 @@ class ProductsController < ApplicationController
     rescue StandardError => e
       logger.error e
     end
-
     if @product.validate
-      render :edit, location: @product, notice: "プロダクト情報は更新されました"
+      redirect_to edit_product_path(@product), notice: "プロダクト情報は更新されました"
+      # render :edit, location: @product, notice: "プロダクト情報は更新されました"
     else
       render :edit
     end
