@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
-//= require activestorage
 //= require custom
 //= require facebookauth
+//= require rails-ujs
+//= require activestorage
+
 //= require turbolinks
