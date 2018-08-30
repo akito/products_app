@@ -65,6 +65,7 @@ gem "high_voltage"
 gem "kaminari"
 
 gem "jquery-rails"
+gem "jquery-turbolinks"
 
 # ReCaptcha helpers for ruby apps http://github.com/ambethia/recaptcha
 gem "recaptcha"
