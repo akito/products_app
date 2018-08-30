@@ -1,5 +1,5 @@
- <div class="columns is-mobile product">
-    <div class="column is-4">
+ <div class="columns is-mobile product rank">
+   <div class="column is-4">
       <p class="image">
         <%= link_to product do %>
           <% if product.ogpimage? %>
@@ -14,19 +14,15 @@
         <% end %>
       </p>
     </div>
-    <div class="column">
-      <div class="content">
-        <p>
-          <strong><%= link_to product.name, product %></strong>
-          <br>
-          <span class="is-size-7"><%= product.sub_title.truncate(30) %></span>
-        </p>
-      </div>
-    </div>
-    <div class="column is-narrow">
-      <span class="is-size-7 fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-inverse fa-stack-1x" style="color: #ffffff;"><%= product_iteration.index + 1 %></i>
-      </span>
-    </div>
-  </div>
+   <div class="column">
+     <div class="content">
+       <p>
+         <strong><%= link_to product.name, product %></strong>
+         <br>
+         <span class="is-size-7"><%= product.sub_title.truncate(30) %></span>
+       </p>
+     </div>
+   </div>
+   <div class="column is-narrow">
+   </div>
+ </div>
