@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3325px" height="511px" viewBox="0 0 3325 511" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 17</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#FF0000" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#FF0000" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.9268876%" y1="49.3476268%" x2="100%" y2="14.8083965%" id="linearGradient-2">
+            <stop stop-color="#FF8000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FF8000" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="100%" y2="84.0664206%" id="linearGradient-3">
+            <stop stop-color="#FFFF00" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFF00" stop-opacity="0.7" offset="96.9057641%"></stop>
+            <stop stop-color="#FFFF00" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="75.2144428%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#09FAFD" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#09FAFD" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="22.9036704%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#19E500" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#19E500" stop-opacity="0.7" offset="96.5611452%"></stop>
+            <stop stop-color="#19E500" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="53.5116664%" y1="47.8493031%" x2="0%" y2="71.0818398%" id="linearGradient-6">
+            <stop stop-color="#0C00CC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#0C00CC" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="0%" y2="20.0882279%" id="linearGradient-7">
+            <stop stop-color="#C400CC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#C400CC" stop-opacity="0.98" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-8" x="0" y="0" width="510" height="510.998043" rx="98"></rect>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="0%" id="linearGradient-9">
+            <stop stop-color="#FF5252" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FF0000" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.9268876%" y1="49.3476268%" x2="100%" y2="0%" id="linearGradient-10">
+            <stop stop-color="#FFB66C" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FF8000" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="99.9114191%" y2="99.9114191%" id="linearGradient-11">
+            <stop stop-color="#FFFF3B" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFF00" stop-opacity="0.7" offset="99.9113798%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="40.8028618%" y2="100%" id="linearGradient-12">
+            <stop stop-color="#7BFDFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#09FAFD" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="0%" y2="100%" id="linearGradient-13">
+            <stop stop-color="#71FF5F" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#19E500" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="53.5116664%" y1="47.8493031%" x2="0%" y2="100%" id="linearGradient-14">
+            <stop stop-color="#6258FF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#0C00CC" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="0%" y2="0%" id="linearGradient-15">
+            <stop stop-color="#F847FF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#C400CC" stop-opacity="0.98" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-16" x="0" y="0" width="510" height="510.998043" rx="98"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-17">
+            <g id="Group-15" transform="translate(557.000000, 64.000000)" fill="#282828" font-size="500">
+                <text id="Product" font-family="Futura-Bol, Futura" font-weight="bold" letter-spacing="-7.086196">
+                    <tspan x="0" y="367">Product</tspan>
+                </text>
+                <text id="Stash" font-family="Futura-Boo, Futura" font-weight="300" letter-spacing="-7.142865">
+                    <tspan x="1807" y="365">Stash</tspan>
+                </text>
+            </g>
+            <g id="product_square_logo">
+                <g id="Rectangle-18">
+                    <use fill="url(#linearGradient-1)" xlink:href="#path-8"></use>
+                    <use fill="url(#linearGradient-2)" xlink:href="#path-8"></use>
+                    <use fill="url(#linearGradient-3)" xlink:href="#path-8"></use>
+                    <use fill="url(#linearGradient-4)" xlink:href="#path-8"></use>
+                    <use fill="url(#linearGradient-5)" xlink:href="#path-8"></use>
+                    <use fill="url(#linearGradient-6)" xlink:href="#path-8"></use>
+                    <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="url(#linearGradient-7)" x="0.5" y="0.5" width="509" height="509.998043" rx="98"></rect>
+                </g>
+                <g id="Rectangle-18">
+                    <use fill="url(#linearGradient-9)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-10)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-11)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-12)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-13)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-14)" xlink:href="#path-16"></use>
+                    <use fill="url(#linearGradient-15)" xlink:href="#path-16"></use>
+                </g>
+                <g id="Group-14" transform="translate(131.741683, 75.851272)" fill="#FFFFFF">
+                    <rect id="Rectangle-20" x="0" y="0" width="111.038316" height="111.427085"></rect>
+                    <rect id="Rectangle-20" x="123.501801" y="0" width="111.038316" height="111.427085"></rect>
+                    <rect id="Rectangle-20" x="0" y="123.934207" width="111.038316" height="111.427085"></rect>
+                    <rect id="Rectangle-20" x="123.501801" y="123.934207" width="111.038316" height="111.427085"></rect>
+                    <rect id="Rectangle-20" x="0" y="247.868414" width="111.038316" height="111.427085"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
