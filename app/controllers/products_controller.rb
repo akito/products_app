@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :correct_product, only: [:show]
   before_action :authenticate_admin_user!, only: %i[edit update destroy fetch]
   before_action :set_search, :set_category, only: %i[index show new edit]
-  before_action :product_ranking, only: %i[index show]
+  before_action :product_ranking, only: %i[index]
 
   MAX_WEEKLY_RANKING = 5
   MAX_RELATED_PRODUCTS = 5
@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
     @products = Product.published.order(:id)
     @related_products = @product.related_products(MAX_RELATED_PRODUCTS)
     @comments = @product.comments.includes(:user).order(updated_at: :asc)
+    @product_ranking = Product.where(category_id: @product.category_id).like_ranking(10)
   end
 
   # GET /products/new

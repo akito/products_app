@@ -8,12 +8,14 @@ class TagsController < ApplicationController
   MAX_LIKES_RANKING = 5
 
   def show
-    @products = @tag.products.includes(:tags).page(params[:page])
-    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
-    @product_ranking = Product.joins(:tags).where(tags: { id: params[:page] }).like_ranking(MAX_LIKES_RANKING)
+    @products = @tag.products.published.includes(:tags).page(params[:page])
+    @weekly_ranking = Product.published.created_after(1.week.ago).like_ranking(MAX_WEEKLY_RANKING)
+    @product_ranking = Product.published.joins(:tags).where(tags: { id: params[:id] }).like_ranking(MAX_LIKES_RANKING)
+    @recommended_products = Product.published.joins(:tags).where(tags: { id: params[:id] }).random(5)
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     respond_to do |format|

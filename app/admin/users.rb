@@ -1,3 +1,3 @@
 ActiveAdmin.register User do
-  # permit_params :list, :of, :attributes, :on, :model
+  permit_params :email, :name, :bio, :role, :avatar
 end

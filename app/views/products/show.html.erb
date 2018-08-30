@@ -203,7 +203,7 @@
     </div>
   </div>
   <div class="column is-4">
-    <%= render partial: 'shared/related_products', locals: {products: @related_products, title: '関連プロダクト'} unless @related_products.empty? %>
-    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'お気に入りランキング'} unless @product_ranking.empty? %>
+    <%= render partial: 'shared/related_products', locals: {products: @related_products, title: "#{@product.name}に関連するプロダクト"} unless @related_products.empty? %>
+    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: "#{@product.name}と同じカテゴリーのランキング"} unless @product_ranking.empty? %>
   </div>
 </div>

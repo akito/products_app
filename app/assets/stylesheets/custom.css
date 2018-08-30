@@ -36,3 +36,38 @@
  .product + .product {
    border-top: 1px solid rgba(219, 219, 219, 0.5);
  }
+
+/*Ranking*/
+.ranking {
+  counter-reset: wpp-ranking;
+}
+.ranking .rank {
+  list-style-type: none;
+  padding: 5px 0 0 0;
+  position: relative;
+}
+.ranking .rank:before {
+  background: hsl(0, 0%, 71%);
+  border-radius: 50%;
+  content: counter(wpp-ranking, decimal);
+  counter-increment: wpp-ranking;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  font:bold;
+  padding: 4px 8px;
+  position: absolute;
+  top: 10px;
+  left: 2px;
+  z-index: 100;
+}
+
+.ranking .rank:nth-child(1):before {
+  background: #fa0;
+}
+.ranking .rank:nth-child(2):before {
+  background: #bbb;
+}
+.ranking .rank:nth-child(3):before {
+  background: #930;
+}
