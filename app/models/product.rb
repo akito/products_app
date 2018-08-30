@@ -68,8 +68,8 @@ class Product < ApplicationRecord
 
   def fetch_info
     page = MetaInspector.new(url, faraday_options: { ssl: { verify: false } })
-    if self.url.match(/^http:\/\/.*/) then
-      self.url.sub!("http://", "https://")
+    if url.match(/^http:\/\/.*/) then
+      url.sub!("http://", "https://")
     end
     self.name = page.title.empty? ? page.best_title : page.title
     self.sub_title = page.title.empty? ? nil : page.title
