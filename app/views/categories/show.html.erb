@@ -11,7 +11,6 @@
       <% end %>
     </section>
     <%= render partial: 'shared/categories', locals: {categories: @categories, title: 'カテゴリー'} unless @categories.empty? %>
-    <%= render partial: 'shared/ranking', locals: {products: @weekly_ranking, title: '週間お気に入りランキング'} unless @product_ranking.empty? %>
     <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'カテゴリーが同じプロダクトのお気に入りランキング'} unless @product_ranking.empty? %>
   </div>
   <div class="column is-8">

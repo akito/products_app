@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
   def show
     @products = @category.products.includes(:tags).page(params[:page])
     @product_ranking = Product.where(category_id: params[:id]).like_ranking(10)
-    @weekly_ranking = Product.created_after(1.week.ago).like_ranking(10)
   end
 
   # GET /categories/new
