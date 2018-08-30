@@ -1,19 +1,9 @@
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.1&appId=929110677181768&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
 <% content_for :searchbox do %>
   <%= render 'shared/searchbox' %>
 <% end %>
 <div class="columns">
   <div class="column is-6 is-offset-1">
-    <div class="card" style="box-shadow: none;">
+    <div class="card" style="box-shadow: none; margin-top:3rem;">
       <div class="card-image">
         <figure class="image is-5by3">
           <%= link_to @product.url, target: "_blank" do %>
@@ -79,11 +69,11 @@
       <div>
         <div class="website media">
           <%= link_to  @product.url, target: "_blank", class: "button  is-medium is-fullwidth is-outlined" do %>
-          <span class="icon">
+          <span class="icon is-size-6">
             <%= fa_icon 'compass' %>
           </span>
 
-            <span>Webサイト</span>
+            <span class="is-size-6">Webサイト</span>
 
           <% end %>
         </div>
