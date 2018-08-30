@@ -15,4 +15,4 @@
 //= require activestorage
 //= require custom
 //= require facebookauth
-
+//= require turbolinks

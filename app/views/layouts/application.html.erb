@@ -7,12 +7,13 @@
     <%= favicon_link_tag('favicon.ico') %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <meta property="og:url"           content="https://theproductsq.com" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="ProductSquare | 素敵なサービスを見つけよう" />
     <meta property="og:description"   content="最新のWebサービスを見つけることができるWebサイトです" />
     <meta property="og:image"         content="http://localhost:3000/assets/fallback/thumb_default-cfa2799ebf861bdb261e5f51f5bc4c38ee35575a034ac0371d05e47a69524e32.png" />
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <%= render partial: 'layouts/navbar' %>
@@ -38,7 +39,7 @@
       </section>
     </main>
     <%= render 'layouts/footer' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script async src="https://platform.twitter.com/widgets.js"></script>
+
   </body>
 </html>
