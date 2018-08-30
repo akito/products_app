@@ -3,7 +3,7 @@
 <% end %>
 <div class="columns">
   <div class="column is-4">
-    <section class="section box is-shadowless" style="padding: 0.5rem 1.5rem;">
+    <section class="section box is-shadowless">
       <p class="title is-size-4"><%= @tag.label %>
         <span>
         <% if user_signed_in? and current_user.admin? %>
@@ -13,7 +13,8 @@
       </span>
       </p>
     </section>
-    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'タグが同じプロダクトのお気に入りランキング'} unless @product_ranking.empty? %>
+    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: "#{@tag.label}タグのランキング"} unless @product_ranking.empty? %>
+    <%= render partial: 'shared/related_products', locals: {products: @recommended_products, title: "#{@tag.label}タグでオススメのプロダクト"} unless @recommended_products.empty? %>
   </div>
   <div class="column is-8">
     <%= render partial: 'tags/products', locals: {products: @products, tag: @tag } unless @products.empty? %>

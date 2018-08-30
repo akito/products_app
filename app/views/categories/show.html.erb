@@ -11,7 +11,8 @@
       <% end %>
     </section>
     <%= render partial: 'shared/categories', locals: {categories: @categories, title: 'カテゴリー'} unless @categories.empty? %>
-    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: 'カテゴリーが同じプロダクトのお気に入りランキング'} unless @product_ranking.empty? %>
+    <%= render partial: 'shared/ranking', locals: {products: @product_ranking, title: "#{@category.name}カテゴリーのランキング"} unless @product_ranking.empty? %>
+    <%= render partial: 'shared/related_products', locals: {products: @recommended_products, title: "#{@category.name}カテゴリーでオススメのプロダクト"} unless @recommended_products.empty? %>
   </div>
   <div class="column is-8">
     <%= render partial: 'categories/products', locals: {products: @products, category: @category } unless @products.empty? %>
