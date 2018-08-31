@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id            :bigint(8)        not null, primary key
-#  name          :string           not null
+#  name          :string
 #  url           :string           not null
-#  desc          :text             not null
+#  desc          :text
 #  image         :string
 #  thumbnail     :string
 #  created_at    :datetime         not null
@@ -71,7 +71,6 @@ class Product < ApplicationRecord
     if url.match(/^http:\/\/.*/) then
       url.sub!("http://", "https://")
     end
-    binding.pry
     self.name = page.title.empty? ? page.best_title : page.title
     self.sub_title = page.title.empty? ? nil : page.title
     self.ogpimage = page.images.best.empty? ? nil : page.images.best

@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
     end
     @product.desc = product_params["desc"] unless product_params["desc"].empty?
     respond_to do |format|
-      if @product.save
+      if verify_recaptcha(model: @product) && @product.save
         format.html { redirect_to root_path, notice: "プロダクトは正しく申請されました" }
         format.json { render :show, status: :created, location: root_path }
       else
@@ -90,7 +90,6 @@ class ProductsController < ApplicationController
     end
     if @product.validate
       redirect_to edit_product_path(@product), notice: "プロダクト情報は更新されました"
-      # render :edit, location: @product, notice: "プロダクト情報は更新されました"
     else
       render :edit
     end
