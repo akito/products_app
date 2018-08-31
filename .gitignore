@@ -38,3 +38,5 @@ vendor/bundle
 
 # Images
 /tmp/uploads/*
+
+/public/assets/*

@@ -35,6 +35,23 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.perform_deliveries = true
+  # メールをBrowserで確認するにはletter_opener_webを利用する
+  config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: Rails.application.credentials.mail[:SENDGRID_USERNAME],
+    password: Rails.application.credentials.mail[:SENDGRID_PASSWORD],
+    domain: "productstash.me",
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -59,9 +76,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # Define default url options
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :letter_opener_web
 
   config.after_initialize do
     Bullet.enable = true
