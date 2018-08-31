@@ -2,6 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  prepend_before_action :check_captcha, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -26,11 +27,19 @@ class Users::SessionsController < Devise::SessionsController
   #   render 'new'
   # end
 
-  # protected
+  protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
-  #
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_sign_in_params
+    #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+    # end
+    #
+    def check_captcha
+      unless verify_recaptcha
+        self.resource = resource_class.new sign_in_params
+        resource.validate
+        set_minimum_password_length
+        respond_with resource
+      end
+    end
 end

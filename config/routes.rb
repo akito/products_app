@@ -6,6 +6,7 @@ Rails.application.routes.draw do
              controllers: {
                omniauth_callbacks: "users/omniauth_callbacks",
                registrations: "users/registrations",
+               sessions: "users/sessions"
              }
   get :mypage, to: "users#show", as: :mypage
   root "products#index"
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
 
   resources :likes, only: %i[create destroy]
   resources :news, only: %i[new create destroy]
-  resources :registrations, only: %i[new create]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web, at: "/sidekiq"

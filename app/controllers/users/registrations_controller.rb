@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   # before_action :configure_permitted_parameters, if: :devise_controller?
+  prepend_before_action :check_captcha, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -68,5 +69,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def update_resource(resource, params)
       resource.update_without_password(params)
+    end
+
+    def check_captcha
+      unless verify_recaptcha
+        self.resource = resource_class.new sign_up_params
+        resource.validate
+        set_minimum_password_length
+        respond_with resource
+      end
     end
 end
