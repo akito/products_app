@@ -17,8 +17,8 @@
         <p class="is-size-7"><%= link_to "アカウント情報修正", edit_user_registration_path, class: 'navbar-item' %></p>
       </div>
     </section>
-
-    <div style="margin: 0 0 1rem 0;">
+    <span class="is-hidden-mobile">
+      <div style="margin: 0 0 1rem 0;">
       <p class="subtitle is-7">あなたにおすすめのプロダクト</p>
     </div>
     <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
@@ -54,9 +54,7 @@
       <% end %>
 
     </section>
-
-
-
+    </span>
   </div>
   <div class="column is-8">
       <div style="margin: 0 0 1rem 0;">
@@ -118,5 +116,43 @@
       <%= paginate @likes %>
     </section>
 
+  </div>
+  <div class="colum is-hidden-desktop">
+    <div style="margin: 0 0 1rem 0;">
+      <p class="subtitle is-7">あなたにおすすめのプロダクト</p>
+    </div>
+    <section class="section has-background-light box is-shadowless" style="padding: 0.5rem 1.5rem;">
+      <% @products.each.with_index(1) do |product, i| %>
+        <div class="columns is-mobile product">
+          <div class="column is-4">
+            <p class="image">
+              <%= link_to product do %>
+                <% if product.ogpimage? %>
+                  <figure class="image is-5by3">
+                    <%= image_tag product.ogpimage, style: "object-fit: cover;" %>
+                  </figure>
+                <% else %>
+                  <figure class="image is-5by3">
+                    <%= image_tag product.thumbnail_url(:thumb), style: "object-fit: cover;" %>
+                  </figure>
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+          <div class="column">
+            <div class="content">
+              <p>
+                <strong><%= link_to product.name, product %></strong>
+                <br>
+                <span class="is-size-7"><%= product.sub_title.truncate(30) %></span>
+              </p>
+            </div>
+          </div>
+          <div class="column is-narrow">
+          </div>
+        </div>
+      <% end %>
+
+    </section>
   </div>
 </div>

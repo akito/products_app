@@ -71,3 +71,12 @@
 .ranking .rank:nth-child(3):before {
   background: #930;
 }
+
+@media screen and (max-width: 769px){
+  .ranking-area-desktop{display:none;}}
+
+@media screen and (max-width: 769px){
+  .ranking-area-mobile{display:block;}}
+
+
+diplay:block
