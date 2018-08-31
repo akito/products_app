@@ -2,7 +2,11 @@
   <nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
-      <%= link_to image_tag('full_product_stash.svg'), root_path, class: 'navbar-item', alt: 'Product Square Logo' %>
+      <%= link_to image_tag('full_product_stash.svg'), root_path, class: 'navbar-item is-hidden-mobile', alt: 'Product Square Logo' %>
+      <%= link_to image_tag('p_logo.svg'), root_path, class: 'navbar-item is-hidden-tablet', alt: 'Product Square Logo', style: 'padding-right:0;'%>
+      <div class="navbar-item" style="padding-left: 0" >
+        <%= yield :searchbox %>
+      </div>
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
         <span></span>
@@ -13,7 +17,6 @@
       <div class="navbar-start">
       </div>
       <div class="navbar-end">
-        <%= yield :searchbox %>
         <%= link_to '管理画面', manage_products_path, class: 'navbar-item is-size-7' if current_user&.admin? %>
         <%= link_to 'カテゴリー', categories_path, class: 'navbar-item is-size-7'%>
         <%= link_to 'プロダクトを申請する', new_product_path, class: 'navbar-item is-size-7'%>
