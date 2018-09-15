@@ -86,6 +86,9 @@ gem "sinatra"
 # AWS SDK for JavaScript in the browser and Node.js http://aws.amazon.com/javascript
 gem "aws-sdk"
 
+# Provides an easy ruby DSL & interface to AWS SES https://github.com/drewblas/aws-ses
+gem "aws-ses"
+
 # The Ruby cloud services library. http://fog.io
 gem "fog"
 gem "fog-aws"
